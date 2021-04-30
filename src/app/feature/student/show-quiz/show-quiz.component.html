@@ -1,1 +1,29 @@
-<p>show-quiz works!</p>
+<div>
+  <div *ngIf="!selectedChapter" style="background: #ECECEC;padding:30px;">
+    <div nz-row [nzGutter]="8">
+      <div nz-col class="card" [nzSpan]="8" *ngFor="let chapter of quizChapter">
+        <nz-card nzTitle="chapter {{chapter.chapter.id}}">
+          <p>{{chapter.chapter.title}}</p>
+          <button nz-button nzType="primary" class="startQuiz" (click)="startQuiz(chapter)" nzDanger>Start quiz</button>
+        </nz-card>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="selectedChapter" class="questionAnswers">
+    <p>Question {{currentQuiz + 1}} of {{selectedQuizChapter.quizzes.length}} </p>
+    <h1>{{selectedQuizChapter.quizzes[currentQuiz].question}}</h1>
+    <ul nz-list nzBordered *ngFor="let item of selectedQuizChapter.quizzes[currentQuiz].answer" nzSize="large" class="answers">
+      <label>
+        <li nz-list-item appQuizBackground [correctAnswer]="item.correct" (change)="onAnswer(item.correct)" nzNoFlex>
+          <input type="radio" name="options" [disabled]="answerSelected">
+          {{ item.option }}
+        </li>
+      </label>
+    </ul>
+    <div *ngIf="currentQuiz == 4">
+      <button nz-button nzType="primary" class="submit" (click)="showResult()" nzDanger>Submit</button>
+      <div *ngIf="result">{{correctAnswers}} +++ {{incorrectAnswers}}</div>
+    </div>
+  </div>
+</div>
+
