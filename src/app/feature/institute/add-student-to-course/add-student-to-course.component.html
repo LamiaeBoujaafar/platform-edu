@@ -1,1 +1,56 @@
-<p>add-student-to-course works!</p>
+
+<div class="row">
+  <div class="col-md-6">
+    <nz-select class="form-control" [(ngModel)]="selectedParcour" nzShowSearch nzPlaceHolder="select Parkour"
+               (ngModelChange)="parkourChange($event)">
+      <nz-option *ngFor="let p of parcours" [nzLabel]="p" [nzValue]="p"></nz-option>
+    </nz-select>
+  </div>
+  <div class="col-md-6">
+    <nz-select class="form-control" [(ngModel)]="selectedCour" nzShowSearch nzPlaceHolder="select cour">
+      <nz-option  *ngFor="let c of cours[selectedParcour]" [nzLabel]="c" [nzValue]="c"></nz-option>
+    </nz-select>
+  </div>
+</div>
+
+<div class="row mt-3 align-content-center" >
+  <div class="col-6">
+    <nz-select class="form-control" [(ngModel)]="selectedEtudaint" nzShowSearch nzPlaceHolder="select Student">
+      <nz-option  *ngFor="let e of etudaints" [nzLabel]="e" [nzValue]="e"></nz-option>
+    </nz-select>
+  </div>
+</div>
+
+
+  <br />
+  <br />
+
+  <button nz-button (click)="addRow()" nzType="primary" style="margin: 0 auto">Add</button>
+  <br />
+  <br />
+  <nz-table #editRowTable nzBordered [nzData]="listOfData">
+    <thead>
+    <tr>
+      <th nzWidth="30%">Student Name</th>
+      <th>Parcour</th>
+      <th>Cour</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of editRowTable.data" class="editable-row">
+      <td>
+        <div class="editable-cell" [hidden]="editId === data.id" (click)="startEdit(data.id)">
+          {{ data.etudiant }}
+        </div>
+        <input [hidden]="editId !== data.id" type="text" nz-input [(ngModel)]="data.etudiant" (blur)="stopEdit()" />
+      </td>
+      <td>{{ data.parcour }}</td>
+      <td>{{ data.cour }}</td>
+      <td>
+        <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.id)">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 @Component({
   selector: 'app-registration-requests',
