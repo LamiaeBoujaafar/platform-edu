@@ -11,7 +11,7 @@ export class CourseService {
   sections: SectionModel[] = [{
     id: 1,
     title: 'section1',
-    container: '<h1><font color="#ff0000">section1</font></h1><h2><ul><li><font color="#0af570"><span style="font-family: &quot;Comic Sans MS&quot;; font-size: x-large; background-color: transparent;">&nbsp;liste</span></font></li><li><font color="#0af570"><span style="font-family: &quot;Comic Sans MS&quot;; font-size: x-large;">&nbsp;liste</span><span style="font-family: &quot;Comic Sans MS&quot;; font-size: x-large; background-color: transparent;">&nbsp;</span></font></li><li><span style="font-family: &quot;Comic Sans MS&quot;; font-size: x-large; background-color: transparent;"><font color="#0af570">&nbsp;liste</font></span></li><li><span style="font-family: &quot;Comic Sans MS&quot;; font-size: x-large; background-color: transparent;"><font color="#0af570">&nbsp;liste</font></span></li></ul></h2><p><font face="Comic Sans MS" size="5"><br></font></p>',
+    container: '<h2><ul><li><font color="#0af570"><span style="font-family: &quot;Comic Sans MS&quot;; font-size: x-large; background-color: transparent;">&nbsp;liste</span></font></li><li><font color="#0af570"><span style="font-family: &quot;Comic Sans MS&quot;; font-size: x-large;">&nbsp;liste</span><span style="font-family: &quot;Comic Sans MS&quot;; font-size: x-large; background-color: transparent;">&nbsp;</span></font></li><li><span style="font-family: &quot;Comic Sans MS&quot;; font-size: x-large; background-color: transparent;"><font color="#0af570">&nbsp;liste</font></span></li><li><span style="font-family: &quot;Comic Sans MS&quot;; font-size: x-large; background-color: transparent;"><font color="#0af570">&nbsp;liste</font></span></li></ul></h2><p><font face="Comic Sans MS" size="5"><br></font></p>',
     courseId: 1
   }, {
     id: 2,
@@ -53,9 +53,9 @@ export class CourseService {
     courses: [this.courses[0], this.courses[1], this.courses[2]]
   }];
 
-
   constructor() {
   }
+
   getCourses(){
     return this.courses;
   }

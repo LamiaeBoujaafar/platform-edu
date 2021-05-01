@@ -1,1 +1,27 @@
-<p>show-quiz-parcours works!</p>
+<div *ngIf="!startQuiz" class="startQuiz">
+  <h1>This the final exam!! Good luck.</h1>
+  <br>
+  <nz-card style="width:600px;" nzTitle="Final exam" [nzExtra]="extraTemplate">
+    <img   alt="example" src="../../../../assets/quiz.jpg"/>
+  </nz-card>
+  <ng-template #extraTemplate>
+    <button nz-button (click)="start()" nzType="primary">Start</button>
+  </ng-template>
+</div>
+
+<div *ngIf="startQuiz" class="questionAnswers">
+  <p>Question {{currentQuestion + 1}} of {{quizParcours.numberQuestions}} </p>
+  <h1>{{quizParcours.questions[currentQuestion].question}}</h1>
+  <ul nz-list nzBordered *ngFor="let item of quizParcours.questions[currentQuestion].responses" nzSize="large" class="answers">
+    <label>
+      <li nz-list-item appQuizBackground [correctAnswer]="item.correct" (change)="onAnswer(item.correct)" nzNoFlex>
+        <input type="radio" name="options" [disabled]="answerSelected">
+        {{ item.response }}
+      </li>
+    </label>
+  </ul>
+  <div *ngIf="currentQuestion == 4">
+    <button nz-button nzType="primary" class="submit" (click)="showResult()" nzDanger>Submit</button>
+    <div *ngIf="result">{{correctAnswers}} +++ {{incorrectAnswers}}</div>
+  </div>
+</div>

@@ -3,10 +3,13 @@ import {ResponseQuestionModel} from '../../models/quiz/response-question-model/r
 import {QuestionModel} from '../../models/quiz/question-model/question-model';
 import {QuizCourseModel} from '../../models/quiz/quiz-course-model/quiz-course-model';
 import {CourseService} from '../course-service/course.service';
+import {QuizParcoursModel} from '../../models/quiz/quiz-parcours-model/quiz-parcours-model';
+import {CourseModel} from '../../models/course/course-model/course-model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class QuizService {
   constructor(private courseService:CourseService) {
   }
@@ -113,6 +116,13 @@ export class QuizService {
     question:'What\'s the capital of UAE ?',
     responses:this.responseQ5
   }]
+  quizParcours: QuizParcoursModel = {
+    id: 1,
+    numberQuestions: 5,
+    estimatedDuration: 30,
+    parcoursId: 1,
+    questions: this.questions
+  };
   quizCourse: QuizCourseModel[]= [{
     id:1,
     numberQuestions:5,
@@ -135,6 +145,9 @@ export class QuizService {
 
   getCourseQuiz(){
     return this.quizCourse;
+  }
+  getParcoursQuiz(){
+    return this.quizParcours;
   }
 
 
@@ -326,8 +339,6 @@ export class QuizService {
   //     quizzes: this.quizze2
   //   },
   // ];
-
-
 
   // getQuizCourse() {
   //   return this.quizCourse;

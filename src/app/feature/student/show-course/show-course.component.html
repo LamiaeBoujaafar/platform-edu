@@ -19,7 +19,7 @@
     <br>
     <div >
       <h1>section : {{courseItem.sections[currentCourse].id}}</h1>
-      <div>{{courseItem.sections[currentCourse].container}}</div>
+      <div  [innerHTML]="courseItem.sections[currentCourse].container"></div>
     </div>
     <br>
 

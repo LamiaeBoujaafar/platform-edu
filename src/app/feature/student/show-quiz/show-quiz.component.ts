@@ -8,6 +8,7 @@ import {QuizCourseModel} from '../../../core/models/quiz/quiz-course-model/quiz-
   templateUrl: './show-quiz.component.html',
   styleUrls: ['./show-quiz.component.css']
 })
+
 export class ShowQuizComponent implements OnInit {
 
   quizCourse: QuizCourseModel[] = [];
