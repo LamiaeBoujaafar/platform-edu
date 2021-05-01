@@ -8,6 +8,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import {NzGridModule} from 'ng-zorro-antd/grid';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import {NzTypographyModule} from 'ng-zorro-antd/typography';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
     NzButtonModule,
     NzModalModule,
     NzGridModule,
-    NzCardModule
+    NzCardModule,
+    NzTypographyModule
   ]
 })
 export class ShowQuizModule { }

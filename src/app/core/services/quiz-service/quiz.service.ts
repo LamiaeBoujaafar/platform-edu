@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {QuizModel} from '../../models/quiz-model/quiz-model';
 import {ChapterModel} from '../../models/chapter-model/chapter-model';
-import {ChapterQuizModel} from '../../models/chapter-model/chapter-quiz-model';
+import {CourseQuizModel} from '../../models/quiz-model/course-quiz-model';
+import {CourseModel} from '../../models/course-model/course-model';
 
 @Injectable({
   providedIn: 'root'
@@ -133,27 +134,65 @@ export class QuizService {
       ]
     },
   ];
-  chapters: ChapterModel[] = [{
+
+  courses: CourseModel[] = [{
     id: 1,
-    title: 'title1'
+    title: 'course1',
+    chapter: [
+      {
+        id: 1,
+        title: 'chapter1',
+        container: 'container1'
+      },
+      {id: 2, title: 'chapter2', container: 'container2'}, {
+        id: 3,
+        title: 'chapter3',
+        container: 'container3'
+      }]
   }, {
     id: 2,
-    title: 'title2'
+    title: 'course2',
+    chapter: [{id: 1, title: 'chapter1', container: 'container1'}, {id: 2, title: 'chapter2', container: 'container2'}, {
+      id: 3,
+      title: 'chapter3',
+      container: 'container3'
+    }]
   }, {
     id: 3,
-    title: 'title3'
+    title: 'course3',
+    chapter: [{id: 1, title: 'chapter1', container: 'container1'}, {id: 2, title: 'chapter2', container: 'container1'}, {
+      id: 3,
+      title: 'chapter3',
+      container: 'container1'
+    }]
+  }, {
+    id: 4,
+    title: 'course4',
+    chapter: [{id: 1, title: 'chapter1', container: 'container1'}, {id: 2, title: 'chapter2', container: 'container1'}, {
+      id: 3,
+      title: 'chapter3',
+      container: 'container1'
+    }]
+  }, {
+    id: 5,
+    title: 'course5',
+    chapter: [{id: 1, title: 'chapter1', container: 'container1'}, {id: 2, title: 'chapter2', container: 'container1'}, {
+      id: 3,
+      title: 'chapter3',
+      container: 'container1'
+    }]
   }];
-  quizChapter: ChapterQuizModel[] = [
+  quizCourse: CourseQuizModel[] = [
     {
-      chapter: this.chapters[0],
+      course: this.courses[0],
       quizzes: this.quizze0
     },
     {
-      chapter: this.chapters[1],
+      course: this.courses[1],
       quizzes: this.quizze1
     },
     {
-      chapter: this.chapters[2],
+      course: this.courses[2],
       quizzes: this.quizze2
     },
   ];
@@ -161,7 +200,13 @@ export class QuizService {
   constructor() {
   }
 
-  getQuizChapter() {
-    return this.quizChapter;
+  getQuizCourse() {
+    return this.quizCourse;
   }
+
+  getCourses() {
+    return this.courses;
+  }
+
+
 }

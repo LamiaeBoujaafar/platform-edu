@@ -1,18 +1,21 @@
 <div>
-  <div *ngIf="!selectedChapter" style="background: #ECECEC;padding:30px;">
+  <div class="chapters" *ngIf="!selectedCourse" >
     <div nz-row [nzGutter]="8">
-      <div nz-col class="card" [nzSpan]="8" *ngFor="let chapter of quizChapter">
-        <nz-card nzTitle="chapter {{chapter.chapter.id}}">
-          <p>{{chapter.chapter.title}}</p>
-          <button nz-button nzType="primary" class="startQuiz" (click)="startQuiz(chapter)" nzDanger>Start quiz</button>
+      <div nz-col class="card" [nzSpan]="8"  *ngFor="let item of quizCourse" (click)="startQuiz(item)" >
+        <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">
+          <nz-card-meta nzTitle="{{item.course.id}}" nzDescription="{{item.course.title}}"></nz-card-meta>
         </nz-card>
+        <ng-template #coverTemplate>
+          <img alt="example" src="../../../../assets/university.png"/>
+        </ng-template>
       </div>
     </div>
   </div>
-  <div *ngIf="selectedChapter" class="questionAnswers">
-    <p>Question {{currentQuiz + 1}} of {{selectedQuizChapter.quizzes.length}} </p>
-    <h1>{{selectedQuizChapter.quizzes[currentQuiz].question}}</h1>
-    <ul nz-list nzBordered *ngFor="let item of selectedQuizChapter.quizzes[currentQuiz].answer" nzSize="large" class="answers">
+
+  <div *ngIf="selectedCourse" class="questionAnswers">
+    <p>Question {{currentQuiz + 1}} of {{selectedQuizCourse.quizzes.length}} </p>
+    <h1>{{selectedQuizCourse.quizzes[currentQuiz].question}}</h1>
+    <ul nz-list nzBordered *ngFor="let item of selectedQuizCourse.quizzes[currentQuiz].answer" nzSize="large" class="answers">
       <label>
         <li nz-list-item appQuizBackground [correctAnswer]="item.correct" (change)="onAnswer(item.correct)" nzNoFlex>
           <input type="radio" name="options" [disabled]="answerSelected">
@@ -25,5 +28,6 @@
       <div *ngIf="result">{{correctAnswers}} +++ {{incorrectAnswers}}</div>
     </div>
   </div>
+
 </div>
 

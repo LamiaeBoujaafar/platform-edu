@@ -3,8 +3,9 @@ import {QuizService} from '../../../core/services/quiz-service/quiz.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {ChapterService} from '../../../core/services/chapter-service/chapter.service';
 import {ChapterModel} from '../../../core/models/chapter-model/chapter-model';
-import {ChapterQuizModel} from '../../../core/models/chapter-model/chapter-quiz-model';
+import {CourseQuizModel} from '../../../core/models/quiz-model/course-quiz-model';
 import {Router} from '@angular/router';
+import {CourseModel} from '../../../core/models/course-model/course-model';
 
 @Component({
   selector: 'app-show-quiz',
@@ -13,21 +14,20 @@ import {Router} from '@angular/router';
 })
 export class ShowQuizComponent implements OnInit {
 
-  quizChapter: ChapterQuizModel[] = [];
-  selectedQuizChapter!: ChapterQuizModel;
-  chapters: ChapterModel[] = [];
+  quizCourse: CourseQuizModel[] = [];
+  selectedQuizCourse!: CourseQuizModel;
   currentQuiz = 0;
   answerSelected = false;
   correctAnswers = 0;
   incorrectAnswers = 0;
   result: boolean = false;
-  selectedChapter = false;
+  selectedCourse = false;
 
-  constructor(private quizService: QuizService, private chapterService: ChapterService, private modal: NzModalService, private route: Router) {
+  constructor(private quizService: QuizService, private chapterService: ChapterService, private modal: NzModalService) {
   }
 
   ngOnInit(): void {
-    this.quizChapter = this.quizService.getQuizChapter();
+    this.quizCourse = this.quizService.getQuizCourse();
   }
 
   onAnswer(correct: boolean) {
@@ -74,19 +74,17 @@ export class ShowQuizComponent implements OnInit {
   }
 
   initialize() {
-    this.selectedChapter = false;
+    this.selectedCourse = false;
     this.currentQuiz = 0;
     this.answerSelected = false;
     this.correctAnswers = 0;
     this.incorrectAnswers = 0;
   }
 
-  startQuiz(quizChapter: ChapterQuizModel) {
-    this.selectedChapter = true;
+  startQuiz(quizChapter: CourseQuizModel) {
+    this.selectedCourse = true;
     console.log(quizChapter);
-    this.selectedQuizChapter = quizChapter;
-
-
-    //this.route.navigate(['dashboard/student/show-course']);
+    this.selectedQuizCourse = quizChapter;
   }
+
 }
