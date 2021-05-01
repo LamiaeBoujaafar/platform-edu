@@ -1,7 +1,7 @@
 <div>
   <div *ngIf="!selectedCourse" >
     <div nz-row [nzGutter]="8">
-      <div   nz-col class="card" [nzSpan]="8"  *ngFor="let course of courses" (click)="startQuiz(course)" >
+      <div   nz-col class="card" [nzSpan]="8"  *ngFor="let course of courses" (click)="startCourse(course)" >
         <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">
           <nz-card-meta nzTitle="{{course.id}}" nzDescription="{{course.title}}"></nz-card-meta>
         </nz-card>
@@ -12,17 +12,29 @@
     </div>
   </div>
 
-  <div *ngIf="selectedCourse" class="questionAnswers">
-    <nz-progress [nzPercent]="percent.toFixed(2)"></nz-progress>
+  <div *ngIf="selectedCourse && !completedCourse" class="questionAnswers">
+    <button nz-button nzType="default" (click)="back()" nzShape="circle"><i nz-icon nzType="left" nzTheme="outline"></i></button>
+    <br>
+    <nz-progress [nzPercent]="percent.toFixed(0)"></nz-progress>
     <br>
     <div >
-      <p>{{courseItem.chapter[currentCourse].title}}</p>
-      <p>{{courseItem.chapter[currentCourse].container}}</p>
+      <h1>section : {{courseItem.sections[currentCourse].id}}</h1>
+      <div>{{courseItem.sections[currentCourse].container}}</div>
     </div>
     <br>
 
-    <button nz-button nzType="primary" (click)="decline()">previous</button>
-    <button nz-button (click)="increase()">next</button>
+    <button class="button" nz-button nzType="default"  (click)="increase()">next</button>
+    <button class="button" nz-button nzType="danger" (click)="decline()">previous</button>
+  </div>
+  <div *ngIf="completedCourse">
+    <button nz-button nzType="default" (click)="back()" nzShape="circle"><i nz-icon nzType="left" nzTheme="outline"></i></button>
+    <nz-result
+      nzStatus="success"
+      nzTitle="Congratulations! You have successfully completed this course!"
+      nzSubTitle="Thank you"
+    >
+
+    </nz-result>
   </div>
 </div>
 

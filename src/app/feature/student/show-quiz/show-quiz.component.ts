@@ -1,11 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {QuizService} from '../../../core/services/quiz-service/quiz.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
-import {ChapterService} from '../../../core/services/chapter-service/chapter.service';
-import {ChapterModel} from '../../../core/models/chapter-model/chapter-model';
-import {CourseQuizModel} from '../../../core/models/quiz-model/course-quiz-model';
-import {Router} from '@angular/router';
-import {CourseModel} from '../../../core/models/course-model/course-model';
+import {QuizCourseModel} from '../../../core/models/quiz/quiz-course-model/quiz-course-model';
 
 @Component({
   selector: 'app-show-quiz',
@@ -14,8 +10,8 @@ import {CourseModel} from '../../../core/models/course-model/course-model';
 })
 export class ShowQuizComponent implements OnInit {
 
-  quizCourse: CourseQuizModel[] = [];
-  selectedQuizCourse!: CourseQuizModel;
+  quizCourse: QuizCourseModel[] = [];
+  selectedQuizCourse!: QuizCourseModel;
   currentQuiz = 0;
   answerSelected = false;
   correctAnswers = 0;
@@ -23,11 +19,11 @@ export class ShowQuizComponent implements OnInit {
   result: boolean = false;
   selectedCourse = false;
 
-  constructor(private quizService: QuizService, private chapterService: ChapterService, private modal: NzModalService) {
+  constructor(private quizService: QuizService, private modal: NzModalService) {
   }
 
   ngOnInit(): void {
-    this.quizCourse = this.quizService.getQuizCourse();
+    this.quizCourse = this.quizService.getCourseQuiz();
   }
 
   onAnswer(correct: boolean) {
@@ -81,10 +77,10 @@ export class ShowQuizComponent implements OnInit {
     this.incorrectAnswers = 0;
   }
 
-  startQuiz(quizChapter: CourseQuizModel) {
+  startQuiz(quizCourse: QuizCourseModel) {
     this.selectedCourse = true;
-    console.log(quizChapter);
-    this.selectedQuizCourse = quizChapter;
+    console.log(quizCourse);
+    this.selectedQuizCourse = quizCourse;
   }
 
 }

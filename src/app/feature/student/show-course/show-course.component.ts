@@ -1,52 +1,64 @@
 import { Component, OnInit } from '@angular/core';
-import {ChapterModel} from '../../../core/models/chapter-model/chapter-model';
-import {CourseQuizModel} from '../../../core/models/quiz-model/course-quiz-model';
-import {QuizService} from '../../../core/services/quiz-service/quiz.service';
-import {CourseModel} from '../../../core/models/course-model/course-model';
+import {CourseModel} from '../../../core/models/course/course-model/course-model';
+import {CourseService} from '../../../core/services/course-service/course.service';
 
 @Component({
   selector: 'app-show-course',
   templateUrl: './show-course.component.html',
   styleUrls: ['./show-course.component.css']
 })
+
 export class ShowCourseComponent implements OnInit {
   courses: CourseModel[] = [];
   selectedCourse= false;
-  courseItem!:CourseModel;
+  courseItem!: CourseModel ;
   percent = 0;
   currentCourse = 0;
-  constructor(private quizService:QuizService) { }
+  sectionLength = 0;
+  completedCourse = false;
+  constructor(private courseService:CourseService) { }
 
   ngOnInit(): void {
-    this.courses = this.quizService.getCourses();
+    this.courses = this.courseService.getCourses();
   }
-
-  startQuiz(course: CourseModel) {
-  this.courseItem = course;
-  this.selectedCourse = true;
+  startCourse(course: CourseModel) {
+    this.courseItem = course;
+    this.selectedCourse = true;
+    this.sectionLength = this.courseItem.sections.length;
   }
   increase(): void {
-      this.percent = this.percent + (100/3);
+      this.percent = this.percent + (100/this.sectionLength);
       if (this.percent > 100) {
         this.percent = 100;
       }
-      if(this.currentCourse<2){
+      if(this.currentCourse<(this.sectionLength-1)){
         this.currentCourse++;
         console.log(this.currentCourse)
+        this.completedCourse = false;
       }else {
         console.log("con")
+        this.completedCourse = true;
       }
   }
 
   decline() {
-    this.percent = this.percent - (100/3);
+    this.percent = this.percent - (100/this.sectionLength);
     if (this.percent < 0) {
       this.percent = 0;
     }
     if(this.currentCourse>0){
       console.log(this.currentCourse)
       this.currentCourse--;
+      this.completedCourse = false;
     }
 
+  }
+
+  back() {
+    this.selectedCourse = false;
+    this.completedCourse = false;
+    this.percent = 0;
+    this.currentCourse = 0;
+    this.sectionLength = 0;
   }
 }

@@ -18,9 +18,13 @@ const routes: Routes = [
       {
         path: 'show-course-progress',
         loadChildren: () => import('./show-course-progress/show-course-progress.module').then(m => m.ShowCourseProgressModule)
-      }
+      }, {
+        path: 'show-quiz-parcours',
+        loadChildren: () => import('./show-quiz-parcours/show-quiz-parcours.module').then(m => m.ShowQuizParcoursModule)
+      },
     ]
   },
+
 ];
 
 @NgModule({

@@ -13,13 +13,13 @@
   </div>
 
   <div *ngIf="selectedCourse" class="questionAnswers">
-    <p>Question {{currentQuiz + 1}} of {{selectedQuizCourse.quizzes.length}} </p>
-    <h1>{{selectedQuizCourse.quizzes[currentQuiz].question}}</h1>
-    <ul nz-list nzBordered *ngFor="let item of selectedQuizCourse.quizzes[currentQuiz].answer" nzSize="large" class="answers">
+    <p>Question {{currentQuiz + 1}} of {{selectedQuizCourse.numberQuestions}} </p>
+    <h1>{{selectedQuizCourse.questions[currentQuiz].question}}</h1>
+    <ul nz-list nzBordered *ngFor="let item of selectedQuizCourse.questions[currentQuiz].responses" nzSize="large" class="answers">
       <label>
         <li nz-list-item appQuizBackground [correctAnswer]="item.correct" (change)="onAnswer(item.correct)" nzNoFlex>
           <input type="radio" name="options" [disabled]="answerSelected">
-          {{ item.option }}
+          {{ item.response }}
         </li>
       </label>
     </ul>
