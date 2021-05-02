@@ -8,6 +8,11 @@ import {FormsModule} from "@angular/forms";
 import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzGridModule} from "ng-zorro-antd/grid";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzDividerModule} from "ng-zorro-antd/divider";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzInputModule} from "ng-zorro-antd/input";
 
 
 @NgModule({
@@ -21,7 +26,12 @@ import {NzButtonModule} from "ng-zorro-antd/button";
     FormsModule,
     NzPopconfirmModule,
     NzTableModule,
-    NzButtonModule
+    NzButtonModule,
+    NzGridModule,
+    NzFormModule,
+    NzDividerModule,
+    NzIconModule,
+    NzInputModule
   ]
 })
 export class AddStudentToCourseModule { }

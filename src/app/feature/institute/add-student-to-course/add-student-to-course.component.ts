@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NzButtonSize} from "ng-zorro-antd/button";
+import {NzMessageService} from "ng-zorro-antd/message";
 interface ItemData {
   id: string;
   etudiant: string;
@@ -12,6 +14,7 @@ interface ItemData {
   styleUrls: ['./add-student-to-course.component.css']
 })
 export class AddStudentToCourseComponent implements OnInit {
+  size: NzButtonSize = 'large';
   selectedParcour=""
   parcours=["visa","toefl","bac"];
   cours: { [parcour: string]: string[] } = {
@@ -26,11 +29,9 @@ export class AddStudentToCourseComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private message: NzMessageService) { }
 
   ngOnInit(): void {
-    this.addRow();
-    this.addRow();
   }
 
   parkourChange(value: string): void {
@@ -65,5 +66,9 @@ export class AddStudentToCourseComponent implements OnInit {
 
   deleteRow(id: string): void {
     this.listOfData = this.listOfData.filter(d => d.id !== id);
+  }
+
+  submitData(): void {
+    this.message.success("Success the size of data =="+this.listOfData.length)
   }
 }
