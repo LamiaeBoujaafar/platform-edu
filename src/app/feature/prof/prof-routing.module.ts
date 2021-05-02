@@ -8,6 +8,10 @@ const routes: Routes = [
     component: ProfComponent,
     children: [
       {
+        path: 'create-section',
+        loadChildren: () => import('./create-section/create-section.module').then(m => m.CreateSectionModule)
+      },
+      {
         path: 'create-course',
         loadChildren: () => import('./create-course/create-course.module').then(m => m.CreateCourseModule)
       },

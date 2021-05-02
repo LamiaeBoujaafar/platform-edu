@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CourseModel} from "../../../core/models/course/course-model/course-model";
 
 @Component({
   selector: 'app-create-course',
@@ -6,10 +8,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-course.component.css']
 })
 export class CreateCourseComponent implements OnInit {
+  validateForm!: FormGroup;
+  Cour!: CourseModel;
+  submitForm(data: any): void {
 
-  constructor() { }
+    if ( data.titre!=null &&  data.Descption!=null && data.image!=null){
+      console.log(data);
+
+
+
+    }
+
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
+    }
+
+}
+
+  constructor(private fb: FormBuilder) {
+
+  }
 
   ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      titre: [null, [Validators.required]],
+      Descption: [null, [Validators.required]],
+      image: [null,[Validators.required]]
+
+    });
   }
+
+
+
 
 }
