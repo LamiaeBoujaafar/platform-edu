@@ -5,7 +5,6 @@
     <th>FirstName</th>
     <th>LastName</th>
     <th>Email</th>
-    <th>CV</th>
     <th>Date</th>
     <th>Action</th>
   </tr>
@@ -16,7 +15,6 @@
       <td>{{ data.firstName }}</td>
       <td>{{ data.lastName }}</td>
       <td>{{ data.email }}</td>
-      <td><a href="{{ data.cv }}">Show</a></td>
       <td>{{ data.createdAt }}</td>
       <td>
         <a (click)="displayAlert()">Approve</a>
