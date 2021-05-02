@@ -1,1 +1,18 @@
-<p>show-profile works!</p>
+<div class="m-5">
+  <nz-tabset>
+    <nz-tab  [nzTitle]="titleTemplateStudent">
+      <ng-template #titleTemplateStudent>
+        <img src="../../../../assets/student.png" style="width: 30px;height: 30px">
+        Student
+      </ng-template>
+      <app-student-profile></app-student-profile>
+    </nz-tab>
+    <nz-tab [nzTitle]="titleTemplateProf">
+      <ng-template #titleTemplateProf>
+        <img src="../../../../assets/prof.png" style="width: 30px;height: 30px">
+        Professor
+      </ng-template>
+      <app-prof-profile></app-prof-profile>
+    </nz-tab>
+  </nz-tabset>
+</div>

@@ -11,6 +11,7 @@ import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzMessageModule} from "ng-zorro-antd/message";
+import {NzProgressModule} from "ng-zorro-antd/progress";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {NzMessageModule} from "ng-zorro-antd/message";
     NzPopconfirmModule,
     NzSelectModule,
     NzInputModule,
-    NzMessageModule
+    NzMessageModule,
+    NzProgressModule
   ]
 })
 export class FeatureModule { }
