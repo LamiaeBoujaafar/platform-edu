@@ -10,6 +10,7 @@ import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
 import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import {NzInputModule} from "ng-zorro-antd/input";
+import {NzMessageModule} from "ng-zorro-antd/message";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {NzInputModule} from "ng-zorro-antd/input";
     NzBreadCrumbModule,
     NzPopconfirmModule,
     NzSelectModule,
-    NzInputModule
+    NzInputModule,
+    NzMessageModule
   ]
 })
 export class FeatureModule { }

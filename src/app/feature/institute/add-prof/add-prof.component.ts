@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NzFormTooltipIcon} from "ng-zorro-antd/form";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'app-add-prof',
@@ -11,12 +12,14 @@ export class AddProfComponent implements OnInit {
 
   validateForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,private message: NzMessageService) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       firstName:[null, [Validators.required]],
       lastName:[null, [Validators.required]],
+      phone:[null, [Validators.required]],
+      address:[null, [Validators.required]],
       email: [null, [Validators.email, Validators.required]],
       checkEmail: [null, [Validators.required, this.confirmationValidator]],
     });
@@ -27,13 +30,11 @@ export class AddProfComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
+    this.message.info("name=="+this.validateForm.controls.lastName.value+" "+this.validateForm.controls.firstName.value+"phone=="+this.validateForm.controls.phone.value)
     console.log("email=="+this.validateForm.controls.email.value);
   }
 
-  // updateConfirmValidator(): void {
-  //   /** wait for refresh value */
-  //   Promise.resolve().then(() => this.validateForm.controls.checkPassword.updateValueAndValidity());
-  // }
+
 
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
@@ -44,5 +45,13 @@ export class AddProfComponent implements OnInit {
     return {};
   };
 
+  resetForm(e: MouseEvent): void {
+    e.preventDefault();
+    this.validateForm.reset();
+    for (const key in this.validateForm.controls) {
+      this.validateForm.controls[key].markAsPristine();
+      this.validateForm.controls[key].updateValueAndValidity();
+    }
+  }
 
 }
