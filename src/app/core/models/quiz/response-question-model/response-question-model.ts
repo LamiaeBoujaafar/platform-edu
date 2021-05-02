@@ -4,5 +4,5 @@ export class ResponseQuestionModel {
   id!:number;
   response!:string;
   correct!:boolean;
-  idQuestion!:number;
+  Question!:QuestionModel;
 }

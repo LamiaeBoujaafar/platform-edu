@@ -5,6 +5,6 @@ export class QuizParcoursModel {
   id!:number;
   numberQuestions!:number;
   estimatedDuration!:number;
-  course!:CourseModel;
+ // course!:CourseModel;
   questions!:QuestionModel[];
 }

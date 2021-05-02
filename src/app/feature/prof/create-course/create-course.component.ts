@@ -14,7 +14,14 @@ export class CreateCourseComponent implements OnInit {
 
     if ( data.titre!=null &&  data.Descption!=null && data.image!=null){
       console.log(data);
-
+      this.Cour= {
+        id : 0,
+        image: data.image,
+        parcoursId:0,
+        sections:[],
+        title:data.titre,
+        description : data.Descption,
+      }
 
 
     }
