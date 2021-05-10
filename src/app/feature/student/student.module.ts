@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentComponent } from './student.component';
-
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
 @NgModule({
@@ -12,7 +12,8 @@ import { StudentComponent } from './student.component';
   ],
   imports: [
     CommonModule,
-    StudentRoutingModule
+    StudentRoutingModule,
+    NzModalModule
   ]
 })
 export class StudentModule { }
