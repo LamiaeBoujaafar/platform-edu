@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { InstituteRoutingModule } from './institute-routing.module';
 import { InstitutComponent } from './institute.component';
+import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
+import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzMessageModule} from "ng-zorro-antd/message";
+import {NzProgressModule} from "ng-zorro-antd/progress";
 
 
 @NgModule({
@@ -11,7 +16,12 @@ import { InstitutComponent } from './institute.component';
   ],
   imports: [
     CommonModule,
-    InstituteRoutingModule
+    InstituteRoutingModule,
+    NzPopconfirmModule,
+    NzSelectModule,
+    NzInputModule,
+    NzMessageModule,
+    NzProgressModule
   ]
 })
 export class InstituteModule { }
