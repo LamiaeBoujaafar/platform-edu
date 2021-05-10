@@ -1,0 +1,89 @@
+<nz-card nzTitle="Create Quiz Cour">
+  <form  #f ="ngForm"  [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzFor="cour" nzRequired>Cour</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please select your coure!">
+        <nz-select
+          id="cour" formControlName="cours" nzPlaceHolder="Select cour"
+          nzAllowClear>
+          <nz-option *ngFor="let option of listOfCours" [nzLabel]="option.title" [nzValue]="option"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzFor="Qestion" nzRequired>Qestion</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please enter your Qestion!">
+        <input type="text" nz-input formControlName="Question" placeholder="Question" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row >
+      <div nz-col nzSpan="16" class="Qrow">
+        <nz-form-item>
+          <nz-form-control  [nzSpan]="28" nzErrorTip="Please input your option!">
+            <nz-input-group nzPrefixIcon="form">
+              <input type="text" nz-input formControlName="option" placeholder="Option" />
+            </nz-input-group>
+          </nz-form-control>
+
+        </nz-form-item>
+
+      </div>
+
+      <div nz-col nzSpan="7">
+
+        <nz-form-item>
+
+          <nz-form-control [nzSpan]="25" nzErrorTip="Please select your choix!">
+            <nz-select  id="qetta" formControlName="Qetat" nzPlaceHolder="Select Qestion etat">
+              <nz-option nzValue="true" nzLabel="true"></nz-option>
+              <nz-option nzValue="false" nzLabel="flase"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+    <button type="submit"  (click)="onNextClick()" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">+</button>
+    <br>
+    <br>
+
+
+  <nz-table #basicTable *ngIf="ShowOptionsOfQuestion" [nzData]="['']"  nzTableLayout="fixed">
+    <thead>
+    <tr>
+      <th>titer</th>
+      <th>question etat </th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of ShowOptionsOfQuestion index as i  " >
+      <td>{{data.response}}</td>
+      <td>{{data.correct}}</td>
+      <td><button (click)="delete(i)">X</button></td>
+
+    </tr>
+    </tbody>
+
+  </nz-table>
+  <button nz-button type="submit" (click)="onPreviousClick()" class="login-form-button login-form-margin" [nzType]="'primary'">Save Question</button>
+    <button nz-button type="submit" (click)="onSave()" class="login-form-button login-form-margin" [nzType]="'primary'">valide</button>
+
+
+  </form>
+</nz-card>
+

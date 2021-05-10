@@ -1,0 +1,51 @@
+<nz-card nzTitle="Create new Section">
+  <form  #f ="ngForm"  [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzFor="cour" nzRequired>Cour</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please select your coure!">
+        <nz-select id="gender" formControlName="cours" nzPlaceHolder="Select cour">
+          <nz-option *ngFor="let option of listOfCours" [nzLabel]="option.title" [nzValue]="option"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your titre!">
+        <nz-input-group nzPrefixIcon="form">
+          <input type="text" nz-input formControlName="titre" placeholder="titre" />
+        </nz-input-group>
+      </nz-form-control>
+
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input yor contenu!">
+          <angular-editor id="editor2" formControlName="contenu" [config]="config1"></angular-editor>
+      </nz-form-control>
+    </nz-form-item>
+
+    <button nz-button class="login-form-button login-form-margin" (click)="onAddNewSection()" [nzType]="'primary'">+</button>
+    <br>
+    <br>
+
+  <nz-table #basicTable *ngIf="sectionListe" [nzData]="['']" nzTableLayout="fixed">
+    <thead>
+    <tr>
+      <th>titer</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of sectionListe index as i  " >
+      <td>{{data.title}}</td>
+      <td><button (click)="delete(i)">X</button></td>
+
+    </tr>
+    </tbody>
+
+  </nz-table>
+  <button type="submit" nz-button class="login-form-button login-form-margin" (click)="onSave()" [nzType]="'primary'">Save</button>
+  </form>
+</nz-card>
+
