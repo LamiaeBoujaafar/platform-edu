@@ -7,6 +7,7 @@ import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
     NzLayoutModule,
     NzIconModule,
     NzMenuModule,
-    NzBreadCrumbModule
+    NzBreadCrumbModule,
+    NzModalModule
   ]
 })
 export class FeatureModule { }

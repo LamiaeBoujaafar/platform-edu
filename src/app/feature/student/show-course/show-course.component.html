@@ -1,7 +1,7 @@
 <div>
   <div *ngIf="!selectedCourse" >
-    <div nz-row [nzGutter]="8">
-      <div   nz-col class="card" [nzSpan]="8"  *ngFor="let course of courses" (click)="startCourse(course)" >
+    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+      <div   nz-col class="card" [nzSpan]="6"   *ngFor="let course of courses" (click)="startCourse(course)" >
         <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">
           <nz-card-meta nzTitle="{{course.id}}" nzDescription="{{course.title}}"></nz-card-meta>
         </nz-card>
