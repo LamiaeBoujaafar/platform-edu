@@ -9,6 +9,7 @@ import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
 
 
+
 @NgModule({
   declarations: [
     FeatureComponent
@@ -19,7 +20,7 @@ import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
     NzLayoutModule,
     NzIconModule,
     NzMenuModule,
-    NzBreadCrumbModule
+    NzBreadCrumbModule,
   ]
 })
 export class FeatureModule { }

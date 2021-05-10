@@ -1,1 +1,79 @@
-<p>add-student-to-course works!</p>
+<div nz-row nzAlign="middle" nzJustify="center" nzGutter="24">
+  <div nz-col [nzSpan]="8">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-select [(ngModel)]="selectedParcour" nzShowSearch nzPlaceHolder="select Parkour"
+                   (ngModelChange)="parkourChange($event)">
+          <nz-option *ngFor="let p of parcours" [nzLabel]="p" [nzValue]="p"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div nz-col [nzSpan]="8">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-select [(ngModel)]="selectedCour" nzShowSearch nzPlaceHolder="select cour">
+          <nz-option *ngFor="let c of cours[selectedParcour]" [nzLabel]="c" [nzValue]="c"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</div>
+
+<div nz-row nzJustify="center" nzAlign="middle">
+  <div nz-col [nzSpan]="8">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-select [(ngModel)]="selectedEtudaint" nzShowSearch nzPlaceHolder="select Student">
+          <nz-option *ngFor="let e of etudaints" [nzLabel]="e" [nzValue]="e"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</div>
+
+<div nz-row nzJustify="center" nzAlign="middle">
+  <div nz-col [nzSpan]="6">
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button (click)="addRow()" nzType="primary" nzBlock>Add</button>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</div>
+
+
+<nz-divider [nzText]="text">
+  <ng-template #text><i nz-icon nzType="unordered-list" ></i> Result List</ng-template>
+</nz-divider>
+<nz-table #editRowTable nzBordered [nzData]="listOfData">
+  <thead>
+  <tr>
+    <th nzWidth="30%">Student Name</th>
+    <th>Parcour</th>
+    <th>Cour</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of editRowTable.data" class="editable-row">
+    <td>{{ data.etudiant }}</td>
+    <td>{{ data.parcour }}</td>
+    <td>{{ data.cour }}</td>
+    <td>
+      <button nz-button nzType="link" nzDanger nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.id)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+
+<div nz-row nzJustify="center" nzAlign="middle">
+  <div nz-col [nzSpan]="4">
+    <nz-form-item>
+      <nz-form-control>
+        <button nzBlock  nz-button nzType="primary"  nzShape="round" (click)="submitData()"><i nz-icon nzType="cloud-download" nzTheme="outline"></i>Submit</button>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</div>
