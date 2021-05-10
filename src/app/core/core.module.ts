@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuizDirective } from './background/quiz.directive';
+import {NzModalService} from "ng-zorro-antd/modal";
 
 
 
@@ -12,7 +13,8 @@ import { QuizDirective } from './background/quiz.directive';
     QuizDirective
   ],
   imports: [
-    CommonModule
+    CommonModule,
+
   ]
 })
 export class CoreModule { }
