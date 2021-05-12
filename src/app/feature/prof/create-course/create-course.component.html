@@ -1,1 +1,39 @@
-<p>create-course works!</p>
+<nz-card nzTitle="Create new Cours">
+  <div nz-row>
+    <div nz-col nzSpan="8"></div>
+    <div nz-col nzSpan="15">
+
+      <form #f ="ngForm"  nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="10" nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
+
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your titre!">
+          <nz-input-group nzPrefixIcon="form">
+            <input type="text" nz-input formControlName="titre" placeholder="titre" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Descption !">
+
+          <nz-textarea-count [nzMaxCharacterCount]="100">
+            <textarea rows="4"  formControlName="Descption" nz-input placeholder="Descption"></textarea>
+          </nz-textarea-count>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please select cour image !">
+          <nz-input-group nzPrefixIcon="file-image">
+            <input type="file" nz-input formControlName="image"  />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Ajouter</button>
+
+    </form></div>
+    <div nz-col nzSpan="5"></div>
+  </div>
+
+</nz-card>
+
