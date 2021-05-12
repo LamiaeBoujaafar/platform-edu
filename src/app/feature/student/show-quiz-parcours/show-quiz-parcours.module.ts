@@ -9,6 +9,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import {CoreModule} from '../../../core/core.module';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzListModule } from 'ng-zorro-antd/list';
+import {NzIconModule} from 'ng-zorro-antd/icon';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NzListModule } from 'ng-zorro-antd/list';
     NzButtonModule,
     CoreModule,
     NzModalModule,
-    NzListModule
+    NzListModule,
+    NzIconModule
   ]
 })
 export class ShowQuizParcoursModule { }

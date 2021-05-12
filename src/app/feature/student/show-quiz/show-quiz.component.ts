@@ -19,6 +19,8 @@ export class ShowQuizComponent implements OnInit {
   incorrectAnswers = 0;
   result: boolean = false;
   selectedCourse = false;
+  list : any[] =[]
+  contour = 0
 
   constructor(private quizService: QuizService, private modal: NzModalService) {
   }
@@ -29,20 +31,25 @@ export class ShowQuizComponent implements OnInit {
 
   onAnswer(correct: boolean) {
     this.answerSelected = true;
+    this.list[this.currentQuiz] = correct;
+
+  }
+  next() {
+    this.contour++
+    if (this.list[this.currentQuiz]) {
+      this.correctAnswers++;
+    } else {
+      this.incorrectAnswers++;
+    }
     setTimeout(() => {
       if (this.currentQuiz < 4) {
         this.currentQuiz++;
         this.answerSelected = false;
       }
-    }, 1000);
-    if (correct) {
-      this.correctAnswers++;
-    } else {
-      this.incorrectAnswers++;
-      console.log('incorrect' + correct);
-    }
-  }
+    }, 500);
 
+
+  }
   showResult() {
 
     if (this.correctAnswers >= 3) {
@@ -76,6 +83,8 @@ export class ShowQuizComponent implements OnInit {
     this.answerSelected = false;
     this.correctAnswers = 0;
     this.incorrectAnswers = 0;
+    this.contour = 0
+    this.list =[]
   }
 
   startQuiz(quizCourse: QuizCourseModel) {
