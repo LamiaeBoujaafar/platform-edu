@@ -18,7 +18,13 @@
       <li nz-submenu nzTitle="Prof" nzIcon="team">
         <ul>
           <li routerLink="prof/create-course" nz-menu-item>Create course</li>
-          <li routerLink="prof/create-quiz" nz-menu-item>Create quiz</li>
+          <li routerLink="prof/create-section" nz-menu-item>Create section</li>
+          <li nz-submenu nzTitle="Create quiz"  >
+            <ul>
+              <li routerLink="prof/create-quiz/create-quiz-coures"  nz-menu-item>create quize Cours </li>
+              <li routerLink="prof/create-quiz/create-quiz-parcours" nz-menu-item>create quize Parcours</li>
+            </ul>
+          </li>
           <li routerLink="prof/show-course-student-progress" nz-menu-item>Show course/student progress</li>
         </ul>
       </li>
@@ -49,8 +55,8 @@
       <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
     </nz-header>
     <nz-content>
-      <div class="inner-content">
-        <router-outlet></router-outlet>
+      <div class="inner-content" >
+        <router-outlet style="text-align: center;"></router-outlet>
       </div>
     </nz-content>
   </nz-layout>

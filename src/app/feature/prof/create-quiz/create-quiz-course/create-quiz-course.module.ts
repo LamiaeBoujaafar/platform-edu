@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NzSelectModule } from 'ng-zorro-antd/select';
@@ -9,17 +8,16 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzDividerModule } from 'ng-zorro-antd/divider'
-import { ShowCourseStudentProgressRoutingModule } from './show-course-student-progress-routing.module';
-import { ShowCourseStudentProgressComponent } from './show-course-student-progress.component';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { CreateQuizCourseRoutingModule } from './create-quiz-course-routing.module';
+import { CreateQuizCourseComponent } from './create-quiz-course.component';
 
 
 @NgModule({
   declarations: [
-    ShowCourseStudentProgressComponent
+    CreateQuizCourseComponent
   ],
   imports: [
-    NzProgressModule,
     NzMessageModule,
     NzTableModule,
     NzCardModule,
@@ -30,8 +28,8 @@ import { ShowCourseStudentProgressComponent } from './show-course-student-progre
     NzInputModule,
     CommonModule,
     NzDividerModule,
-    ReactiveFormsModule,
-    ShowCourseStudentProgressRoutingModule
+    CreateQuizCourseRoutingModule,
+    ReactiveFormsModule
   ]
 })
-export class ShowCourseStudentProgressModule { }
+export class CreateQuizCourseModule { }

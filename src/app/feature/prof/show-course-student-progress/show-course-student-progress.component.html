@@ -1,1 +1,43 @@
-<p>show-course-student-progress works!</p>
+<nz-card nzTitle="show student progress ">
+  <form  #f ="ngForm"  [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzFor="cour" nzRequired>Cour</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please select your coure!">
+        <nz-select
+          id="cour" formControlName="cours" nzPlaceHolder="Select cour"
+          nzAllowClear
+          [(ngModel)]="SelectedCour"
+          (ngModelChange)="changeCour($event)"
+          nzAllowClear>
+          <nz-option *ngFor="let option of listOfCours" [nzLabel]="option.title" [nzValue]="option"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+   </form>
+
+  <nz-table #basicTable *ngIf="showListEtudiantCours" [nzData]="['']"  nzTableLayout="fixed">
+    <thead>
+    <tr>
+      <th>etudiant</th>
+      <th>nombre section valide</th>
+      <th>nombre section non valide</th>
+      <th>nomber section restante </th>
+      <th>pourcentage</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of showListEtudiantCours index as i  " >
+      <td>{{data.student.firstName}}</td>
+      <td>{{data.numberValidSection}}</td>
+      <td>{{data.numberInvalidSection}}</td>
+      <td>{{data.numberRemainingSection}}</td>
+      <td>  <nz-progress [nzPercent]="data.numberValidSection-data.numberInvalidSection" nzType="circle" [nzWidth]="80"></nz-progress></td>
+
+
+    </tr>
+    </tbody>
+
+  </nz-table>
+</nz-card>
+
