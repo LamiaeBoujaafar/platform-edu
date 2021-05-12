@@ -13,9 +13,9 @@
   <p>Question {{currentQuestion + 1}} of {{quizParcours.numberQuestions}} </p>
   <h1>{{quizParcours.questions[currentQuestion].question}}</h1>
   <ul nz-list nzBordered *ngFor="let item of quizParcours.questions[currentQuestion].responses" nzSize="large" class="answers">
-    <label>
-      <li nz-list-item appQuizBackground [correctAnswer]="item.correct" (change)="onAnswer(item.correct)" nzNoFlex>
-        <input type="radio" name="options" [disabled]="answerSelected">
+    <label   nz-list-item appQuizBackground [correctAnswer]="item.correct">
+      <li nzNoFlex>
+        <input type="radio" name="options" (change)="onAnswer(item.correct)" [disabled]="answerSelected">
         {{ item.response }}
       </li>
     </label>
