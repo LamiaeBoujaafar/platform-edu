@@ -1,7 +1,9 @@
 import {CourseModel} from '../course-model/course-model';
 
 export class ParcoursModel {
-   id!:number;
-   description!:string;
-   courses!:CourseModel[];
+  id!:number;
+  title !:string;
+  description!:string;
+  courses!:CourseModel[];
 }
+
