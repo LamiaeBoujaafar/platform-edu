@@ -80,10 +80,39 @@
     </tbody>
 
   </nz-table>
-  <button nz-button type="submit" (click)="onPreviousClick()" class="login-form-button login-form-margin" [nzType]="'primary'">Save Question</button>
-    <button nz-button type="submit" (click)="onSave()" class="login-form-button login-form-margin" [nzType]="'primary'">valide</button>
+  <button nz-button type="submit" (click)="onCreateQ()" class="login-form-button login-form-margin" [nzType]="'primary'">Save Question</button>
 
 
-  </form>
-</nz-card>
+    <nz-table #basicTable *ngIf="QuestionOfCoure" [nzData]="['']"  nzTableLayout="fixed">
+      <thead>
+      <tr>
+        <th>Question</th>
+        <th>Action</th>
+      </tr>
+
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let data of QuestionOfCoure index as i  " >
+      <tr >
+        <!--   <td [(nzExpand)]="expand"  (nzExpandChange)="onExpandChange(data.id, $event)"></td>  -->
+             <td>{{data.question}}</td>
+             <td><button (click)="deletetQestion(i)">X</button></td>
+
+           </tr>
+
+        <!--    <tr  [nzExpand]="expand" *ngFor="let data of data.responses index as i">
+            <td style="font-weight: bold;">{{data.response}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data.correct}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button>x</button> </td>
+
+
+
+      </tr> -->
+      </ng-container>
+      </tbody>
+
+      </nz-table>
+      <button nz-button type="submit" (click)="onSave()" class="login-form-button login-form-margin" [nzType]="'primary'">valide</button>
+
+
+    </form>
+  </nz-card>
 

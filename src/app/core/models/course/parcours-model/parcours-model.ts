@@ -2,7 +2,7 @@ import {CourseModel} from '../course-model/course-model';
 
 export class ParcoursModel {
    id!:number;
-  title !:string;
+   title !:string;
    description!:string;
    courses!:CourseModel[];
 }

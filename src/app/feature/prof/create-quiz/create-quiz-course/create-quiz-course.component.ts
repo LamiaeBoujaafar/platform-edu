@@ -43,6 +43,7 @@ export class CreateQuizCourseComponent implements OnInit {
   public QuestionOfCoure: QuestionModel[] = [];
   public QuizOffCoure: QuizCourseModel []= [];
   public ResponseQuestionModel: ResponseQuestionModel[]= [];
+  public expand: boolean=false;
   nextClicked = 0;
 
   constructor(private formBuilder: FormBuilder, private message: NzMessageService) {
@@ -87,12 +88,13 @@ export class CreateQuizCourseComponent implements OnInit {
 
       } else if (this.nextClicked == 0) {
         this.ResponseQuestionModel = JSON.parse(JSON.stringify(this.ShowOptionsOfQuestion))
-        let j = 0;
+
         this.questionModel = {
           id:0,
           question: data.Question,
          responses:this.ResponseQuestionModel
         }
+
         this.QuestionOfCoure.push(this.questionModel);
         console.log(this.QuestionOfCoure);
 
@@ -138,17 +140,31 @@ export class CreateQuizCourseComponent implements OnInit {
     this.ShowOptionsOfQuestion.splice(i, 1)
 
   }
+  deletetQestion(i: number) {
+
+    delete this.QuestionOfCoure[i];
+    this.QuestionOfCoure.splice(i, 1)
+
+  }
 
   public onNextClick(): void {
     this.nextClicked = 1;
   }
 
-  public onPreviousClick(): void {
+  public onCreateQ(): void {
     this.nextClicked = 0;
   }
 
   public onSave(): void {
     this.nextClicked = 3;
+  }
+  expandSet = new Set<number>();
+  onExpandChange(id: number, checked: boolean): void {
+    if (checked) {
+      this.expand=false
+    } else {
+      this.expand=false
+    }
   }
 
 
