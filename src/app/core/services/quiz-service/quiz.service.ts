@@ -11,142 +11,186 @@ import {CourseModel} from '../../models/course/course-model/course-model';
 })
 
 export class QuizService {
-  constructor(private courseService:CourseService) {
-  }
-  responseQ1: ResponseQuestionModel[] = [{
+  questions :QuestionModel[] = [{
+    id:1,
+    question:'What\'s the capital of somalia ?',
+    responses:[]
+  },{
+    id:2,
+    question:'What\'s the capital of Mexico ?',
+    responses:[]
+  },{
+    id:3,
+    question:'What\'s the capital of UK ?',
+    responses:[]
+  },{
+    id:4,
+    question:'What\'s the capital of USA ?',
+    responses:[]
+  },{
+    id:5,
+    question:'What\'s the capital of UAE ?',
+    responses:[]
+  }]
+  responseQ1 :ResponseQuestionModel[]= [{
     id: 1,
     response: 'Nairobi',
     correct: false,
-    idQuestion: 1
+    Question: this.questions[0]
   }, {
     id: 2,
     response: 'Asmara',
     correct: true,
-    idQuestion: 1
+    Question: this.questions[0]
   }, {
     id: 3,
     response: 'Mogadishu',
     correct: false,
-    idQuestion: 1
+    Question: this.questions[0]
   }];
-
-  responseQ2: ResponseQuestionModel[] = [{
+  responseQ2  :ResponseQuestionModel[]= [{
     id: 1,
     response: 'Guadalajara',
     correct: false,
-    idQuestion: 2
+    Question: this.questions[1]
   }, {
     id: 2,
     response: 'Puebla',
     correct: false,
-    idQuestion: 2
+    Question: this.questions[1]
   }, {
     id: 3,
     response: 'Mexico',
     correct: true,
-    idQuestion: 2
+    Question: this.questions[1]
   }];
-  responseQ3: ResponseQuestionModel[] = [{
+  responseQ3  :ResponseQuestionModel[]= [{
     id: 1,
     response: 'Guadalajara',
     correct: false,
-    idQuestion: 3
+    Question: this.questions[2]
   }, {
     id: 2,
     response: 'London',
     correct: true,
-    idQuestion: 3
+    Question: this.questions[2]
   }, {
     id: 3,
     response: 'Mexico',
     correct: false,
-    idQuestion: 3
+    Question: this.questions[2]
   }];
-  responseQ4: ResponseQuestionModel[] = [{
+  responseQ4  :ResponseQuestionModel[]= [{
     id: 1,
     response: 'Guadalajara',
     correct: false,
-    idQuestion: 4
+    Question: this.questions[3]
   }, {
     id: 2,
     response: 'London',
     correct: false,
-    idQuestion: 4
+    Question: this.questions[3]
   }, {
     id: 3,
     response: 'Washington DC',
     correct: true,
-    idQuestion: 4
+    Question: this.questions[3]
   }];
-  responseQ5: ResponseQuestionModel[] = [{
+  responseQ5  :ResponseQuestionModel[]= [{
     id: 1,
     response: 'Guadalajara',
     correct: false,
-    idQuestion: 5
+    Question: this.questions[4]
   }, {
     id: 2,
     response: 'London',
     correct: false,
-    idQuestion: 5
+    Question: this.questions[4]
   }, {
     id: 3,
     response: 'Abu Dhabi',
     correct: true,
-    idQuestion: 5
+    Question: this.questions[4]
   }];
 
-  questions : QuestionModel[] = [{
-    id:1,
-    question:'What\'s the capital of somalia ?',
-    responses:this.responseQ1
-  },{
-    id:2,
-    question:'What\'s the capital of Mexico ?',
-    responses:this.responseQ2
-  },{
-    id:3,
-    question:'What\'s the capital of UK ?',
-    responses:this.responseQ3
-  },{
-    id:4,
-    question:'What\'s the capital of USA ?',
-    responses:this.responseQ4
-  },{
-    id:5,
-    question:'What\'s the capital of UAE ?',
-    responses:this.responseQ5
-  }]
-  quizParcours: QuizParcoursModel = {
-    id: 1,
-    numberQuestions: 5,
-    estimatedDuration: 30,
-    parcoursId: 1,
-    questions: this.questions
-  };
-  quizCourse: QuizCourseModel[]= [{
-    id:1,
-    numberQuestions:5,
-    estimatedDuration:10,
-    course:this.courseService.getCourses()[0],
-    questions :this.questions
-  },{
-    id:2,
-    numberQuestions:5,
-    estimatedDuration:10,
-    course:this.courseService.getCourses()[1],
-    questions :this.questions
-  },{
-    id:3,
-    numberQuestions:5,
-    estimatedDuration:10,
-    course:this.courseService.getCourses()[2],
-    questions :this.questions
-  }]
+  constructor(private courseService:CourseService) {
+
+  }
+
+  quizParcours!: QuizParcoursModel ;
+  quizCourse!: QuizCourseModel[];
 
   getCourseQuiz(){
+    this.questions = [{
+      id:1,
+      question:'What\'s the capital of somalia ?',
+      responses:this.responseQ1
+    },{
+      id:2,
+      question:'What\'s the capital of Mexico ?',
+      responses:this.responseQ2
+    },{
+      id:3,
+      question:'What\'s the capital of UK ?',
+      responses:this.responseQ3
+    },{
+      id:4,
+      question:'What\'s the capital of USA ?',
+      responses:this.responseQ4
+    },{
+      id:5,
+      question:'What\'s the capital of UAE ?',
+      responses:this.responseQ5
+    }]
+    this.quizCourse= [{
+      id:1,
+      numberQuestions:5,
+      estimatedDuration:10,
+      course:this.courseService.getCourses()[0],
+      questions :this.questions
+    },{
+      id:2,
+      numberQuestions:5,
+      estimatedDuration:10,
+      course:this.courseService.getCourses()[1],
+      questions :this.questions
+    },{
+      id:3,
+      numberQuestions:5,
+      estimatedDuration:10,
+      course:this.courseService.getCourses()[2],
+      questions :this.questions
+    }]
     return this.quizCourse;
   }
   getParcoursQuiz(){
+    this.questions = [{
+      id:1,
+      question:'What\'s the capital of somalia ?',
+      responses:this.responseQ1
+    },{
+      id:2,
+      question:'What\'s the capital of Mexico ?',
+      responses:this.responseQ2
+    },{
+      id:3,
+      question:'What\'s the capital of UK ?',
+      responses:this.responseQ3
+    },{
+      id:4,
+      question:'What\'s the capital of USA ?',
+      responses:this.responseQ4
+    },{
+      id:5,
+      question:'What\'s the capital of UAE ?',
+      responses:this.responseQ5
+    }]
+    this.quizParcours = {
+      id: 1,
+      numberQuestions: 5,
+      estimatedDuration: 30,
+      questions: this.questions
+    };
     return this.quizParcours;
   }
 

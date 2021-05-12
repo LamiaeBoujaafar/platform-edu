@@ -59,6 +59,7 @@ export class CourseService {
   parcours: ParcoursModel[] = [{
     id: 1,
     description: 'parcours1',
+    title :'string',
     courses: [this.courses[0], this.courses[1], this.courses[2]]
   }];
   student: StudentModule = {
