@@ -45,6 +45,16 @@ export class AddProfComponent implements OnInit {
     return {};
   };
 
+
+
+
+
+
+
+
+
+
+
   resetForm(e: MouseEvent): void {
     e.preventDefault();
     this.validateForm.reset();

@@ -12,7 +12,7 @@ const routes: Routes = [
         loadChildren: () => import('./add-institute/add-institute.module').then(m => m.AddInstituteModule)
       },
       {
-        path: 'update-institute',
+        path: 'update-institute/:id',
         loadChildren: () => import('./update-institute/update-institute.module').then(m => m.UpdateInstituteModule)
       },
       {
