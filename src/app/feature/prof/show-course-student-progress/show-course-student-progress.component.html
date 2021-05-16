@@ -1,8 +1,15 @@
-<nz-card nzTitle="show student progress ">
+
+<div class="card">
+  <div class="card-header card-header-danger" style="text-align: center">
+    <h4 class="card-title">show student progress</h4>
+    <p class="card-category">Category subtitle</p>
+  </div>
+  <div class="card-body">
+
   <form  #f ="ngForm"  [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
 
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzFor="cour" nzRequired>Cour</nz-form-label>
+      <nz-form-label style="font-family: Roboto;" [nzSpan]="5" nzFor="cour" nzRequired>Cour</nz-form-label>
       <nz-form-control [nzSpan]="12" nzErrorTip="Please select your coure!">
         <nz-select
           id="cour" formControlName="cours" nzPlaceHolder="Select cour"
@@ -15,9 +22,9 @@
       </nz-form-control>
     </nz-form-item>
    </form>
-
-  <nz-table #basicTable *ngIf="showListEtudiantCours" [nzData]="['']"  nzTableLayout="fixed">
-    <thead>
+    <div class="card-content table-responsive table-full-width">
+      <table class="table">
+        <thead>
     <tr>
       <th>etudiant</th>
       <th>nombre section valide</th>
@@ -37,7 +44,9 @@
 
     </tr>
     </tbody>
+      </table>
+    </div>
 
-  </nz-table>
-</nz-card>
+  </div>
+</div>
 

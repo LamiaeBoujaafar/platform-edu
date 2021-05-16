@@ -1,5 +1,13 @@
-<nz-card nzTitle="Create Quiz Cour">
+<div class="">
   <form  #f ="ngForm"  [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
+<div class="card">
+  <div class="card-header card-header-danger" style="text-align: center">
+    <h4 class="card-title">Create Quiz Cour</h4>
+    <p class="card-category">Category subtitle</p>
+  </div>
+  <div class="card-body">
+
+
 
     <nz-form-item>
       <nz-form-label [nzSpan]="5" nzFor="cour" nzRequired>Cour</nz-form-label>
@@ -56,13 +64,21 @@
 
 
 
+    <button mat-raised-button class="btn btn-danger" type="submit" (click)="onNextClick()"><i class="material-icons">add</i></button>
 
-    <button type="submit"  (click)="onNextClick()" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">+</button>
-    <br>
-    <br>
+  </div>
+</div>
 
-
-  <nz-table #basicTable *ngIf="ShowOptionsOfQuestion" [nzData]="['']"  nzTableLayout="fixed">
+    <div class="card">
+      <div class="card-header card-header-icon card-header-primary">
+        <div class="card-icon">
+          <i class="material-icons">list_alt</i>
+        </div>
+        <h4 class="card-title">Options Of Question</h4>
+      </div>
+      <div class="card-body">
+      <div class="card-content table-responsive table-full-width">
+        <table class="table">
     <thead>
     <tr>
       <th>titer</th>
@@ -74,16 +90,31 @@
     <tr *ngFor="let data of ShowOptionsOfQuestion index as i  " >
       <td>{{data.response}}</td>
       <td>{{data.correct}}</td>
-      <td><button (click)="delete(i)">X</button></td>
+      <td><button mat-raised-button (click)="delete(i)" class="btn btn-primary"><i class="material-icons">delete</i></button></td>
+
 
     </tr>
     </tbody>
 
-  </nz-table>
-  <button nz-button type="submit" (click)="onCreateQ()" class="login-form-button login-form-margin" [nzType]="'primary'">Save Question</button>
+        </table>
+      </div>
+
+    <button mat-raised-button class="btn btn-primary" type="submit" (click)="onCreateQ()"><i class="material-icons">done</i>Save Question</button>
+    </div>
+    </div>
 
 
-    <nz-table #basicTable *ngIf="QuestionOfCoure" [nzData]="['']"  nzTableLayout="fixed">
+
+    <div class="card">
+      <div class="card-header card-header-icon card-header-success">
+        <div class="card-icon">
+          <i class="material-icons">help</i>
+        </div>
+        <h4 class="card-title">Questions Of Quiz </h4>
+      </div>
+      <div class="card-body">
+      <div class="card-content table-responsive table-full-width">
+        <table class="table">
       <thead>
       <tr>
         <th>Question</th>
@@ -96,7 +127,8 @@
       <tr >
         <!--   <td [(nzExpand)]="expand"  (nzExpandChange)="onExpandChange(data.id, $event)"></td>  -->
              <td>{{data.question}}</td>
-             <td><button (click)="deletetQestion(i)">X</button></td>
+        <td><button mat-raised-button (click)="deletetQestion(i)" class="btn btn-success"><i class="material-icons">delete</i></button></td>
+
 
            </tr>
 
@@ -108,11 +140,15 @@
       </tr> -->
       </ng-container>
       </tbody>
+        </table>
+      </div>
+    <button mat-raised-button class="btn btn-success" type="submit" (click)="onSave()" ><i class="material-icons">done</i>valide</button>
 
-      </nz-table>
-      <button nz-button type="submit" (click)="onSave()" class="login-form-button login-form-margin" [nzType]="'primary'">valide</button>
+      </div>
+    </div>
 
 
-    </form>
-  </nz-card>
+
+  </form>
+</div>
 

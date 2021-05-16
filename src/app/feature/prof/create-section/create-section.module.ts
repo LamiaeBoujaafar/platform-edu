@@ -11,6 +11,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatOptionModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
     NzSelectModule,
     CreateSectionRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatOptionModule
   ]
 })
 export class CreateSectionModule { }

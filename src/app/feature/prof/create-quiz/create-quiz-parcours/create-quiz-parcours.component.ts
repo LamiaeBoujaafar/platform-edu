@@ -97,7 +97,7 @@ export class CreateQuizParcoursComponent implements OnInit {
         console.log(this.QuestionOfParcours);
         this.ShowOptionsOfQuestion.length = 0;
       } else {
-         
+
         this.quiz = {
           id:0,
           numberQuestions: this.QuestionOfParcours.length,
@@ -145,6 +145,12 @@ export class CreateQuizParcoursComponent implements OnInit {
   changeParcour(SelectData: any) {
     this.SelectedParcour= SelectData;
     console.log( this.SelectedParcour);
+
+  }
+  deletetQestion(i: number) {
+
+    delete this.QuestionOfParcours[i];
+    this.QuestionOfParcours.splice(i, 1)
 
   }
 }

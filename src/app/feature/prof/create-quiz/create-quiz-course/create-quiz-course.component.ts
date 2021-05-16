@@ -111,11 +111,9 @@ export class CreateQuizCourseComponent implements OnInit {
         };
         this.QuizOffCoure.push(this.quizCourseModel);
         //here save QUIZ  to DB
-        this.message
-          .loading('saving  in progress', {nzDuration: 2500})
-          .onClose!.pipe(
-          concatMap(() => this.message.success('Saving  finished', {nzDuration: 2500}).onClose!),
-        )
+
+        this.QuestionOfCoure.splice(0, this.QuestionOfCoure.length) ;
+
         console.log(this.ResponseQuestionModel)
         console.log(this.QuizOffCoure);
         console.log(this.QuestionOfCoure);
