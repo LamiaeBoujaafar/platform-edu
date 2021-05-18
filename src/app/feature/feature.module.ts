@@ -8,6 +8,7 @@ import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
 import {NzModalService} from "ng-zorro-antd/modal";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -15,14 +16,15 @@ import {NzModalService} from "ng-zorro-antd/modal";
   declarations: [
     FeatureComponent
   ],
-  imports: [
-    CommonModule,
-    FeatureRoutingModule,
-    NzLayoutModule,
-    NzIconModule,
-    NzMenuModule,
-    NzBreadCrumbModule,
+    imports: [
+        CommonModule,
+        FeatureRoutingModule,
+        NzLayoutModule,
+        NzIconModule,
+        NzMenuModule,
+        NzBreadCrumbModule,
+        SharedModule,
 
-  ]
+    ]
 })
 export class FeatureModule { }

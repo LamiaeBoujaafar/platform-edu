@@ -7,24 +7,204 @@
   </a>
 </div>
 <div class="sidebar-wrapper">
-  <ul class="nav">
-    <li routerLinkActive="active"  class="nav-item">
-      <a class="nav-link" routerLink="student/show-course">
-        <i class="material-icons">person</i>
-        <p>show course</p>
-      </a>
-    </li>
-    <li routerLinkActive="active"  class="nav-item">
-      <a class="nav-link" routerLink="student/show-quiz">
-        <i class="material-icons">person</i>
-        <p>show quiz</p>
-      </a>
-    </li>
-    <li routerLinkActive="active"  class="nav-item">
+  <ul nz-menu class="nav" nzMode="inline">
+<!--    <li routerLinkActive="active"  class="nav-item">-->
+<!--      <a class="nav-link" routerLink="student/show-course">-->
+<!--        <i class="material-icons">person</i>-->
+<!--        <p>show course</p>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--    <li routerLinkActive="active"  class="nav-item">-->
+<!--      <a class="nav-link" routerLink="student/show-quiz">-->
+<!--        <i class="material-icons">person</i>-->
+<!--        <p>show quiz</p>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--    <li routerLinkActive="active"  class="nav-item">-->
+<!--      <a class="nav-link" routerLink="student/show-quiz-parcours">-->
+<!--        <i class="material-icons">person</i>-->
+<!--        <p>show quiz parc</p>-->
+<!--      </a>-->
+<!--    </li>-->
 
-        <i class="material-icons">person</i>
-        <p>show quiz parcour</p>
+    <!---------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------->
+
+<!--    <li routerLinkActive="active"  class="nav-item" nz-submenu nzTitle="Student" nzIcon="user">-->
+<!--      <ul class="nav-link">-->
+<!--        <li  routerLink="student/show-course" nz-menu-item>show course</li>-->
+<!--        <li routerLink="student/show-quiz" nz-menu-item>Show quiz/courses</li>-->
+<!--        <li routerLink="student/show-quiz-parcours" nz-menu-item>Show quiz/parcours</li>-->
+<!--        <li routerLink="student/show-course-progress" nz-menu-item>Show course progress</li>-->
+<!--      </ul>-->
+<!--    </li>-->
+<!--    <li routerLinkActive="active"  class="nav-item" nz-submenu nzTitle="Prof" nzIcon="team">-->
+<!--      <ul>-->
+<!--        <li routerLink="prof/create-course" nz-menu-item>Create course</li>-->
+<!--        <li routerLink="prof/create-section" nz-menu-item>Create section</li>-->
+<!--        <li nz-submenu nzTitle="Create quiz"  >-->
+<!--          <ul>-->
+<!--            <li routerLink="prof/create-quiz/create-quiz-coures"  nz-menu-item>create quize Cours </li>-->
+<!--            <li routerLink="prof/create-quiz/create-quiz-parcours" nz-menu-item>create quize Parcours</li>-->
+<!--          </ul>-->
+<!--        </li>-->
+<!--        <li routerLink="prof/show-course-student-progress" nz-menu-item>Show course/student progress</li>-->
+<!--      </ul>-->
+<!--    </li>-->
+<!--    <li routerLinkActive="active"  class="nav-item" nz-submenu nzTitle="Institute" nzIcon="team">-->
+<!--      <ul>-->
+<!--        <li routerLink="institute/add-student" nz-menu-item>Add student</li>-->
+<!--        <li routerLink="institute/add-prof" nz-menu-item>Add prof</li>-->
+<!--        <li routerLink="institute/registration-requests" nz-menu-item>Registration requests</li>-->
+<!--        <li routerLink="institute/add-student-to-course" nz-menu-item>Add students to course</li>-->
+<!--        <li routerLink="institute/show-profile" nz-menu-item>Show profile</li>-->
+
+<!--      </ul>-->
+<!--    </li>-->
+<!--    <li routerLinkActive="active"  class="nav-item" nz-submenu nzTitle="Admin" nzIcon="team">-->
+<!--      <ul>-->
+<!--        <li routerLink="admin/add-institute" nz-menu-item>Add institute</li>-->
+<!--        <li routerLink="admin/update-institute" nz-menu-item>Update institute </li>-->
+<!--        <li routerLink="admin/delete-institute" nz-menu-item>Delete institute</li>-->
+<!--        <li routerLink="admin/show-institute" nz-menu-item>Show institute</li>-->
+
+<!--      </ul>-->
+<!--    </li>-->
+
+    <!---------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------->
+    <li routerLinkActive="active" class="nav-item active">
+      <a data-toggle="collapse" class="nav-link" href="#Student" aria-expanded="true">
+        <i nz-icon nzType="user" nzTheme="outline"></i>
+        <p>Components<b class="caret"></b></p>
       </a>
+      <!---->
+      <div class="collapse show" id="Student" style="">
+        <ul class="nav">
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="student/show-course">
+              <span class="sidebar-normal">Show course</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="student/show-quiz">
+              <span class="sidebar-normal">Show quiz/courses</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="student/show-quiz-parcours">
+              <span class="sidebar-normal">Show quiz/parcours</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="student/show-course-progress">
+              <span class="sidebar-normal">Show course progress</span>
+            </a>
+          </li>
+          <!---->
+        </ul>
+      </div>
+      <!---->
     </li>
+    <li routerLinkActive="active" class="nav-item active">
+      <a data-toggle="collapse" class="nav-link" href="#Prof" aria-expanded="true">
+        <i nz-icon nzType="user" nzTheme="outline"></i>
+        <p>Professor<b class="caret"></b></p>
+      </a>
+      <!---->
+      <div class="collapse show" id="Prof" style="">
+        <ul class="nav">
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="prof/create-course">
+              <span class="sidebar-normal">Create course</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="prof/create-section">
+              <span class="sidebar-normal">Create section</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="prof/create-quiz/create-quiz-coures">
+              <span class="sidebar-normal">Create quiz/Cour</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="prof/create-quiz/create-quiz-parcours">
+              <span class="sidebar-normal">Create quiz/Parcour</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="prof/show-course-student-progress">
+              <span class="sidebar-normal">Show Student Progress</span>
+            </a>
+          </li>
+          <!---->
+        </ul>
+      </div>
+      <!---->
+    </li>
+    <li routerLinkActive="active" class="nav-item active">
+      <a data-toggle="collapse" class="nav-link" href="#Institute" aria-expanded="true">
+        <i nz-icon nzType="user" nzTheme="outline"></i>
+        <p>Institute<b class="caret"></b></p>
+      </a>
+      <!---->
+      <div class="collapse show" id="Institute" style="">
+        <ul class="nav">
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="institute/add-student">
+              <span class="sidebar-normal">Add Student</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="institute/add-prof">
+              <span class="sidebar-normal">Add Professor</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="institute/registration-requests">
+              <span class="sidebar-normal">Registration Requests</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="institute/add-student-to-course">
+              <span class="sidebar-normal">Add Student To Course</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="institute/show-profile">
+              <span class="sidebar-normal">Show Profile</span>
+            </a>
+          </li>
+          <!---->
+        </ul>
+      </div>
+      <!---->
+    </li>
+    <li routerLinkActive="active" class="nav-item active">
+      <a data-toggle="collapse" class="nav-link" href="#Admin" aria-expanded="true">
+        <i nz-icon nzType="user" nzTheme="outline"></i>
+        <p>Components<b class="caret"></b></p>
+      </a>
+      <!---->
+      <div class="collapse show" id="Admin" style="">
+        <ul class="nav">
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="admin/add-institute">
+              <span class="sidebar-normal">Add Institute</span>
+            </a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="admin/show-institute">
+              <span class="sidebar-normal">Show Institutes</span>
+            </a>
+          </li>
+          <!---->
+        </ul>
+      </div>
+      <!---->
+    </li>
+
   </ul>
 </div>
