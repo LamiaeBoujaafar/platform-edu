@@ -8,6 +8,8 @@ import {NzSelectModule} from "ng-zorro-antd/select";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzMessageModule} from "ng-zorro-antd/message";
 import {NzProgressModule} from "ng-zorro-antd/progress";
+import {SharedModule} from "../../shared/shared.module";
+import {NzLayoutModule} from "ng-zorro-antd/layout";
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import {NzProgressModule} from "ng-zorro-antd/progress";
     NzSelectModule,
     NzInputModule,
     NzMessageModule,
-    NzProgressModule
+    NzProgressModule,
+    SharedModule,
+    NzLayoutModule
   ]
 })
 export class InstituteModule { }

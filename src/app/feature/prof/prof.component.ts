@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./prof.component.css']
 })
 export class ProfComponent implements OnInit {
+  isCollapsed = false;
 
   constructor() { }
 

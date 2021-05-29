@@ -16,8 +16,12 @@ const routes: Routes = [
         loadChildren: () => import('./create-course/create-course.module').then(m => m.CreateCourseModule)
       },
       {
-        path: 'create-quiz',
-        loadChildren: () => import('./create-quiz/create-quiz.module').then(m => m.CreateQuizModule)
+        path: 'create-quiz-course',
+        loadChildren: () => import('./create-quiz/create-quiz-course/create-quiz-course.module').then(m => m.CreateQuizCourseModule)
+      },
+      {
+        path: 'create-quiz-parcours',
+        loadChildren: () => import('./create-quiz/create-quiz-parcours/create-quiz-parcours.module').then(m => m.CreateQuizParcoursModule)
       },
       {
         path: 'show-course-student-progress',

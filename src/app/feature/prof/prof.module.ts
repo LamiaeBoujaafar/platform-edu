@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfRoutingModule } from './prof-routing.module';
 import { ProfComponent } from './prof.component';
+import {SharedModule} from "../../shared/shared.module";
+import {NzLayoutModule} from "ng-zorro-antd/layout";
 
 
 // @ts-ignore
@@ -12,7 +14,9 @@ import { ProfComponent } from './prof.component';
   imports: [
 
     CommonModule,
-    ProfRoutingModule
+    ProfRoutingModule,
+    SharedModule,
+    NzLayoutModule
   ]
 })
 export class ProfModule { }
