@@ -1,4 +1,4 @@
-<div>
+<div >
   <div *ngIf="!selectedCourse">
     <div class="col-md-12">
       <div class="card">
@@ -48,7 +48,7 @@
     <!--    </div>-->
   </div>
 
-  <div *ngIf="selectedCourse && !completedCourse" class="questionAnswers">
+  <div *ngIf="selectedCourse && !completedCourse" class="showCoursesDiv">
     <button type="button" class="btn btn-outline-danger btn-sm" (click)="back()">
       <span class="material-icons">arrow_back</span>
     </button>
