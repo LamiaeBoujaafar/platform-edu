@@ -18,6 +18,7 @@ const routes: Routes = [
       {
         path: 'institute', loadChildren: () => import('./institute/institute.module').then(m => m.InstituteModule)
       },
+
       {
         path: 'admin',
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)

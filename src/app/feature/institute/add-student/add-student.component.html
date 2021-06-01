@@ -1,8 +1,9 @@
 <div class="card">
-  <div class="card-header" style="text-align: center">
-    <h1>Add Student</h1>
+  <div class="card-header card-header-danger" style="text-align: center">
+    <h4 class="card-title">Add Student</h4>
+    <p class="card-category">Category subtitle</p>
   </div>
-  <div class="card-body">
+  <div class="card-body" style="    margin-top: 14px;">
     <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" style="margin: 0 auto">
       <div nz-row nzAlign="middle" nzJustify="center">
         <div nz-col>
@@ -62,12 +63,12 @@
       <div nz-row  nzAlign="middle" nzJustify="center">
         <nz-form-item nz-col [nzGutter]="15">
           <nz-form-control >
-            <button nz-button nzType="primary" (click)="submitForm()">Register</button>
+            <button type="submit" mat-raised-button class="btn btn-success" (click)="submitForm()"><i class="material-icons">done</i>Register</button>
           </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-col [nzGutter]="15">
           <nz-form-control >
-            <button nz-button nzType="danger" (click)="resetForm($event)">Reset</button>
+            <button type="submit" mat-raised-button class="btn btn-danger" (click)="resetForm($event)"><i class="material-icons">delete</i>Reset</button>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -75,4 +76,5 @@
     </form>
   </div>
 </div>
+
 

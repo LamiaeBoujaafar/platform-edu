@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AngularEditorConfig} from "@kolkov/angular-editor";
-import {CourseModel} from "../../../core/models/course/course-model/course-model";
+import {CourseModel} from '../../../core/models/course/course-model/course-model';
 import {SectionModel} from "../../../core/models/course/section-model/section-model";
 @Component({
   selector: 'app-create-section',
@@ -12,7 +12,7 @@ export class CreateSectionComponent implements OnInit {
   check =0;
   validateForm!: FormGroup;
   section!: SectionModel;
-  listOfCours:CourseModel[]=[
+  listOfCours: CourseModel[]=[
     {
       id : 0,
       sections : [],

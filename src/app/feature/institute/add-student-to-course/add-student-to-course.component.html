@@ -1,8 +1,14 @@
-<div nz-row nzAlign="middle" nzJustify="center" nzGutter="24">
+
+<div class="card">
+  <div class="card-header card-header-danger" style="text-align: center">
+    <h4 class="card-title">Regitration Requestes</h4>
+    <p class="card-category">Category subtitle</p>
+  </div>
+  <div nz-row nzAlign="middle" nzJustify="center" nzGutter="24" style="margin-top: 20px;">
   <div nz-col [nzSpan]="8">
     <nz-form-item>
       <nz-form-control>
-        <nz-select [(ngModel)]="selectedParcour" nzShowSearch nzPlaceHolder="select Parkour"
+        <nz-select [(ngModel)]="selectedParcour"  nzPlaceHolder="select Parkour"
                    (ngModelChange)="parkourChange($event)">
           <nz-option *ngFor="let p of parcours" [nzLabel]="p" [nzValue]="p"></nz-option>
         </nz-select>
@@ -31,22 +37,30 @@
     </nz-form-item>
   </div>
 </div>
-
-<div nz-row nzJustify="center" nzAlign="middle">
-  <div nz-col [nzSpan]="6">
-    <nz-form-item>
-      <nz-form-control>
-        <button nz-button (click)="addRow()" nzType="primary" nzBlock>Add</button>
-      </nz-form-control>
-    </nz-form-item>
+  <div nz-row  nzAlign="middle">
+    <div nz-col [nzSpan]="6">
+      <nz-form-item>
+        <nz-form-control>
+          <button mat-raised-button class="btn btn-danger" type="submit"(click)="addRow()"><i class="material-icons">add</i></button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
   </div>
+
+
 </div>
 
+<div class="card">
+  <div class="card-header card-header-icon card-header-primary">
+    <div class="card-icon">
+      <i class="material-icons">list_alt</i>
+    </div>
+    <h4 class="card-title">Options Of Question</h4>
+  </div>
+  <div class="card-body">
+    <div class="card-content table-responsive table-full-width">
+      <table class="table">
 
-<nz-divider [nzText]="text">
-  <ng-template #text><i nz-icon nzType="unordered-list" ></i> Result List</ng-template>
-</nz-divider>
-<nz-table #editRowTable nzBordered [nzData]="listOfData">
   <thead>
   <tr>
     <th nzWidth="30%">Student Name</th>
@@ -56,24 +70,28 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of editRowTable.data" class="editable-row">
+  <tr *ngFor="let data of listOfData" class="editable-row">
     <td>{{ data.etudiant }}</td>
     <td>{{ data.parcour }}</td>
     <td>{{ data.cour }}</td>
-    <td>
-      <button nz-button nzType="link" nzDanger nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.id)">Delete</button>
-    </td>
+
+    <td><button mat-raised-button (click)="deleteRow(data.id)" class="btn btn-primary"><i class="material-icons">delete</i></button></td>
+
+
   </tr>
   </tbody>
-</nz-table>
+</table>
 
 
-<div nz-row nzJustify="center" nzAlign="middle">
+<div nz-row  nzAlign="middle">
   <div nz-col [nzSpan]="4">
     <nz-form-item>
       <nz-form-control>
-        <button nzBlock  nz-button nzType="primary"  nzShape="round" (click)="submitData()"><i nz-icon nzType="cloud-download" nzTheme="outline"></i>Submit</button>
+        <button mat-raised-button class="btn btn-primary" type="submit"  (click)="submitData()"><i class="material-icons">done</i>Save</button>
       </nz-form-control>
     </nz-form-item>
+  </div>
+</div>
+    </div>
   </div>
 </div>

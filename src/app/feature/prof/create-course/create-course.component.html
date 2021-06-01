@@ -1,4 +1,10 @@
-<nz-card nzTitle="Create new Cours">
+
+<div class="card">
+  <div class="card-header card-header-danger" style="text-align: center">
+    <h4 class="card-title">Create new Cours</h4>
+    <p class="card-category">Category subtitle</p>
+  </div>
+  <div class="card-body">
   <div nz-row>
     <div nz-col nzSpan="8"></div>
     <div nz-col nzSpan="15">
@@ -7,20 +13,19 @@
 
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your titre!">
-          <nz-input-group nzPrefixIcon="form">
-            <input type="text" nz-input formControlName="titre" placeholder="titre" />
-          </nz-input-group>
+            <div class="form-group">
+              <input type="text" value="" formControlName="titre" placeholder="titre" class="form-control" />
+            </div>
         </nz-form-control>
       </nz-form-item>
 
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Descption !">
 
-          <nz-textarea-count [nzMaxCharacterCount]="100">
-            <textarea rows="4"  formControlName="Descption" nz-input placeholder="Descption"></textarea>
-          </nz-textarea-count>
+        <nz-form-control nzErrorTip="Please input your Descption!">
+          <div class="form-group">
+            <textarea matInput  formControlName="Descption" placeholder="Descption" class="form-control" ></textarea>
+          </div>
         </nz-form-control>
-      </nz-form-item>
+
 
       <nz-form-item>
         <nz-form-control nzErrorTip="Please select cour image !">
@@ -29,11 +34,16 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
-      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Ajouter</button>
+        <button type="submit" mat-raised-button class="btn btn-danger"><i class="material-icons">done</i> Ajouter</button>
 
-    </form></div>
+
+
+    </form>
+    </div>
     <div nz-col nzSpan="5"></div>
   </div>
 
-</nz-card>
+
+  </div>
+</div>
 

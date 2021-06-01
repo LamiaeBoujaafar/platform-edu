@@ -1,5 +1,12 @@
-<nz-card nzTitle="Create Quiz parcour">
+<div class="">
   <form  #f ="ngForm"  [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
+  <div class="card">
+  <div class="card-header card-header-danger" style="text-align: center">
+    <h4 class="card-title">Create Quiz parcour</h4>
+    <p class="card-category">Category subtitle</p>
+  </div>
+  <div class="card-body">
+
 
     <nz-form-item>
       <nz-form-label [nzSpan]="5" nzFor="parcour" nzRequired>parcour</nz-form-label>
@@ -23,12 +30,7 @@
       </nz-form-control>
 
     </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzFor="durée" nzRequired>durée</nz-form-label>
-      <nz-form-control [nzSpan]="25" nzErrorTip="Please select your durée!">
-        <nz-time-picker formControlName="duree"  [(ngModel)]="time" ></nz-time-picker>
-      </nz-form-control>
-    </nz-form-item>
+
 
 
     <div nz-row >
@@ -67,13 +69,22 @@
 
 
 
-
-    <button type="submit"  (click)="onNextClick()" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">+</button>
-    <br>
-    <br>
+    <button mat-raised-button class="btn btn-danger" type="submit" (click)="onNextClick()"><i class="material-icons">add</i></button>
 
 
-    <nz-table #basicTable *ngIf="ShowOptionsOfQuestion" [nzData]="['']"  nzTableLayout="fixed">
+  </div>
+  </div>
+
+    <div class="card">
+      <div class="card-header card-header-icon card-header-primary">
+        <div class="card-icon">
+          <i class="material-icons">list_alt</i>
+        </div>
+        <h4 class="card-title">Options Of Question</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-content table-responsive table-full-width">
+          <table class="table">
       <thead>
       <tr>
         <th>titer</th>
@@ -85,16 +96,60 @@
       <tr *ngFor="let data of ShowOptionsOfQuestion index as i  " >
         <td>{{data.response}}</td>
         <td>{{data.correct}}</td>
-        <td><button (click)="delete(i)">X</button></td>
+        <td><button mat-raised-button (click)="delete(i)" class="btn btn-primary"><i class="material-icons">delete</i></button></td>
 
       </tr>
       </tbody>
 
-    </nz-table>
-    <button nz-button type="submit" (click)="onPreviousClick()" class="login-form-button login-form-margin" [nzType]="'primary'">Save Question</button>
-    <button nz-button type="submit" (click)="onSave()" class="login-form-button login-form-margin" [nzType]="'primary'">valide</button>
+          </table>
+        </div>
 
+        <button mat-raised-button class="btn btn-primary" type="submit" (click)="onPreviousClick()"><i class="material-icons">done</i>Save Question</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header card-header-icon card-header-success">
+        <div class="card-icon">
+          <i class="material-icons">help</i>
+        </div>
+        <h4 class="card-title">Questions Of Quiz </h4>
+      </div>
+      <div class="card-body">
+        <div class="card-content table-responsive table-full-width">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Question</th>
+              <th>Action</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let data of QuestionOfParcours index as i  " >
+              <tr >
+                <!--   <td [(nzExpand)]="expand"  (nzExpandChange)="onExpandChange(data.id, $event)"></td>  -->
+                <td>{{data.question}}</td>
+                <td><button mat-raised-button (click)="deletetQestion(i)" class="btn btn-success"><i class="material-icons">delete</i></button></td>
+
+
+              </tr>
+
+              <!--    <tr  [nzExpand]="expand" *ngFor="let data of data.responses index as i">
+                  <td style="font-weight: bold;">{{data.response}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data.correct}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button>x</button> </td>
+
+
+
+            </tr> -->
+            </ng-container>
+            </tbody>
+          </table>
+        </div>
+        <button mat-raised-button class="btn btn-success" type="submit" (click)="onSave()" ><i class="material-icons">done</i>valide</button>
+
+      </div>
+    </div>
 
   </form>
-</nz-card>
 
+
+</div>

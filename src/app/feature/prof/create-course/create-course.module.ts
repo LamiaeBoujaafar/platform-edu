@@ -10,20 +10,22 @@ import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import {MatFormFieldModule} from "@angular/material/form-field";
 @NgModule({
   declarations: [
     CreateCourseComponent
   ],
-  imports: [
-    NzGridModule,
-    NzButtonModule,
-    NzInputModule,
-    FormsModule,
-    NzFormModule,
-    NzCardModule,
-    CommonModule,
-    CreateCourseRoutingModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        NzGridModule,
+        NzButtonModule,
+        NzInputModule,
+        FormsModule,
+        NzFormModule,
+        NzCardModule,
+        CommonModule,
+        CreateCourseRoutingModule,
+        ReactiveFormsModule,
+        MatFormFieldModule
+    ]
 })
 export class CreateCourseModule { }
