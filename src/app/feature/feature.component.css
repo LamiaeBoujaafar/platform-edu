@@ -51,9 +51,9 @@ nz-breadcrumb {
   margin-top: 2%;
   margin-left: 2%;
   margin-right: 2%;
-  background: #fff;
-  min-height: 400px;
-  padding: 4%;
+  background: #f0f2f5;
+  min-height: 328px;
+  padding: 1%;
 }
 
 nz-footer {

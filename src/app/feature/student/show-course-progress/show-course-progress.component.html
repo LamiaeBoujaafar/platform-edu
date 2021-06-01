@@ -1,6 +1,12 @@
+<div class="card">
+  <div class="card-header card-header-warning" >
+    <h4 class="card-title">Course progresse</h4>
+    <p class="card-category">this table shows you your progress in every course</p>
+  </div>
+  <div class="card-content table-responsive table-full-width">
 <nz-table #nzTable [nzData]="courseStudentDisplay" nzTableLayout="fixed">
-  <thead>
-  <tr>
+  <thead >
+  <tr >
     <th nzCustomFilter>
       Course
       <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
@@ -27,10 +33,11 @@
   <div class="ant-table-filter-dropdown">
     <div class="search-box">
       <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
-      <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
-        Search
-      </button>
-      <button nz-button nzSize="small" (click)="reset()">Reset</button>
+      <button mat-raised-button class="btn btn-warning btn-sm search-button" (click)="search()">Search</button>
+
+      <button type="button" class="btn btn-outline-warning btn-sm" (click)="reset()">Reset</button>
     </div>
   </div>
 </nz-dropdown-menu>
+  </div>
+</div>

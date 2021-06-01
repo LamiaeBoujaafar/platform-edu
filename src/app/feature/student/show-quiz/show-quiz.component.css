@@ -11,3 +11,18 @@
 .card{
   margin-bottom: 5px;
 }
+.colorText{
+  color: black;
+}
+.next{
+  float: right;
+}
+.submit{
+  float: right;
+}
+.answers{
+  margin-bottom: 7px;
+  border-radius: 20px;
+  padding-left: 15px;
+
+}

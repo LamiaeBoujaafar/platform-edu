@@ -11,5 +11,17 @@ img{
   margin-right: auto;
 }
 .answers{
-  margin-bottom: 5px;
+  margin-bottom: 7px;
+  border-radius: 20px;
+  padding-left: 15px;
+
+}
+.colorText{
+  color: black;
+}
+.next{
+  float: right;
+}
+.submit{
+  float: right;
 }

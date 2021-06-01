@@ -16,6 +16,8 @@ export class ShowQuizParcoursComponent implements OnInit {
   incorrectAnswers = 0;
   result: boolean = false;
   startQuiz = false;
+  list : any[] =[]
+  contour = 0
 
   constructor(private parcoursQuizService:QuizService, private modal: NzModalService) { }
 
@@ -24,22 +26,26 @@ export class ShowQuizParcoursComponent implements OnInit {
   }
   onAnswer(correct: boolean) {
     this.answerSelected = true;
-    setTimeout(() => {
-      if (this.currentQuestion < 4) {
-        this.currentQuestion++;
-        this.answerSelected = false;
-      }
-    }, 1000);
-    if (correct) {
+    this.list[this.currentQuestion] = correct;
+  }
+  next() {
+  this.contour++
+    if (this.list[this.currentQuestion]) {
       this.correctAnswers++;
     } else {
       this.incorrectAnswers++;
-      console.log('incorrect' + correct);
     }
+    setTimeout(() => {
+      if (this.currentQuestion < this.quizParcours.numberQuestions -1) {
+        this.currentQuestion++;
+        console.log('incorrect'  +this.currentQuestion);
+        this.answerSelected = false;
+      }
+    }, 500);
+
   }
 
   showResult() {
-
     if (this.correctAnswers >= 3) {
       this.modal.success({
         nzTitle: 'Congratulation!! YOU WIN',
@@ -71,9 +77,13 @@ export class ShowQuizParcoursComponent implements OnInit {
     this.answerSelected = false;
     this.correctAnswers = 0;
     this.incorrectAnswers = 0;
+    this.contour = 0;
+    this.list =[]
   }
 
   start() {
     this.startQuiz = true;
   }
+
+
 }
