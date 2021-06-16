@@ -2,14 +2,14 @@
 <div class="card">
   <div class="card-header card-header-danger" style="text-align: center">
     <h4 class="card-title">Create new Cours</h4>
-    <p class="card-category">Category subtitle</p>
+    <p class="card-category">Fill the following form to create a new course</p>
   </div>
   <div class="card-body">
   <div nz-row>
     <div nz-col nzSpan="8"></div>
     <div nz-col nzSpan="15">
 
-      <form #f ="ngForm"  nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="10" nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
+      <form nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="10" nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(myForm.value)" name="myForm" #myForm="ngForm" >
 
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your titre!">
@@ -27,13 +27,13 @@
         </nz-form-control>
 
 
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Please select cour image !">
-          <nz-input-group nzPrefixIcon="file-image">
-            <input type="file" nz-input formControlName="image"  />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
+<!--      <nz-form-item>-->
+<!--        <nz-form-control nzErrorTip="Please select cour image !">-->
+<!--          <nz-input-group nzPrefixIcon="file-image">-->
+<!--            <input type="file" nz-input formControlName="image"  />-->
+<!--          </nz-input-group>-->
+<!--        </nz-form-control>-->
+<!--      </nz-form-item>-->
         <button type="submit" mat-raised-button class="btn btn-danger"><i class="material-icons">done</i> Ajouter</button>
 
 

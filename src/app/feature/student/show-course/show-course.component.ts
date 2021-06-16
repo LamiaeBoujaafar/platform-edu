@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {CourseModel} from '../../../core/models/course/course-model/course-model';
 import {CourseService} from '../../../core/services/course-service/course.service';
+import {Course} from '../../../core/models/course/course-model/course';
+import {SectionModel} from '../../../core/models/course/section-model/section-model';
 
 @Component({
   selector: 'app-show-course',
@@ -9,22 +10,28 @@ import {CourseService} from '../../../core/services/course-service/course.servic
 })
 
 export class ShowCourseComponent implements OnInit {
-  courses: CourseModel[] = [];
+  courses!: Array<Course> ;
   selectedCourse= false;
-  courseItem!: CourseModel ;
+  courseItem!: Course ;
   percent = 0;
   currentCourse = 0;
   sectionLength = 0;
   completedCourse = false;
-  constructor(private courseService:CourseService) { }
+
+  constructor(private courseService:CourseService) {
+    this.courseService.getCoursesFromDb().subscribe(data => {
+      this.courses = data
+    });
+
+  }
 
   ngOnInit(): void {
-    this.courses = this.courseService.getCourses();
+    //this.courses = this.courseService.getCourses();
   }
-  startCourse(course: CourseModel) {
+  startCourse(course: Course) {
     this.courseItem = course;
     this.selectedCourse = true;
-    this.sectionLength = this.courseItem.sections.length;
+    this.sectionLength = this.courseItem.section.length;
   }
   increase(): void {
       this.percent = this.percent + (100/this.sectionLength);

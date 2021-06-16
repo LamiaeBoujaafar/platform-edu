@@ -6,11 +6,12 @@ import { CreateCourseRoutingModule } from './create-course-routing.module';
 import { CreateCourseComponent } from './create-course.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
-import { NzButtonModule } from 'ng-zorro-antd/button';
 
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import {MatFormFieldModule} from "@angular/material/form-field";
+
 @NgModule({
   declarations: [
     CreateCourseComponent
@@ -25,7 +26,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
         CommonModule,
         CreateCourseRoutingModule,
         ReactiveFormsModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+      NzModalModule
     ]
 })
 export class CreateCourseModule { }

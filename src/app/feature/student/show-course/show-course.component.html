@@ -21,12 +21,9 @@
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <!--              <button  mat-raised-button class="btn btn-default btn-sm">Start</button>-->
-                    <!--                    <button type="button" class="btn btn-outline-warning">Warning</button>-->
                     <button mat-raised-button (click)="startCourse(course)" class="btn btn-outline-warning btn-sm">
                       Start
                     </button>
-                    <!--                    <button nz-buttonnzType="default">Start</button>-->
                   </div>
                 </div>
               </div>
@@ -36,16 +33,7 @@
       </div>
     </div>
 
-    <!--    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">-->
-    <!--      <div   nz-col class="card" [nzSpan]="6"   *ngFor="let course of courses" (click)="startCourse(course)" >-->
-    <!--        <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">-->
-    <!--          <nz-card-meta nzTitle="{{course.id}}" nzDescription="{{course.title}}"></nz-card-meta>-->
-    <!--        </nz-card>-->
-    <!--        <ng-template #coverTemplate>-->
-    <!--          <img alt="example" src="../../../../assets/university.png"/>-->
-    <!--        </ng-template>-->
-    <!--      </div>-->
-    <!--    </div>-->
+
   </div>
 
   <div *ngIf="selectedCourse && !completedCourse" class="showCoursesDiv">
@@ -56,8 +44,8 @@
     <nz-progress [nzPercent]="percent.toFixed(0)"></nz-progress>
     <br>
     <div>
-      <h1>section : {{courseItem.sections[currentCourse].id}}</h1>
-      <div [innerHTML]="courseItem.sections[currentCourse].container"></div>
+      <h1>section : {{courseItem.section[currentCourse].title}}</h1>
+      <div [innerHTML]="courseItem.section[currentCourse].contenu"></div>
     </div>
     <br>
 

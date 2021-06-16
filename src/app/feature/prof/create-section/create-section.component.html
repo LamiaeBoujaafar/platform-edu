@@ -1,38 +1,39 @@
-<div >
-  <form  #f ="ngForm"  [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
-<div class="card">
-  <div class="card-header card-header-danger" style="text-align: center">
-    <h4 class="card-title">Create new Section</h4>
-    <p class="card-category">Category subtitle</p>
-  </div>
-  <div class="card-body">
-    <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzFor="cour" nzRequired>Cour</nz-form-label>
-      <nz-form-control [nzSpan]="12" nzErrorTip="Please select your coure!">
+<div>
+  <form #f="ngForm" [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
+    <div class="card">
+      <div class="card-header card-header-danger" style="text-align: center">
+        <h4 class="card-title">Create new Section</h4>
+        <p class="card-category">In this form u can create a new section</p>
+      </div>
+      <div class="card-body">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5" nzFor="cour" nzRequired>Course</nz-form-label>
+          <nz-form-control [nzSpan]="12" nzErrorTip="Please select your course!">
 
-        <nz-select id="gender" formControlName="cours" nzPlaceHolder="Select cour">
-          <nz-option *ngFor="let option of listOfCours" [nzLabel]="option.title" [nzValue]="option"></nz-option>
-        </nz-select>
-      </nz-form-control>
-    </nz-form-item>
+            <nz-select id="gender" formControlName="cours" nzPlaceHolder="Select course">
+              <nz-option *ngFor="let option of listOfCourses" [nzLabel]="option.title" [nzValue]="option"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your titre!">
-        <nz-input-group nzPrefixIcon="form">
-          <input type="text" nz-input formControlName="titre" placeholder="titre" />
-        </nz-input-group>
-      </nz-form-control>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please input your titre!">
+            <nz-input-group nzPrefixIcon="form">
+              <input type="text" nz-input formControlName="titre" placeholder="title"/>
+            </nz-input-group>
+          </nz-form-control>
 
-    </nz-form-item>
+        </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input yor contenu!">
-          <angular-editor id="editor2" formControlName="contenu" [config]="config1"></angular-editor>
-      </nz-form-control>
-    </nz-form-item>
-    <button mat-raised-button class="btn btn-danger" (click)="onAddNewSection()"><i class="material-icons">add</i></button>
-  </div>
-</div>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please set the container!">
+            <angular-editor id="editor2" formControlName="contenu" [config]="config1"></angular-editor>
+          </nz-form-control>
+        </nz-form-item>
+        <button mat-raised-button class="btn btn-danger" (click)="onAddNewSection()"><i class="material-icons">add</i>
+        </button>
+      </div>
+    </div>
     <div class="card">
       <div class="card-header card-header-icon card-header-success">
         <div class="card-icon">
@@ -43,26 +44,31 @@
       <div class="card-body">
 
 
-      <div class="card-content table-responsive table-full-width">
-        <table class="table">
-          <thead >
-    <tr>
-      <th>titer</th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let data of sectionListe index as i  " >
-      <td>{{data.title}}</td>
-      <td><button mat-raised-button (click)="delete(i)" class="btn btn-success"><i class="material-icons">delete</i></button></td>
+        <div class="card-content table-responsive table-full-width">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Title</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of sectionListe index as i  ">
+              <td>{{data.title}}</td>
+              <td>
+                <button mat-raised-button (click)="delete(i)" class="btn btn-success"><i
+                  class="material-icons">delete</i></button>
+              </td>
 
 
-    </tr>
-    </tbody>
-        </table>
-      </div>
+            </tr>
+            </tbody>
+          </table>
+        </div>
 
-    <button type="submit" mat-raised-button class="btn btn-success" (click)="onSave()"><i class="material-icons">done</i> Save</button>
+        <button type="submit" mat-raised-button class="btn btn-success" (click)="onSave()"><i class="material-icons">done</i>
+          Save
+        </button>
       </div>
     </div>
   </form>
