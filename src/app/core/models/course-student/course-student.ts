@@ -3,8 +3,8 @@ import {StudentModule} from '../../../feature/student/student.module';
 
 export class CourseStudent {
   id!:number;
-  numberValidSection!:number;
-  numberNoValidSection!:number;
-  course!:CourseModel;
-  student!:StudentModule;
+  nombreSectionValide!:number;
+  nombreSectionNonValide!:number;
+  cours!:CourseModel;
+  etudiant!:StudentModule;
 }

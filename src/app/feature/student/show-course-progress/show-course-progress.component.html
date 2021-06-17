@@ -20,10 +20,10 @@
   </thead>
   <tbody>
   <tr *ngFor="let data of nzTable.data">
-    <td>{{ data.course.title }}</td>
-    <td>{{ data.numberValidSection }}</td>
-    <td>{{ data.numberNoValidSection }}</td>
-    <td> <nz-rate [ngModel]=" data.numberValidSection " [nzCount]="data.numberValidSection + data.numberNoValidSection" nzDisabled></nz-rate>
+    <td>{{ data.cours.title }}</td>
+    <td>{{ data.nombreSectionValide }}</td>
+    <td>{{ data.nombreSectionNonValide }}</td>
+    <td> <nz-rate [ngModel]=" data.nombreSectionValide " [nzCount]="data.nombreSectionValide + data.nombreSectionNonValide" nzDisabled></nz-rate>
     </td>
 
   </tr>

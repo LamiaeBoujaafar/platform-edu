@@ -7,6 +7,7 @@ import {CourseStudent} from '../../models/course-student/course-student';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Course} from '../../models/course/course-model/course';
+import {EtudiantCours} from '../../models/etudiant-cours/etudiant-cours';
 
 @Injectable({
   providedIn: 'root'
@@ -78,33 +79,34 @@ export class CourseService {
   };
   courseStudent: CourseStudent[]=[{
     id:1,
-  numberValidSection:2,
-  numberNoValidSection:1,
-  course:this.courses[0],
-  student:this.student
+  nombreSectionValide:2,
+  nombreSectionNonValide:1,
+  cours:this.courses[0],
+  etudiant:this.student
   },{
     id:2,
-    numberValidSection:0,
-    numberNoValidSection:2,
-    course:this.courses[1],
-    student:this.student
+    nombreSectionValide:0,
+    nombreSectionNonValide:2,
+    cours:this.courses[1],
+    etudiant:this.student
   },{
     id:3,
-    numberValidSection:1,
-    numberNoValidSection:0,
-    course:this.courses[2],
-    student:this.student
+    nombreSectionValide:1,
+    nombreSectionNonValide:0,
+    cours:this.courses[2],
+    etudiant:this.student
   },{
     id:4,
-    numberValidSection:2,
-    numberNoValidSection:2,
-    course:this.courses[3],
-    student:this.student
+    nombreSectionValide:2,
+    nombreSectionNonValide:2,
+    cours:this.courses[3],
+    etudiant:this.student
   },]
 
   private baseUrl = "http://localhost:8081/cours/courses/10/";
   private urlCourse = "http://localhost:8081/cours/";
   private urlSection = "http://localhost:8081/section/";
+  private urlEtudiantCours = "http://localhost:8081/etudiantCours/";
   constructor( private  httpClient :HttpClient) {
   }
 
@@ -119,6 +121,12 @@ export class CourseService {
   }
   postSection(section :SectionModel): Observable<SectionModel>{
     return this.httpClient.post<SectionModel>(this.urlSection,section);
+  }
+  saveEtudiantCourse(etudiantCourse : EtudiantCours): Observable<EtudiantCours>{
+    return this.httpClient.post<EtudiantCours>(this.urlEtudiantCours,etudiantCourse);
+  }
+  updateEtudiantCourse(etudiantCourse : EtudiantCours): Observable<EtudiantCours>{
+    return this.httpClient.put<EtudiantCours>(this.urlEtudiantCours,etudiantCourse);
   }
 
   getParcours() {

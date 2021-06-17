@@ -26,7 +26,7 @@ export class ShowCourseProgressComponent implements OnInit {
 
   search(): void {
     this.visible = false;
-    this.courseStudentDisplay = this.courseStudent.filter((item: CourseStudent) => item.course.title.indexOf(this.searchValue) !== -1);
+    this.courseStudentDisplay = this.courseStudent.filter((item: CourseStudent) => item.cours.title.indexOf(this.searchValue) !== -1);
   }
 
 
