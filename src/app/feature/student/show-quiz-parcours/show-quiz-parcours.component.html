@@ -8,7 +8,7 @@
           <p>Good luck.</p>
         </div>
         <div class="card-body">
-          <img alt="example" src="../../../../assets/quiz.jpg"/>
+          <img alt="example" src="https://image.freepik.com/vecteurs-libre/quiz-dans-style-bande-dessinee-pop-art_175838-505.jpg"/>
           <button mat-raised-button class="btn btn-info" (click)="start()">Start</button>
         </div>
       </div>
@@ -36,7 +36,7 @@
               mode_edit
             </i>
           </div>
-          <h4 class="card-title">Question {{currentQuestion + 1}} of {{quizParcours.numberQuestions}} </h4>
+          <h4 class="card-title">Question {{currentQuestion + 1}} of {{quizParcours.numberquestions}} </h4>
         </div>
         <br>
         <div class="card-body">
@@ -47,17 +47,17 @@
                 <div class="form-check form-check-radio">
                   <label class="form-check-label">
                     <input class="form-check-input" type="radio" name="options" id="options" (change)="onAnswer(item.correct)">
-                    <p class="colorText">{{ item.response }}</p>
+                    <label for="options" class="colorText">{{ item.response }}</label>
                     <span class="circle"><span class="check"></span></span>
                   </label>
                 </div>
               </li>
             </label>
           </ul>
-          <div *ngIf="contour < 5">
+          <div *ngIf="contour < quizParcours.numberquestions">
             <button mat-raised-button (click)="next()" class="btn btn-primary next">Next question</button>
           </div>
-          <div *ngIf="contour == 5">
+          <div *ngIf="contour == quizParcours.numberquestions">
             <button mat-raised-button (click)="showResult()" class="btn btn-rose submit">Submit</button>
             <div *ngIf="result">{{correctAnswers}} +++ {{incorrectAnswers}}</div>
           </div>

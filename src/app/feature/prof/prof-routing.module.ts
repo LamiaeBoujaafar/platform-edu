@@ -8,6 +8,14 @@ const routes: Routes = [
     component: ProfComponent,
     children: [
       {
+        path: 'dashboard',
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+      },
+      {
         path: 'create-section',
         loadChildren: () => import('./create-section/create-section.module').then(m => m.CreateSectionModule)
       },
@@ -23,10 +31,16 @@ const routes: Routes = [
         path: 'create-quiz-parcours',
         loadChildren: () => import('./create-quiz/create-quiz-parcours/create-quiz-parcours.module').then(m => m.CreateQuizParcoursModule)
       },
+
       {
         path: 'show-course-student-progress',
         loadChildren: () => import('./show-course-student-progress/show-course-student-progress.module').then(m => m.ShowCourseStudentProgressModule)
-      }]
+      },
+      {
+        path: 'show-quiz',
+        loadChildren: () => import('./show-Quiz/show-Quiz.module').then(m => m.ShowQuizModule)
+      }
+      ]
   }
 ];
 

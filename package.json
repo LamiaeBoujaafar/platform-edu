@@ -24,6 +24,7 @@
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@kolkov/angular-editor": "^1.1.4",
     "bootstrap": "^4.6.0",
+    "chartist": "^0.11.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",
     "material-dashboard": "^2.1.0",

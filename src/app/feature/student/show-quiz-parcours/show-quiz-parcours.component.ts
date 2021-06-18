@@ -9,6 +9,7 @@ import {QuizParcoursModel} from '../../../core/models/quiz/quiz-parcours-model/q
   styleUrls: ['./show-quiz-parcours.component.css']
 })
 export class ShowQuizParcoursComponent implements OnInit {
+  etudaintquiparcour:any
   quizParcours!: QuizParcoursModel ;
   currentQuestion = 0;
   answerSelected = false;
@@ -18,11 +19,15 @@ export class ShowQuizParcoursComponent implements OnInit {
   startQuiz = false;
   list : any[] =[]
   contour = 0
+  loading: boolean = false;
+  errorMessage: any;
+  saved: any;
 
-  constructor(private parcoursQuizService:QuizService, private modal: NzModalService) { }
+
+  constructor( private modal: NzModalService,private quizService: QuizService) { }
 
   ngOnInit(): void {
-    this.quizParcours = this.parcoursQuizService.getParcoursQuiz()
+    this. onShowQuizCoure(1)
   }
   onAnswer(correct: boolean) {
     this.answerSelected = true;
@@ -36,7 +41,7 @@ export class ShowQuizParcoursComponent implements OnInit {
       this.incorrectAnswers++;
     }
     setTimeout(() => {
-      if (this.currentQuestion < this.quizParcours.numberQuestions -1) {
+      if (this.currentQuestion < this.quizParcours.numberquestions -1) {
         this.currentQuestion++;
         console.log('incorrect'  +this.currentQuestion);
         this.answerSelected = false;
@@ -46,7 +51,11 @@ export class ShowQuizParcoursComponent implements OnInit {
   }
 
   showResult() {
-    if (this.correctAnswers >= 3) {
+    this.etudaintquiparcour ={
+      note:this.correctAnswers*100/this.quizParcours.numberquestions
+    }
+    this.onSaveEtudaintQuizCour(1,this.quizParcours.idquiz,this.etudaintquiparcour)
+    if (this.correctAnswers >= this.quizParcours.numberquestions/2) {
       this.modal.success({
         nzTitle: 'Congratulation!! YOU WIN',
         nzContent: 'Correct answers : ' + this.correctAnswers + ' | ' + 'Incorrect answers : ' + this.incorrectAnswers,
@@ -84,6 +93,30 @@ export class ShowQuizParcoursComponent implements OnInit {
   start() {
     this.startQuiz = true;
   }
+  onShowQuizCoure(parcourid:number) {
+    this.loading = true;
+    this.errorMessage = "";
+    this.quizService.GetQuizParcour(parcourid)
+      .subscribe(
+        (response) => {                           //next() callback
+          console.log('response received')
+          this.quizParcours = response;
+        },
+        (error) => {                              //error() callback
+          console.error('Request failed with error')
+          this.errorMessage = error;
+          this.loading = false;
+        },
+        () => {                                   //complete() callback
+          console.error('Request completed')      //This is actually not needed
+          this.loading = false;
+        })
+  }
+  onSaveEtudaintQuizCour(idEtudaint: any, idQuiz: any, note: any) {
+    this.quizService.SaveEtudantQuizParcour(idEtudaint, idQuiz, note).subscribe(data => {
+      this.saved = data;
+      alert('succsess')
+    })
 
-
+  }
 }

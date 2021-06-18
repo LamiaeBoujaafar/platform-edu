@@ -5,194 +5,69 @@ import {QuizCourseModel} from '../../models/quiz/quiz-course-model/quiz-course-m
 import {CourseService} from '../course-service/course.service';
 import {QuizParcoursModel} from '../../models/quiz/quiz-parcours-model/quiz-parcours-model';
 import {CourseModel} from '../../models/course/course-model/course-model';
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class QuizService {
-  questions :QuestionModel[] = [{
-    id:1,
-    question:'What\'s the capital of somalia ?',
-    responses:[]
-  },{
-    id:2,
-    question:'What\'s the capital of Mexico ?',
-    responses:[]
-  },{
-    id:3,
-    question:'What\'s the capital of UK ?',
-    responses:[]
-  },{
-    id:4,
-    question:'What\'s the capital of USA ?',
-    responses:[]
-  },{
-    id:5,
-    question:'What\'s the capital of UAE ?',
-    responses:[]
-  }]
-  responseQ1 :ResponseQuestionModel[]= [{
-    id: 1,
-    response: 'Nairobi',
-    correct: false,
-    Question: this.questions[0]
-  }, {
-    id: 2,
-    response: 'Asmara',
-    correct: true,
-    Question: this.questions[0]
-  }, {
-    id: 3,
-    response: 'Mogadishu',
-    correct: false,
-    Question: this.questions[0]
-  }];
-  responseQ2  :ResponseQuestionModel[]= [{
-    id: 1,
-    response: 'Guadalajara',
-    correct: false,
-    Question: this.questions[1]
-  }, {
-    id: 2,
-    response: 'Puebla',
-    correct: false,
-    Question: this.questions[1]
-  }, {
-    id: 3,
-    response: 'Mexico',
-    correct: true,
-    Question: this.questions[1]
-  }];
-  responseQ3  :ResponseQuestionModel[]= [{
-    id: 1,
-    response: 'Guadalajara',
-    correct: false,
-    Question: this.questions[2]
-  }, {
-    id: 2,
-    response: 'London',
-    correct: true,
-    Question: this.questions[2]
-  }, {
-    id: 3,
-    response: 'Mexico',
-    correct: false,
-    Question: this.questions[2]
-  }];
-  responseQ4  :ResponseQuestionModel[]= [{
-    id: 1,
-    response: 'Guadalajara',
-    correct: false,
-    Question: this.questions[3]
-  }, {
-    id: 2,
-    response: 'London',
-    correct: false,
-    Question: this.questions[3]
-  }, {
-    id: 3,
-    response: 'Washington DC',
-    correct: true,
-    Question: this.questions[3]
-  }];
-  responseQ5  :ResponseQuestionModel[]= [{
-    id: 1,
-    response: 'Guadalajara',
-    correct: false,
-    Question: this.questions[4]
-  }, {
-    id: 2,
-    response: 'London',
-    correct: false,
-    Question: this.questions[4]
-  }, {
-    id: 3,
-    response: 'Abu Dhabi',
-    correct: true,
-    Question: this.questions[4]
-  }];
 
-  constructor(private courseService:CourseService) {
+
+
+  constructor(private courseService:CourseService ,private http:HttpClient) {
 
   }
+   host=environment.host
 
+
+  SaveQuizCour(idCour: any, data: any):Observable<any>{
+
+    let host=environment.host
+    return  this.http.post<any>(host+"quizcoure/save/"+idCour,data)
+  }
+  GetQuizCoure(id:number):Observable<QuizCourseModel[] >{
+    let host=environment.host
+    return this.http.get<QuizCourseModel[]>(host+"quizcoure/prof/"+id)
+  }
+
+  deleteQuiz(id:number):any{
+    let host=environment.host
+    return this.http.delete(host+"quizcoure/delete/"+id)
+  }
+  deleteQuizPrcour(id:number):any{
+    let host=environment.host
+    return this.http.delete(host+"quizparcour/"+id)
+  }
+  deleteQuestion(id:number){
+    let host=environment.host
+    return this.http.delete(host+"question/"+id)
+  }
+  SaveQuizParcour(idParcour: any, data: any):Observable<any>{
+    let host=environment.host
+    return  this.http.post<any>(host+"quizparcour/"+idParcour,data)
+  }
+  GetQuiParcour():Observable<QuizParcoursModel[]>{
+    let host=environment.host
+    return this.http.get<QuizParcoursModel[]>(host+"quizparcour/getall")
+  }
+ SaveEtudantQuizCoure(idEtudaint: any, idQuiz: any,note:any):Observable<any>{
+    let host=environment.host
+   return  this.http.post<any>(host+"etudiantquizcour/etudaint/"+idEtudaint+"/quizcoure/"+idQuiz,note)
+  }
+  GetQuizParcour(parcourid:number):Observable<QuizParcoursModel>{
+    let host=environment.host
+    return this.http.get<QuizParcoursModel>(host+"quizparcour/parcour/"+parcourid)
+  }
+  SaveEtudantQuizParcour(idEtudaint: any, idQuiz: any,note:any):Observable<any>{
+    let host=environment.host
+    return  this.http.post<any>(host+"etudiantquizparcour/etudaint/"+idEtudaint+"/quizparcour/"+idQuiz,note)
+  }
   quizParcours!: QuizParcoursModel ;
   quizCourse!: QuizCourseModel[];
 
-  getCourseQuiz(){
-    this.questions = [{
-      id:1,
-      question:'What\'s the capital of somalia ?',
-      responses:this.responseQ1
-    },{
-      id:2,
-      question:'What\'s the capital of Mexico ?',
-      responses:this.responseQ2
-    },{
-      id:3,
-      question:'What\'s the capital of UK ?',
-      responses:this.responseQ3
-    },{
-      id:4,
-      question:'What\'s the capital of USA ?',
-      responses:this.responseQ4
-    },{
-      id:5,
-      question:'What\'s the capital of UAE ?',
-      responses:this.responseQ5
-    }]
-    this.quizCourse= [{
-      id:1,
-      numberQuestions:5,
-      estimatedDuration:10,
-      course:this.courseService.getCourses()[0],
-      questions :this.questions
-    },{
-      id:2,
-      numberQuestions:5,
-      estimatedDuration:10,
-      course:this.courseService.getCourses()[1],
-      questions :this.questions
-    },{
-      id:3,
-      numberQuestions:5,
-      estimatedDuration:10,
-      course:this.courseService.getCourses()[2],
-      questions :this.questions
-    }]
-    return this.quizCourse;
-  }
-  getParcoursQuiz(){
-    this.questions = [{
-      id:1,
-      question:'What\'s the capital of somalia ?',
-      responses:this.responseQ1
-    },{
-      id:2,
-      question:'What\'s the capital of Mexico ?',
-      responses:this.responseQ2
-    },{
-      id:3,
-      question:'What\'s the capital of UK ?',
-      responses:this.responseQ3
-    },{
-      id:4,
-      question:'What\'s the capital of USA ?',
-      responses:this.responseQ4
-    },{
-      id:5,
-      question:'What\'s the capital of UAE ?',
-      responses:this.responseQ5
-    }]
-    this.quizParcours = {
-      id: 1,
-      numberQuestions: 5,
-      estimatedDuration: 30,
-      questions: this.questions
-    };
-    return this.quizParcours;
-  }
 
 
   // quizze0: QuizModel[] = [

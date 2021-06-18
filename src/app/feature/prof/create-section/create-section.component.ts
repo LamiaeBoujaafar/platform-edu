@@ -14,7 +14,7 @@ export class CreateSectionComponent implements OnInit {
   section!: SectionModel;
   listOfCours: CourseModel[]=[
     {
-      id : 0,
+      idcour : 0,
       sections : [],
       title : "java",
       parcoursId : 0,
@@ -23,7 +23,7 @@ export class CreateSectionComponent implements OnInit {
 
     },
     {
-      id :1,
+      idcour :1,
       sections : [],
       title : "php",
       parcoursId : 0,

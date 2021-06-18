@@ -15,7 +15,7 @@ export class ShowCourseStudentProgressComponent implements OnInit {
   validateForm!: FormGroup;
   listOfCours:CourseModel[]=[
     {
-      id : 0,
+      idcour : 0,
       sections : [],
       title : "java",
       parcoursId : 0,
@@ -24,7 +24,7 @@ export class ShowCourseStudentProgressComponent implements OnInit {
 
     },
     {
-      id :1,
+      idcour :1,
       sections : [],
       title : "php",
       parcoursId : 0,

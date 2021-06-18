@@ -48,8 +48,7 @@
 
           <nz-form-control [nzSpan]="25" nzErrorTip="Please select your choix!">
             <nz-select  id="qetta" formControlName="Qetat" nzPlaceHolder="Select Qestion etat">
-              <nz-option nzValue="true" nzLabel="true"></nz-option>
-              <nz-option nzValue="false" nzLabel="flase"></nz-option>
+              <nz-option *ngFor="let etat of etataOfQuestion, let i = index" [nzLabel]="etat.etta" [nzValue]="etat"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>

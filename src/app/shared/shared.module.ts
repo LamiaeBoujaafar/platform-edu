@@ -4,15 +4,18 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {RouterModule} from "@angular/router";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
+import {NavbarComponent} from "./navbar/navbar.component";
 
 
 
 @NgModule({
   declarations: [
-    SidebarComponent
+    SidebarComponent,
+    NavbarComponent
   ],
   exports: [
-    SidebarComponent
+    SidebarComponent,
+    NavbarComponent
   ],
     imports: [
         CommonModule,

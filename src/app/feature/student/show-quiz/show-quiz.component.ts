@@ -19,40 +19,53 @@ export class ShowQuizComponent implements OnInit {
   incorrectAnswers = 0;
   result: boolean = false;
   selectedCourse = false;
-  list : any[] =[]
+  list: any[] = []
+  etudaintQuizeCour:any;
   contour = 0
+  loading: boolean = false;
+  errorMessage: any;
+  saved: any;
 
   constructor(private quizService: QuizService, private modal: NzModalService) {
   }
 
   ngOnInit(): void {
-    this.quizCourse = this.quizService.getCourseQuiz();
+    this.onShowQuizCoure(1)
+
   }
 
   onAnswer(correct: boolean) {
+    console.log(correct)
     this.answerSelected = true;
     this.list[this.currentQuiz] = correct;
 
   }
+
   next() {
+    console.log(this.currentQuiz)
     this.contour++
-    if (this.list[this.currentQuiz]) {
+    if (this.list[this.currentQuiz] == true) {
       this.correctAnswers++;
+      console.log(this.correctAnswers)
     } else {
       this.incorrectAnswers++;
     }
-    setTimeout(() => {
-      if (this.currentQuiz < 4) {
-        this.currentQuiz++;
-        this.answerSelected = false;
-      }
-    }, 500);
+
+    if (this.currentQuiz < this.selectedQuizCourse.numberquestions - 1) {
+      this.currentQuiz++;
+      this.answerSelected = false;
+    }
 
 
   }
-  showResult() {
 
-    if (this.correctAnswers >= 3) {
+  showResult() {
+  this.etudaintQuizeCour ={
+    note:this.correctAnswers*100/this.selectedQuizCourse.numberquestions
+  }
+    this.onSaveEtudaintQuizCour(1,this.selectedQuizCourse.idquiz,this.etudaintQuizeCour)
+
+    if (this.correctAnswers >= this.selectedQuizCourse.numberquestions / 2) {
       this.modal.success({
         nzTitle: 'Congratulation!! YOU WIN',
         nzContent: 'Correct answers : ' + this.correctAnswers + ' | ' + 'Incorrect answers : ' + this.incorrectAnswers,
@@ -84,7 +97,7 @@ export class ShowQuizComponent implements OnInit {
     this.correctAnswers = 0;
     this.incorrectAnswers = 0;
     this.contour = 0
-    this.list =[]
+    this.list = []
   }
 
   startQuiz(quizCourse: QuizCourseModel) {
@@ -93,4 +106,31 @@ export class ShowQuizComponent implements OnInit {
     this.selectedQuizCourse = quizCourse;
   }
 
+  onShowQuizCoure(idparcour:number) {
+    this.loading = true;
+    this.errorMessage = "";
+    this.quizService.GetQuizCoure(idparcour)
+      .subscribe(
+        (response) => {                           //next() callback
+          console.log('response received')
+          this.quizCourse = response;
+        },
+        (error) => {                              //error() callback
+          console.error('Request failed with error')
+          this.errorMessage = error;
+          this.loading = false;
+        },
+        () => {                                   //complete() callback
+          console.error('Request completed')      //This is actually not needed
+          this.loading = false;
+        })
+  }
+
+  onSaveEtudaintQuizCour(idEtudaint: any, idQuiz: any, note: any) {
+    this.quizService.SaveEtudantQuizCoure(idEtudaint, idQuiz, note).subscribe(data => {
+      this.saved = data;
+      alert('succsess')
+    })
+
+  }
 }

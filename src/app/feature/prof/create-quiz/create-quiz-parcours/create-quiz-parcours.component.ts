@@ -7,6 +7,7 @@ import {CourseModel} from "../../../../core/models/course/course-model/course-mo
 import {ResponseQuestionModel} from "../../../../core/models/quiz/response-question-model/response-question-model";
 import {QuestionModel} from "../../../../core/models/quiz/question-model/question-model";
 import {QuizParcoursModel} from "../../../../core/models/quiz/quiz-parcours-model/quiz-parcours-model";
+import {QuizService} from "../../../../core/services/quiz-service/quiz.service";
 @Component({
   selector: 'app-create-quiz-parcours',
   templateUrl: './create-quiz-parcours.component.html',
@@ -33,6 +34,15 @@ export class CreateQuizParcoursComponent implements OnInit {
 
 },
   ];
+  etataOfQuestion:any[]=[
+    {
+      etta: true,
+
+    },
+    {
+      etta: false
+    }
+  ]
   time!: any ;
   quiz!:QuizParcoursModel;
   questionModel!:QuestionModel;
@@ -42,9 +52,10 @@ export class CreateQuizParcoursComponent implements OnInit {
   public QuestionOfParcours: QuestionModel[] = [];
   public ShowOptionsOfQuestion:ResponseQuestionModel [] = [];
   public QuizOffParcours:any = [];
+  saved :any;
   public ResponseQuestionModel: ResponseQuestionModel [] = [];
   nextClicked = 0;
-  constructor(private formBuilder: FormBuilder, private message: NzMessageService) { }
+  constructor(private formBuilder: FormBuilder, private message: NzMessageService, private quizService:QuizService) { }
 
   ngOnInit(): void {
 
@@ -66,17 +77,15 @@ export class CreateQuizParcoursComponent implements OnInit {
     }
     // @ts-ignore
     console.log(data);
-    if (data.Question != null && data.parcour != null && data.Qetat != null && data.option != null && data.duree != null) {
+    if (data.Question != null && data.parcour != null && data.Qetat != null && data.option != null ) {
       if (this.nextClicked == 1) {
-     console.log(data.duree);
+
         // @ts-ignore
         let qestion :QuestionModel = null;
 
         this.responseQuestionModel = {
           response: data.option,
-          id: 0,
-          Question: qestion,
-          correct: data.Qetat,
+          correct: data.Qetat.etta
         }
 
 
@@ -84,12 +93,10 @@ export class CreateQuizParcoursComponent implements OnInit {
 
 
         this.ShowOptionsOfQuestion.push(this.responseQuestionModel);
-        console.log(this.ShowOptionsOfQuestion);
       } else if (this.nextClicked == 0) {
         this.ResponseQuestionModel = JSON.parse(JSON.stringify(this.ShowOptionsOfQuestion))
-        console.log(this.ResponseQuestionModel)
         this.questionModel = {
-          id:0 ,
+         idquestion:undefined,
           question :data.Question,
           responses :  this.ResponseQuestionModel
         }
@@ -99,20 +106,16 @@ export class CreateQuizParcoursComponent implements OnInit {
       } else {
 
         this.quiz = {
-          id:0,
-          numberQuestions: this.QuestionOfParcours.length,
-      questions :this.QuestionOfParcours,
-          estimatedDuration:22,
+          parcour: undefined,
+          idquiz:undefined,
+          numberquestions: this.QuestionOfParcours.length,
+          questions :this.QuestionOfParcours,
+
 
 
         };
+         this.onSavequiz(1,  this.quiz)
         this.QuizParcoursList.push(this.quiz);
-        this.message
-          .loading('saving  in progress', {nzDuration: 2500})
-          .onClose!.pipe(
-          concatMap(() => this.message.success('Saving  finished', {nzDuration: 2500}).onClose!),
-        )
-
         console.log(this.QuizParcoursList);
 
 
@@ -151,6 +154,17 @@ export class CreateQuizParcoursComponent implements OnInit {
 
     delete this.QuestionOfParcours[i];
     this.QuestionOfParcours.splice(i, 1)
+
+  }
+  onSavequiz(id:number , data:any){
+    this.quizService.SaveQuizParcour(id,data).subscribe(data => {
+      this.saved=data;
+      this.validateForm.reset();
+      alert('succsess')
+      window.location.reload();
+
+    })
+
 
   }
 }

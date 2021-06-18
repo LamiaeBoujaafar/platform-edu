@@ -28,28 +28,28 @@ export class CourseService {
   }];
 
   courses: CourseModel[] = [{
-    id: 1,
+    idcour: 1,
     title: 'course11',
     description: 'course1 -- 14h',
     image: null,
     parcoursId: 1,
     sections: [this.sections[0], this.sections[1], this.sections[2]]
   }, {
-    id: 2,
+    idcour: 2,
     title: 'course22',
     description: 'course2 -- 15h',
     image: null,
     parcoursId: 1,
     sections: [this.sections[1], this.sections[2]]
   }, {
-    id: 3,
+    idcour: 3,
     title: 'course33',
     description: 'course3 -- 5h',
     image: null,
     parcoursId: 1,
     sections: [this.sections[0]]
   }, {
-    id: 4,
+    idcour: 4,
     title: 'course44',
     description: 'course3 -- 5h',
     image: null,

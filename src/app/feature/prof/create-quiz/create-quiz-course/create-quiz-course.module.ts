@@ -11,10 +11,14 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { CreateQuizCourseRoutingModule } from './create-quiz-course-routing.module';
 import { CreateQuizCourseComponent } from './create-quiz-course.component';
+import {NzTabsModule} from "ng-zorro-antd/tabs";
 
 
 @NgModule({
   declarations: [
+    CreateQuizCourseComponent
+  ],
+  exports: [
     CreateQuizCourseComponent
   ],
   imports: [
@@ -29,7 +33,8 @@ import { CreateQuizCourseComponent } from './create-quiz-course.component';
     CommonModule,
     NzDividerModule,
     CreateQuizCourseRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzTabsModule
   ]
 })
 export class CreateQuizCourseModule { }

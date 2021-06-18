@@ -2,7 +2,7 @@ import {SectionModel} from '../section-model/section-model';
 import {ParcoursModel} from '../parcours-model/parcours-model';
 
 export class CourseModel {
-  id !:number;
+  idcour !:number;
   title !:string;
   description!:string;
   image: string | null | undefined;
