@@ -7,6 +7,7 @@ import {CourseModel} from "../../../../core/models/course/course-model/course-mo
 import {QuestionModel} from "../../../../core/models/quiz/question-model/question-model";
 import {QuizCourseModel} from "../../../../core/models/quiz/quiz-course-model/quiz-course-model";
 import {QuizService} from "../../../../core/services/quiz-service/quiz.service";
+import {CourseService} from "../../../../core/services/course-service/course.service";
 @Component({
 
 
@@ -18,27 +19,13 @@ export class CreateQuizCourseComponent implements OnInit {
   validateForm!: FormGroup;
  saved :any;
  savedQuestion:any ;
+  Cours : any=[];
+  htmlContent1 = '';
+  loading: boolean = false;
+  errorMessage: any;
  savedQuestionar:any = [] ;
-  listOfCours:CourseModel[]=[
-    {
-      idcour : 0,
-      sections : [],
-      title : "java",
-      parcoursId : 0,
-      description:"cour java",
-      image: null
 
-    },
-    {
-      idcour :1,
-      sections : [],
-      title : "php",
-      parcoursId : 0,
-      description:"cour php",
-      image: null
 
-    },
-  ];
   etataOfQuestion:any[]=[
     {
       etta: true,
@@ -59,11 +46,11 @@ export class CreateQuizCourseComponent implements OnInit {
   public expand: boolean=false;
   nextClicked = 0;
 
-  constructor(private formBuilder: FormBuilder, private message: NzMessageService ,private quizService:QuizService) {
+  constructor(private courseService:CourseService ,private formBuilder: FormBuilder, private message: NzMessageService ,private quizService:QuizService) {
   }
 
   ngOnInit(): void {
-
+    this.ongetCoures(1);
 
     this.validateForm = this.formBuilder.group({
       Question: [null, [Validators.required]],
@@ -133,7 +120,7 @@ export class CreateQuizCourseComponent implements OnInit {
         }
         console.log(this.saved);
 
-        this.onSavequiz(1,this.saved)
+        this.onSavequiz(data.cours.idcour,this.saved)
         this.QuizOffCoure.push(this.quizCourseModel);
 
 
@@ -196,7 +183,25 @@ export class CreateQuizCourseComponent implements OnInit {
 
 
   }
-
+  ongetCoures(idprof:number){
+    this.loading = true;
+    this.errorMessage = "";
+    this.courseService.GetCoures(idprof)
+      .subscribe(
+        (response) => {                           //next() callback
+          console.log('response received')
+          this.Cours = response;
+        },
+        (error) => {                              //error() callback
+          console.error('Request failed with error')
+          this.errorMessage = error;
+          this.loading = false;
+        },
+        () => {                                   //complete() callback
+          console.error('Request completed')      //This is actually not needed
+          this.loading = false;
+        })
+  }
 
 
 }

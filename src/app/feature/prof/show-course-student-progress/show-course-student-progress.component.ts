@@ -4,6 +4,7 @@ import {CourseModel} from "../../../core/models/course/course-model/course-model
 import {NzMessageService} from "ng-zorro-antd/message";
 import {StudentCourseModel} from "../../../core/models/course/student-course-model/student-course-model";
 import {StudentModel} from "../../../core/models/student-model/student-model";
+import {CourseService} from "../../../core/services/course-service/course.service";
 
 @Component({
   selector: 'app-show-course-student-progress',
@@ -11,88 +12,21 @@ import {StudentModel} from "../../../core/models/student-model/student-model";
   styleUrls: ['./show-course-student-progress.component.css']
 })
 export class ShowCourseStudentProgressComponent implements OnInit {
+  Cours : any=[];
+  EtudaintCoure : any=[];
+  htmlContent1 = '';
+  loading: boolean = false;
+  errorMessage: any;
   showListEtudiantCours!:StudentCourseModel[];
   validateForm!: FormGroup;
-  listOfCours:CourseModel[]=[
-    {
-      idcour : 0,
-      sections : [],
-      title : "java",
-      parcoursId : 0,
-      description:"cour java",
-      image: null
 
-    },
-    {
-      idcour :1,
-      sections : [],
-      title : "php",
-      parcoursId : 0,
-      description:"cour php",
-      image: null
 
-    },
-  ];
-  Students:StudentModel[]=[
-    {
-      id:0,
-      dateOfBirth:"11:11/111",
-      email:"hdhaz@gmail.com",
-      firstName:"mohamed",
-      lastName:"errajy",
-      gender:"M",
-      login:"usename",
-      password:"gdhdsjhsdhcedh",
-      phone:"12223333322"
+  public SelectedCour!:any ;
 
-    },
-    {
-      id:1,
-      dateOfBirth:"11:11/111",
-      email:"hdhaz@gmail.com",
-      firstName:"reda",
-      lastName:"errajy",
-      gender:"M",
-      login:"usename",
-      password:"gdhdsjhsdhcedh",
-      phone:"12223333322"
-
-    },
-  ]
-  ListEtudiantCours:StudentCourseModel[] = [
-    {
-      course:this.listOfCours[0],
-      id:0,
-      numberInvalidSection:23,
-      numberRemainingSection:10 ,
-      numberValidSection:40,
-  student:this.Students[0],
-     validParcours:true
-    },
-    {
-      course:this.listOfCours[0],
-      id:1,
-      numberInvalidSection:23,
-      numberRemainingSection:9 ,
-      numberValidSection:29,
-      student:this.Students[1],
-      validParcours:false
-    },
-    {
-      course:this.listOfCours[1],
-      id:1,
-      numberInvalidSection:100,
-      numberRemainingSection:9 ,
-      numberValidSection:200,
-      student:this.Students[1],
-      validParcours:false
-    },
-  ];
-  public SelectedCour!:CourseModel ;
-
-  constructor(private formBuilder: FormBuilder, private message: NzMessageService) { }
+  constructor(private formBuilder: FormBuilder, private message: NzMessageService,private courseService:CourseService) { }
 
   ngOnInit(): void {
+    this.ongetCoures(1)
     this.validateForm = this.formBuilder.group({
       cours: [null, [Validators.required]],
     });
@@ -105,17 +39,54 @@ export class ShowCourseStudentProgressComponent implements OnInit {
 
   }
 
-  changeCour(SelectData: any) {
-    this.SelectedCour=SelectData;
+  changeCour(coureselect: any) {
+    this.SelectedCour=coureselect;
 
-      let listIndex :any []=[];
-    this.showListEtudiantCours = this.ListEtudiantCours.filter(course=>course.course== SelectData);
-
-      console.log(  this.showListEtudiantCours);
+    this.ongetEtudaintCoures(coureselect.idcour);
 
   //  let index:number = this.ListEtudiantCours.findIndex(course=>course.course== SelectData);
 
-  console.log( this.showListEtudiantCours);
+  console.log(coureselect);
 
   }
+  ongetCoures(idprof:number){
+    this.loading = true;
+    this.errorMessage = "";
+    this.courseService.GetCoures(idprof)
+      .subscribe(
+        (response) => {                           //next() callback
+          console.log('response received')
+          this.Cours = response;
+          console.log(this.Cours)
+        },
+        (error) => {                              //error() callback
+          console.error('Request failed with error')
+          this.errorMessage = error;
+          this.loading = false;
+        },
+        () => {                                   //complete() callback
+          console.error('Request completed')      //This is actually not needed
+          this.loading = false;
+        })
+  }
+  ongetEtudaintCoures(coureid:number){
+    this.loading = true;
+    this.errorMessage = "";
+    this.courseService.GetEtudaintCoures(coureid)
+      .subscribe(
+        (response) => {                           //next() callback
+          console.log('response received')
+          this.EtudaintCoure = response;
+        },
+        (error) => {                              //error() callback
+          console.error('Request failed with error')
+          this.errorMessage = error;
+          this.loading = false;
+        },
+        () => {                                   //complete() callback
+          console.error('Request completed')      //This is actually not needed
+          this.loading = false;
+        })
+  }
+
 }

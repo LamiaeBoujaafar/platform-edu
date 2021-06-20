@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AngularEditorConfig} from "@kolkov/angular-editor";
 import {CourseModel} from '../../../core/models/course/course-model/course-model';
 import {SectionModel} from "../../../core/models/course/section-model/section-model";
+import {CourseService} from "../../../core/services/course-service/course.service";
+import {Observable} from "rxjs";
+import {AppDataState} from "../../../state/client.state";
 @Component({
   selector: 'app-create-section',
   templateUrl: './create-section.component.html',
@@ -12,35 +15,21 @@ export class CreateSectionComponent implements OnInit {
   check =0;
   validateForm!: FormGroup;
   section!: SectionModel;
-  listOfCours: CourseModel[]=[
-    {
-      idcour : 0,
-      sections : [],
-      title : "java",
-      parcoursId : 0,
-      description:"cour java",
-      image: null
-
-    },
-    {
-      idcour :1,
-      sections : [],
-      title : "php",
-      parcoursId : 0,
-      description:"cour php",
-      image: null
-
-    },
-  ];
+  Cours : any=[];
   htmlContent1 = '';
+  coureId : any ;
+  saved:any;
+  loading: boolean = false;
+  errorMessage: any;
   //public sectionListe:any=[];
   public sectionListe:SectionModel[] =[];
   public objectKeys = Object.keys;
 
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,private courseService:CourseService) { }
 
   ngOnInit(): void {
+    this.ongetCoures(1);
     this.validateForm = this.formBuilder.group({
       contenu: ['', Validators.required],
       cours: [null, [Validators.required]],
@@ -55,21 +44,22 @@ export class CreateSectionComponent implements OnInit {
     if (data.contenu != '' && data.cours != '' && data.titre != '') {
       if (this.check==1){
         this.section={
-          id : 0 ,
-          courseId: data.cours.id,
+          id : undefined ,
           title : data.titre,
-          container: data.contenu,
+          contenu: data.contenu,
         }
        this.sectionListe.push(this.section);
         // @ts-ignore
         let index:number = this.listOfCours.findIndex(item=>item.id==data.cours.id);
 
-      this.listOfCours[index].sections= this.sectionListe;
-        console.log(this.listOfCours);
-        console.log(this.sectionListe);
+
+
 
       }
       else if(this.check==0){
+        this.coureId = data.cours.idcour
+        this.onSaveSections(this.coureId,this.sectionListe)
+
         //SAVE TO DB AND CLERE LISTE
         this.sectionListe.length=0;
 
@@ -137,6 +127,36 @@ export class CreateSectionComponent implements OnInit {
   onSave(): void {
 
     this.check= 0 ;
+
+  }
+  ongetCoures(idprof:number){
+    this.loading = true;
+    this.errorMessage = "";
+    this.courseService.GetCoures(idprof)
+      .subscribe(
+        (response) => {                           //next() callback
+          console.log('response received')
+          this.Cours = response;
+        },
+        (error) => {                              //error() callback
+          console.error('Request failed with error')
+          this.errorMessage = error;
+          this.loading = false;
+        },
+        () => {                                   //complete() callback
+          console.error('Request completed')      //This is actually not needed
+          this.loading = false;
+        })
+  }
+
+  onSaveSections(idCoure:number,data:any){
+    this.courseService.SaveSection(idCoure, data).subscribe(data => {
+      this.saved = data;
+      this.validateForm.reset();
+      window.location.reload();
+      alert('succsess')
+    })
+
 
   }
 }

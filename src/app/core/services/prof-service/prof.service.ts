@@ -21,8 +21,13 @@ export class ProfService {
   }
   host=environment.host
 
-  GetDashbord(id:number):Observable<ProfDashboardModel >{
+  GetDashbord(idprof:number,idparcour:number):Observable<ProfDashboardModel >{
     let host=environment.host
-    return this.http.get<ProfDashboardModel>(host+"prof/dashbord/"+id)
+    return this.http.get<ProfDashboardModel>(host+"prof/dashbord/"+idprof+"/parcour/"+idparcour)
   }
+  GetEtudaints(idparcour:number):Observable<any[]>{
+    let host=environment.host
+    return this.http.get<any[]>(host+"etudaint/parcour/"+idparcour)
+  }
+
 }

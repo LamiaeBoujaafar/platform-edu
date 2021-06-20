@@ -8,7 +8,9 @@ import {CourseStudent} from '../../../core/models/course-student/course-student'
   styleUrls: ['./show-course-progress.component.css']
 })
 export class ShowCourseProgressComponent implements OnInit {
-
+  loading: boolean = false;
+  errorMessage: any;
+  EtudaintCoure:any=[];
   searchValue = '';
   visible = false;
   courseStudent : CourseStudent[] = []
@@ -16,7 +18,8 @@ export class ShowCourseProgressComponent implements OnInit {
   constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
-    this.courseStudent = this.courseService.getValidSection();
+  //  this.courseStudent = this.courseService.getValidSection();
+    this.ongetEtudaintCoures(1);
     this.courseStudentDisplay = [...this.courseStudent];
   }
   reset(): void {
@@ -27,6 +30,25 @@ export class ShowCourseProgressComponent implements OnInit {
   search(): void {
     this.visible = false;
     this.courseStudentDisplay = this.courseStudent.filter((item: CourseStudent) => item.course.title.indexOf(this.searchValue) !== -1);
+  }
+  ongetEtudaintCoures(etudaintid:number){
+    this.loading = true;
+    this.errorMessage = "";
+    this.courseService.GetEtudaintCouresByetudaint(etudaintid)
+      .subscribe(
+        (response) => {                           //next() callback
+          console.log('response received')
+          this.EtudaintCoure = response;
+        },
+        (error) => {                              //error() callback
+          console.error('Request failed with error')
+          this.errorMessage = error;
+          this.loading = false;
+        },
+        () => {                                   //complete() callback
+          console.error('Request completed')      //This is actually not needed
+          this.loading = false;
+        })
   }
 
 

@@ -39,7 +39,8 @@ const routes: Routes = [
       {
         path: 'show-quiz',
         loadChildren: () => import('./show-Quiz/show-Quiz.module').then(m => m.ShowQuizModule)
-      }
+      },
+
       ]
   }
 ];

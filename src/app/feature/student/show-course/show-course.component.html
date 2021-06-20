@@ -2,14 +2,14 @@
   <div *ngIf="!selectedCourse">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header card-header-rose">
+        <div class="card-header card-header-danger">
           <h4 class="card-title">This is the list of available courses </h4>
           <p class="card-category">Start a course</p>
         </div>
         <div class="card-body">
           <br>
           <div class="row ">
-            <div class="col-md-6" *ngFor="let course of courses">
+            <div style="background: #eff1f4;" class="col-md-6" *ngFor="let course of Cours">
               <div class="card card-stats courses">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
@@ -48,7 +48,7 @@
     <!--    </div>-->
   </div>
 
-  <div *ngIf="selectedCourse && !completedCourse" class="showCoursesDiv">
+  <div *ngIf="selectedCourse && !completedCourse" class="showCoursesDiv" style="background: #FFFFFF ; padding: 41px;">
     <button type="button" class="btn btn-outline-danger btn-sm" (click)="back()">
       <span class="material-icons">arrow_back</span>
     </button>
@@ -56,8 +56,8 @@
     <nz-progress [nzPercent]="percent.toFixed(0)"></nz-progress>
     <br>
     <div>
-      <h1>section : {{courseItem.sections[currentCourse].id}}</h1>
-      <div [innerHTML]="courseItem.sections[currentCourse].container"></div>
+      <h1>section : {{courseItem.section[currentCourse].id}}</h1>
+      <div [innerHTML]="courseItem.section[currentCourse].contenu"></div>
     </div>
     <br>
 

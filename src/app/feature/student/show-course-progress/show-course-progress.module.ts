@@ -10,20 +10,22 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import {NzProgressModule} from "ng-zorro-antd/progress";
 @NgModule({
   declarations: [
     ShowCourseProgressComponent
   ],
-  imports: [
-    CommonModule,
-    ShowCourseProgressRoutingModule,
-    NzTableModule,
-    NzDropDownModule,
-    FormsModule,
-    NzRateModule,
-    NzIconModule,
-    NzButtonModule,
-    NzInputModule
-  ]
+    imports: [
+        CommonModule,
+        ShowCourseProgressRoutingModule,
+        NzTableModule,
+        NzDropDownModule,
+        FormsModule,
+        NzRateModule,
+        NzIconModule,
+        NzButtonModule,
+        NzInputModule,
+        NzProgressModule
+    ]
 })
 export class ShowCourseProgressModule { }

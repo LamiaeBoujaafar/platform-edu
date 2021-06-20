@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CourseModel} from "../../../core/models/course/course-model/course-model";
+import {CourseService} from "../../../core/services/course-service/course.service";
 
 @Component({
   selector: 'app-create-course',
@@ -10,18 +11,20 @@ import {CourseModel} from "../../../core/models/course/course-model/course-model
 export class CreateCourseComponent implements OnInit {
   validateForm!: FormGroup;
   Cour!: CourseModel;
+  Coure:any ;
+  saved :any;
   submitForm(data: any): void {
 
-    if ( data.titre!=null &&  data.Descption!=null && data.image!=null){
+    if ( data.titre!=null &&  data.Descption!=null){
       console.log(data);
-      this.Cour= {
-        idcour: 0,
-        image: data.image,
-        parcoursId:0,
-        sections:[],
+
+      this.Coure={
         title:data.titre,
-        description : data.Descption,
+        description:data.Descption ,
+
       }
+
+      this.onSaveCour(1,1,this.Coure) ;
 
 
     }
@@ -33,7 +36,7 @@ export class CreateCourseComponent implements OnInit {
 
 }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder , private courseService:CourseService ) {
 
   }
 
@@ -41,12 +44,19 @@ export class CreateCourseComponent implements OnInit {
     this.validateForm = this.fb.group({
       titre: [null, [Validators.required]],
       Descption: [null, [Validators.required]],
-      image: [null,[Validators.required]]
 
     });
   }
 
 
+  onSaveCour(idparcour:number ,profid:number, data:any) {
+    this.courseService.SaveCoure(idparcour, profid, data).subscribe(data => {
+      this.saved = data;
+      this.validateForm.reset();
+      window.location.reload();
+      alert('succsess')
+    })
 
 
-}
+  }
+  }

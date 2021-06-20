@@ -22,6 +22,10 @@ const routes: Routes = [
         path: 'show-quiz-parcours',
         loadChildren: () => import('./show-quiz-parcours/show-quiz-parcours.module').then(m => m.ShowQuizParcoursModule)
       },
+      {
+        path: 'show-quiz-student-progress',
+        loadChildren: () => import('./show-quiz-student-progress/show-quiz-student-progress.module').then(m => m.ShowQuizStudentProgressModule)
+      }
     ]
   },
 

@@ -65,6 +65,14 @@ export class QuizService {
     let host=environment.host
     return  this.http.post<any>(host+"etudiantquizparcour/etudaint/"+idEtudaint+"/quizparcour/"+idQuiz,note)
   }
+  GetQuizByProf(idprof:number):Observable<any[]>{
+    let host=environment.host
+    return this.http.get<any[]>(host+"quizcoure/prof/"+idprof)
+  }
+  GetEtudanitQuizCoure(idetudaint:number):Observable<any[]>{
+    let host=environment.host
+    return this.http.get<any[]>(host+"etudiantquizcour/etudaint/"+idetudaint)
+  }
   quizParcours!: QuizParcoursModel ;
   quizCourse!: QuizCourseModel[];
 
