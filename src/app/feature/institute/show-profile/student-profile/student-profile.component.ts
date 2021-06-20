@@ -1,13 +1,10 @@
 import {Component, OnInit} from '@angular/core';
+import {InstituteService} from '../../../../core/services/institute-service/institute.service';
+import {StudentModel} from '../../../../core/models/student-model/student-model';
+import {StudentService} from '../../../../core/services/Student-service/student.service';
 
-interface Student {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  cour: string;
-  percentage:number;
-}
+
+
 
 @Component({
   selector: 'app-student-profile',
@@ -15,61 +12,32 @@ interface Student {
   styleUrls: ['./student-profile.component.css']
 })
 export class StudentProfileComponent implements OnInit {
-  listStudent: Student[] = [
-    {
-      id: 0,
-      firstName: "oussama",
-      lastName: "goumghar",
-      email: "oussama@gmail.com",
-      cour: "Grammer bases",
-      percentage:55
-    },
-    {
-      id: 0,
-      firstName: "brahim",
-      lastName: "Affassi",
-      email: "brahim@gmail.com",
-      cour: "Grammer advanced",
-      percentage:80
-    },
-    {
-      id:0,
-      firstName:"Mohamed",
-      lastName:"erraji",
-      email:"mohamed@gmail.com",
-      cour:"Orthograf bases",
-      percentage:10
-    },
-    {
-      id:0,
-      firstName:"lamiae",
-      lastName:"Boujaafar",
-      email:"lamiae@gmail.com",
-      cour:"Grammar Advanced",
-      percentage:20
-    },
-    {
-      id:0,
-      firstName:"Amine",
-      lastName:"elmeskaoui",
-      email:"amine@gmail.com",
-      cour:"Pronunciation",
-      percentage:100
-    },
-    {
-      id:0,
-      firstName:"houssam",
-      lastName:"echakiri",
-      email:"houssam@gmail.com",
-      cour:"Grammer bases",
-      percentage:90
-    },
-  ]
+  listStudent: StudentModel[]  = []
 
-  constructor() {
+  constructor(private instituteService:InstituteService,private studentService:StudentService) {
   }
 
   ngOnInit(): void {
+   this.getStudents()
   }
 
+  getStudents() {
+    if (this.instituteService.intitute.etudiantVos) {
+      this.listStudent=this.instituteService.intitute.etudiantVos;
+    }
+
+  }
+
+
+  delete(id:number | undefined) {
+    console.log(id)
+    this.studentService.deleteStudent(id).subscribe(data => {
+      if (data == 1) {
+        this.getStudents();
+        alert('success');
+      } else {
+        alert("Error")
+      }
+    });
+  }
 }

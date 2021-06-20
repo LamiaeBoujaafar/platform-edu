@@ -34,59 +34,10 @@ export class ShowCourseStudentProgressComponent implements OnInit {
     },
   ];
   Students:StudentModel[]=[
-    {
-      id:0,
-      dateOfBirth:"11:11/111",
-      email:"hdhaz@gmail.com",
-      firstName:"mohamed",
-      lastName:"errajy",
-      gender:"M",
-      login:"usename",
-      password:"gdhdsjhsdhcedh",
-      phone:"12223333322"
 
-    },
-    {
-      id:1,
-      dateOfBirth:"11:11/111",
-      email:"hdhaz@gmail.com",
-      firstName:"reda",
-      lastName:"errajy",
-      gender:"M",
-      login:"usename",
-      password:"gdhdsjhsdhcedh",
-      phone:"12223333322"
-
-    },
   ]
   ListEtudiantCours:StudentCourseModel[] = [
-    {
-      course:this.listOfCours[0],
-      id:0,
-      numberInvalidSection:23,
-      numberRemainingSection:10 ,
-      numberValidSection:40,
-  student:this.Students[0],
-     validParcours:true
-    },
-    {
-      course:this.listOfCours[0],
-      id:1,
-      numberInvalidSection:23,
-      numberRemainingSection:9 ,
-      numberValidSection:29,
-      student:this.Students[1],
-      validParcours:false
-    },
-    {
-      course:this.listOfCours[1],
-      id:1,
-      numberInvalidSection:100,
-      numberRemainingSection:9 ,
-      numberValidSection:200,
-      student:this.Students[1],
-      validParcours:false
-    },
+
   ];
   public SelectedCour!:CourseModel ;
 

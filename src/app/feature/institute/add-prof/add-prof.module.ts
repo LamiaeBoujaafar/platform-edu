@@ -7,6 +7,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzInputModule} from "ng-zorro-antd/input";
+import {MatButtonModule} from '@angular/material/button';
+import {NzSelectModule} from 'ng-zorro-antd/select';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {NzInputModule} from "ng-zorro-antd/input";
     ReactiveFormsModule,
     NzFormModule,
     NzButtonModule,
-    NzInputModule
+    NzInputModule,
+    MatButtonModule,
+    NzSelectModule
   ]
 })
 export class AddProfModule { }

@@ -8,43 +8,29 @@
     <button mat-raised-button class="btn btn-outline-primary addInstitute" routerLink="../add-institute"><span
       class="material-icons">add</span>Add new Institute
     </button>
-    <nz-table #nzTable [nzData]="listOfDisplayInstitute" nzTableLayout="fixed">
+    <nz-table #nzTable [nzData]="listInstitutes" nzTableLayout="fixed">
       <thead>
       <tr>
-        <th nzWidth="60px"></th>
-        <th>
-          ID
-        </th>
-        <th>Image</th>
-        <th nzCustomFilter>Institute
-          <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
-            <i nz-icon nzType="search"></i>
-          </nz-filter-trigger>
-        </th>
-        <th>Phone</th>
-        <th></th>
+        <th>Title</th>
+        <th>Email</th>
+        <th>Login</th>
+        <th>Telephone</th>
+        <th>Action</th>
       </tr>
       </thead>
       <tbody>
       <ng-container *ngFor="let data of nzTable.data ">
         <tr>
-          <td [nzExpand]="expandSet.has(data.id)" (nzExpandChange)="onExpandChange(data.id, $event)"></td>
-          <td>{{ data.id }}</td>
-          <td>{{ data.image }}</td>
-          <td>{{ data.libelle }}</td>
-          <td>{{ data.phone }}</td>
+          <td>{{ data.title }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.login }}</td>
+          <td>{{ data.telephone }}</td>
           <td>
-
             <button nz-button nzType="default" nzShape="circle" (click)="delete(data)"><span class="material-icons">delete</span>
-            </button>
-            &nbsp;&nbsp;
-            <button nz-button nzType="default" nzShape="circle" (click)="edit(data.id)"><span class="material-icons">edit</span>
+            </button>&nbsp;&nbsp;
+            <button nz-button nzType="default" nzShape="circle" (click)="edit(data)"><span class="material-icons">edit</span>
             </button>
           </td>
-
-        </tr>
-        <tr [nzExpand]="expandSet.has(data.id)">
-          <span>the description is : {{ data.description }}</span>
         </tr>
       </ng-container>
       </tbody>

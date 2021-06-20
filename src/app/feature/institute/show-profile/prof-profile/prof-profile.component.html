@@ -1,1 +1,26 @@
-<p>prof-profile works!</p>
+<nz-table #nestedTable [nzData]="listProfs" [nzPageSize]="10">
+  <thead>
+  <tr>
+    <th>FirstName</th>
+    <th>LastName</th>
+    <th>Email</th>
+    <th>Login</th>
+    <th>Telephone</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-template ngFor let-data [ngForOf]="nestedTable.data">
+    <tr>
+      <td>{{data.prenom}}</td>
+      <td>{{ data.nom }}</td>
+      <td>{{ data.email }}</td>
+      <td>{{ data.login }}</td>
+      <td>{{ data.telephone }}</td>
+      <td>
+        <a class="text-danger"  nz-popconfirm nzPopconfirmTitle="Sure to approve?" (nzOnConfirm)="delete(data.id)">delete</a>
+      </td>
+    </tr>
+  </ng-template>
+  </tbody>
+</nz-table>

@@ -8,6 +8,7 @@ import { ProfProfileComponent } from './prof-profile/prof-profile.component';
 import {NzTabsModule} from "ng-zorro-antd/tabs";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzProgressModule} from "ng-zorro-antd/progress";
+import {NzPopconfirmModule} from 'ng-zorro-antd/popconfirm';
 
 
 @NgModule({
@@ -16,12 +17,13 @@ import {NzProgressModule} from "ng-zorro-antd/progress";
     StudentProfileComponent,
     ProfProfileComponent
   ],
-  imports: [
-    CommonModule,
-    ShowProfileRoutingModule,
-    NzTabsModule,
-    NzTableModule,
-    NzProgressModule
-  ]
+    imports: [
+        CommonModule,
+        ShowProfileRoutingModule,
+        NzTabsModule,
+        NzTableModule,
+        NzProgressModule,
+        NzPopconfirmModule
+    ]
 })
 export class ShowProfileModule { }

@@ -6,11 +6,11 @@
   <div class="card-body" style="    margin-top: 14px;">
     <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" style="margin: 0 auto">
       <div nz-row nzAlign="middle" nzJustify="center">
-        <div nz-col>
+        <div nz-col >
           <nz-form-item>
             <nz-form-label nzRequired nzFor="firstName">First Name</nz-form-label>
             <nz-form-control nzErrorTip="enter your first name">
-              <input nz-input formControlName="firstName" id="firstName"/>
+              <input nz-input formControlName="prenom" id="firstName"/>
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -18,26 +18,30 @@
           <nz-form-item class="form-outline">
             <nz-form-label nzRequired nzFor="lastName">Last Name</nz-form-label>
             <nz-form-control nzErrorTip="enter your last name">
-              <input nz-input formControlName="lastName" id="lastName"/>
+              <input nz-input formControlName="nom" id="lastName"/>
             </nz-form-control>
           </nz-form-item>
         </div>
       </div>
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phone" nzRequired>Phone</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="entrer your phone number">
-          <input nz-input type="number" id="phone" formControlName="phone"/>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sex" nzRequired>Sex</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Select your sex">
+          <nz-select formControlName="sex" id="sex"  nzPlaceHolder="select Parkour">
+            <nz-option  nzLabel="female"  nzValue="female">female</nz-option>
+            <nz-option  nzLabel="male"  nzValue="male">male</nz-option>
+          </nz-select>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="address" nzRequired>Address</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phone" nzRequired>Phone</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="entrer your phone number">
+          <input nz-input type="number" id="phone" formControlName="telephone"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="login" nzRequired>Login</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="enter the address">
-          <textarea
-            id="address" formControlName="address"
-            nz-input
-            placeholder="enter the address"
-            [nzAutosize]="{ minRows: 2, maxRows: 6 }"
-          ></textarea>
+          <input nz-input  id="login" formControlName="login"/>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -60,15 +64,30 @@
           </ng-template>
         </nz-form-control>
       </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="entrer your password">
+          <input nz-input type="password" id="password" formControlName="password"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="parcour" nzRequired>Parcour</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Select your parcour">
+          <nz-select formControlName="parcour" id="parcour"  nzPlaceHolder="select Parkour">
+            <nz-option *ngFor="let p of listParcours" nzLabel="{{p.title}}"  [nzValue]="p.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
       <div nz-row  nzAlign="middle" nzJustify="center">
         <nz-form-item nz-col [nzGutter]="15">
           <nz-form-control >
-            <button type="submit" mat-raised-button class="btn btn-success" (click)="submitForm()"><i class="material-icons">done</i>Register</button>
+            <button type="submit" mat-raised-button class="btn btn-success"><i class="material-icons">done</i>Register</button>
           </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-col [nzGutter]="15">
           <nz-form-control >
             <button type="submit" mat-raised-button class="btn btn-danger" (click)="resetForm($event)"><i class="material-icons">delete</i>Reset</button>
+
           </nz-form-control>
         </nz-form-item>
       </div>

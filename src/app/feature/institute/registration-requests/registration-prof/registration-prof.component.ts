@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {InstituteService} from '../../../../core/services/institute-service/institute.service';
+import {ProfRequestService} from '../../../../core/services/prof-request-service/prof-request.service';
 
-interface ParentItemData {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  cv: string;
-  createdAt: string;
-}
 
 
 
@@ -17,23 +11,35 @@ interface ParentItemData {
   styleUrls: ['./registration-prof.component.css']
 })
 export class RegistrationProfComponent implements OnInit {
-  listOfParentData: ParentItemData[] = [];
+
+  listProfRquest:any[]=[]
 
 
-  constructor() { }
+  constructor(private instituteService:InstituteService,private profRequesteService:ProfRequestService) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 15; ++i) {
-      this.listOfParentData.push({
-        id: i,
-        firstName: 'Oussama',
-        lastName: 'Goumghar',
-        email: 'g.oussamaww@gmail.com',
-        cv:"https://drive.google.com/file/d/0B4KDctmojhWubGFYdzF4blBSRXY4S29GSGpjcVFlZVFvWi13/view?usp=sharing",
-        createdAt: '2014-12-24 23:12:00',
-      });
-    }
 
+      this.getAllRequest()
+  }
+  getAllRequest() {
+    this.profRequesteService.getAllProfRequest(this.instituteService.intitute.id).subscribe(data => {
+        this.listProfRquest=data
+        console.log(this.listProfRquest)
+      }
+    );
+
+  }
+
+  saveRequeste(idRequeste: number) {
+    this.profRequesteService.approveRequest(idRequeste).subscribe(data => {
+      if (data == 1) {
+        alert('Prof saved');
+        this.getAllRequest()
+      } else {
+        alert("Error")
+        console.log(data)
+      }
+    });
   }
 
 
@@ -42,8 +48,6 @@ export class RegistrationProfComponent implements OnInit {
     this.listOfParentData = this.listOfParentData.filter(d => d.id !== id);
   }
 
-  displayAlert() {
-    alert("Prof approved")
-  }
+
 }
 

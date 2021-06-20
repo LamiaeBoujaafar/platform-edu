@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {InstituteService} from '../../../core/services/institute-service/institute.service';
+import {ParcourModel} from '../../../core/models/parcour-model/parcour-model.model';
+import {ProfModel} from '../../../core/models/prof-model/prof-model.model';
+import {InstituteModel} from '../../../core/models/institute/institute-model';
+import {StudentModel} from '../../../core/models/student-model/student-model';
+import {StudentService} from '../../../core/services/Student-service/student.service';
 
 @Component({
   selector: 'app-add-student',
@@ -10,18 +16,26 @@ import {NzMessageService} from "ng-zorro-antd/message";
 export class AddStudentComponent implements OnInit {
 
   validateForm!: FormGroup;
+  listParcours?:ParcourModel[] |null
+  institue:InstituteModel={}
+  studentCreate:StudentModel={}
 
-  constructor(private fb: FormBuilder,private message: NzMessageService) {}
+  constructor(private fb: FormBuilder,private message: NzMessageService,private instituteService:InstituteService,private studentService:StudentService) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      firstName:[null, [Validators.required]],
-      lastName:[null, [Validators.required]],
-      phone:[null, [Validators.required]],
-      address:[null, [Validators.required]],
+      prenom:[null, [Validators.required]],
+      nom:[null, [Validators.required]],
+      telephone:[null, [Validators.required]],
+      login:[null, [Validators.required]],
+      password:[null, [Validators.required]],
+      sex:[null, [Validators.required]],
+      parcour:[null, [Validators.required]],
       email: [null, [Validators.email, Validators.required]],
       checkEmail: [null, [Validators.required, this.confirmationValidator]],
     });
+    this.institue=this.instituteService.intitute
+    this.listParcours=this.instituteService.intitute.parcourVos
   }
 
   submitForm(): void {
@@ -29,8 +43,28 @@ export class AddStudentComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    this.message.info("name=="+this.validateForm.controls.lastName.value+" "+this.validateForm.controls.firstName.value+"phone=="+this.validateForm.controls.phone.value)
-    console.log("email=="+this.validateForm.controls.email.value);
+
+    if (this.validateForm?.invalid) {
+      return
+    }
+    this.studentCreate.nom=this.validateForm.controls.nom.value
+    this.studentCreate.prenom=this.validateForm.controls.prenom.value
+    this.studentCreate.email=this.validateForm.controls.email.value
+    this.studentCreate.login=this.validateForm.controls.login.value
+    this.studentCreate.password=this.validateForm.controls.password.value
+    this.studentCreate.sex=this.validateForm.controls.sex.value
+    this.studentCreate.telephone=this.validateForm.controls.telephone.value
+
+    this.studentService.saveStudent(this.studentCreate, this.institue.id, this.validateForm.controls.parcour.value).subscribe(data => {
+      if (data == 1) {
+        alert('success');
+      }else if (data==-2) {
+        alert('Le est deja existe');
+      } else {
+        alert('error');
+      }
+    });
+
   }
 
 

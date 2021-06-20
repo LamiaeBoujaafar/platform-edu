@@ -3,6 +3,7 @@ import {InstituteModel} from '../../../core/models/institute/institute-model';
 import {InstituteService} from '../../../core/services/institute-service/institute.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-show-institute',
@@ -12,23 +13,33 @@ import {Router} from '@angular/router';
 export class ShowInstituteComponent implements OnInit {
   searchValue = '';
   visible = false;
-  listInstitutes: InstituteModel[] = [];
+  listInstitutes : InstituteModel[] = [];
   expandSet = new Set<number>();
   listOfDisplayInstitute: InstituteModel[] = [];
   constructor(private serviceInstitute:InstituteService,private modal: NzModalService,private router : Router) { }
   ngOnInit(): void {
-    this.listInstitutes = this.serviceInstitute.getInstitutes();
-     this.listOfDisplayInstitute = [...this.listInstitutes];
+   this.getIntitutes()
+  }
+
+  getIntitutes() {
+    this.serviceInstitute.getInstitutes().subscribe(data=> {
+      this.listInstitutes = data;
+      console.log(this.listInstitutes);
+      this.listInstitutes.forEach(value => {
+        console.log(value.etudiantVos)
+      })
+    })
   }
 
   reset(): void {
     this.searchValue = '';
     this.search();
   }
+
+
+
   search(): void {
-    this.visible = false;
-    this.listOfDisplayInstitute = this.listInstitutes.filter((item: InstituteModel) => item.libelle.indexOf(this.searchValue) !== -1);
-    console.log(this.listOfDisplayInstitute)
+
   }
   onExpandChange(id: number, checked: boolean): void {
     if (checked) {
@@ -40,28 +51,18 @@ export class ShowInstituteComponent implements OnInit {
 
 
   delete(data:InstituteModel) {
-    const index = this.listInstitutes.indexOf( data)
-    this.modal.confirm({
-      nzTitle: 'Are you sure delete this institute?',
-      nzContent: '' + data.libelle ,
-      nzOkText: 'Yes',
-      nzOkType: 'primary',
-      nzOkDanger: true,
-      nzOnOk: () => {
-        this.listInstitutes = this.listInstitutes.filter((value)=>{
-          return value.id != data.id;
-        });
-        console.log(this.listInstitutes)
-      },
-      nzCancelText: 'No',
-      nzOnCancel: () => console.log('Cancel')
+    this.serviceInstitute.daleteInstitute(data.id).subscribe(data => {
+      if (data == 1) {
+        this.getIntitutes();
+      } else {
+        alert("error!!")
+      }
     });
-
   }
 
-  edit(id:number) {
-    console.log("edit id : " + id )
-    this.router.navigate(['/dashboard/admin/update-institute',id])
+  edit(data:InstituteModel) {
+    console.log("edit id : " + data.id )
+    this.router.navigate(['/dashboard/admin/update-institute',data.id])
 
   }
 }

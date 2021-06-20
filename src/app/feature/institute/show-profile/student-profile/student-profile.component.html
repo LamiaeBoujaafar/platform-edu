@@ -4,18 +4,22 @@
     <th>FirstName</th>
     <th>LastName</th>
     <th>Email</th>
-    <th>Cour</th>
-    <th>Progress</th>
+    <th>Login</th>
+    <th>Telephone</th>
+    <th>Action</th>
   </tr>
   </thead>
   <tbody>
   <ng-template ngFor let-data [ngForOf]="nestedTable.data">
     <tr>
-      <td>{{ data.firstName }}</td>
-      <td>{{ data.lastName }}</td>
+      <td>{{data.prenom}}</td>
+      <td>{{ data.nom }}</td>
       <td>{{ data.email }}</td>
-      <td>{{ data.cour }}</td>
-      <td><nz-progress nzPercent="{{data.percentage}}" nzType="circle" [nzWidth]="80"></nz-progress></td>
+      <td>{{ data.login }}</td>
+      <td>{{ data.telephone }}</td>
+      <td>
+        <a class="text-danger"  nz-popconfirm nzPopconfirmTitle="Sure to approve?" (nzOnConfirm)="delete(data.id)">delete</a>
+      </td>
     </tr>
   </ng-template>
   </tbody>

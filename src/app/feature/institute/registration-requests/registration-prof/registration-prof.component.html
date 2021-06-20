@@ -19,29 +19,29 @@
 <!--  </tr>-->
 <!--  </tbody>-->
 <!--</nz-table>-->
-<nz-table #nestedTable [nzData]="listOfParentData" [nzPageSize]="10">
+<nz-table #nestedTable [nzData]="listProfRquest" [nzPageSize]="10">
   <thead>
   <tr>
-    <th>Id</th>
     <th>FirstName</th>
     <th>LastName</th>
     <th>Email</th>
+    <th>Login</th>
+    <th>Telephone</th>
     <th>CV</th>
-    <th>Date</th>
     <th>Action</th>
   </tr>
   </thead>
   <tbody>
   <ng-template ngFor let-data [ngForOf]="nestedTable.data">
     <tr>
-      <td>{{data.id}}</td>
-      <td>{{ data.firstName }}</td>
-      <td>{{ data.lastName }}</td>
+      <td>{{data.prenom}}</td>
+      <td>{{ data.nom }}</td>
       <td>{{ data.email }}</td>
-      <td><a href="{{ data.cv }}">Show</a></td>
-      <td>{{ data.createdAt }}</td>
+      <td>{{ data.login }}</td>
+      <td>{{ data.telephone }}</td>
+      <td><a class="link-success" href="{{ data.cv }}">Show</a></td>
       <td>
-        <a nz-popconfirm nzPopconfirmTitle="Sure to approve?" (nzOnConfirm)="deleteRow(data.id)">Approve</a>
+        <a class="text-danger"  nz-popconfirm nzPopconfirmTitle="Sure to approve?" (nzOnConfirm)="saveRequeste(data.id)">Approve</a>
       </td>
     </tr>
 </ng-template>

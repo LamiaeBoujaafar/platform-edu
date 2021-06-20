@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {InstituteService} from '../../../../core/services/institute-service/institute.service';
+import {StudentRequestService} from '../../../../core/services/student-request-service/student-request.service';
 
-interface ParentItemData {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  cv: string;
-  createdAt: string;
-}
 
 @Component({
   selector: 'app-registration-student',
@@ -15,26 +9,38 @@ interface ParentItemData {
   styleUrls: ['./registration-student.component.css']
 })
 export class RegistrationStudentComponent implements OnInit {
-  listOfParentData: ParentItemData[] = [];
 
-  constructor() { }
+  listStudentRquest:any[]=[]
+
+  constructor(private instituteService:InstituteService,private studentRequestService:StudentRequestService) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 15; ++i) {
-      this.listOfParentData.push({
-        id: i,
-        firstName: 'Oussama',
-        lastName: 'Goumghar',
-        email: 'g.oussamaww@gmail.com',
-        cv:"https://drive.google.com/file/d/0B4KDctmojhWubGFYdzF4blBSRXY4S29GSGpjcVFlZVFvWi13/view?usp=sharing",
-        createdAt: '2014-12-24 23:12:00',
-      });
-    }
+
+    this.getAllRequest()
+
+  }
+  getAllRequest() {
+    this.studentRequestService.getAllStudentRequest(this.instituteService.intitute.id).subscribe(data => {
+        this.listStudentRquest=data
+        console.log(this.listStudentRquest)
+      }
+    );
 
   }
 
-
-  displayAlert() {
-    alert("Prof approved")
+  saveRequeste(idRequeste: number) {
+    this.studentRequestService.approveRequest(idRequeste).subscribe(data => {
+      if (data == 1) {
+        alert('Student saved');
+        this.getAllRequest()
+      } else {
+        alert("Error")
+        console.log(data)
+      }
+    });
   }
+
+
+
+
 }

@@ -1,73 +1,69 @@
 <div class="">
-  <form  #f ="ngForm"  [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
-<div class="card">
-  <div class="card-header card-header-danger" style="text-align: center">
-    <h4 class="card-title">Create Quiz Cour</h4>
-    <p class="card-category">Category subtitle</p>
-  </div>
-  <div class="card-body">
-
-
-
-    <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzFor="cour" nzRequired>Cour</nz-form-label>
-      <nz-form-control [nzSpan]="12" nzErrorTip="Please select your coure!">
-        <nz-select
-          id="cour" formControlName="cours" nzPlaceHolder="Select cour"
-          nzAllowClear>
-          <nz-option *ngFor="let option of listOfCours" [nzLabel]="option.title" [nzValue]="option"></nz-option>
-        </nz-select>
-      </nz-form-control>
-    </nz-form-item>
-
-
-
-    <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzFor="Qestion" nzRequired>Qestion</nz-form-label>
-      <nz-form-control [nzSpan]="12" nzErrorTip="Please enter your Qestion!">
-        <input type="text" nz-input formControlName="Question" placeholder="Question" />
-      </nz-form-control>
-    </nz-form-item>
-
-    <div nz-row >
-      <div nz-col nzSpan="16" class="Qrow">
-        <nz-form-item>
-          <nz-form-control  [nzSpan]="28" nzErrorTip="Please input your option!">
-            <nz-input-group nzPrefixIcon="form">
-              <input type="text" nz-input formControlName="option" placeholder="Option" />
-            </nz-input-group>
-          </nz-form-control>
-
-        </nz-form-item>
-
+  <form #f="ngForm" (ngSubmit)="submitForm(f.value)" [formGroup]="validateForm" class="login-form">
+    <div class="card">
+      <div class="card-header card-header-danger" style="text-align: center">
+        <h4 class="card-title">Create Quiz Cour</h4>
+        <p class="card-category">Category subtitle</p>
       </div>
+      <div class="card-body">
 
-      <div nz-col nzSpan="7">
 
         <nz-form-item>
-
-          <nz-form-control [nzSpan]="25" nzErrorTip="Please select your choix!">
-            <nz-select  id="qetta" formControlName="Qetat" nzPlaceHolder="Select Qestion etat">
-              <nz-option nzValue="true" nzLabel="true"></nz-option>
-              <nz-option nzValue="false" nzLabel="flase"></nz-option>
+          <nz-form-label [nzSpan]="5" nzFor="cour" nzRequired>Cour</nz-form-label>
+          <nz-form-control [nzSpan]="12" nzErrorTip="Please select your coure!">
+            <nz-select
+              formControlName="cours" id="cour" nzAllowClear
+              nzPlaceHolder="Select cour">
+              <nz-option *ngFor="let option of listOfCours" [nzLabel]="option.title" [nzValue]="option"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
 
 
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5" nzFor="Qestion" nzRequired>Qestion</nz-form-label>
+          <nz-form-control [nzSpan]="12" nzErrorTip="Please enter your Qestion!">
+            <input formControlName="Question" nz-input placeholder="Question" type="text"/>
+          </nz-form-control>
+        </nz-form-item>
+
+        <div nz-row>
+          <div class="Qrow" nz-col nzSpan="16">
+            <nz-form-item>
+              <nz-form-control [nzSpan]="28" nzErrorTip="Please input your option!">
+                <nz-input-group nzPrefixIcon="form">
+                  <input formControlName="option" nz-input placeholder="Option" type="text"/>
+                </nz-input-group>
+              </nz-form-control>
+
+            </nz-form-item>
+
+          </div>
+
+          <div nz-col nzSpan="7">
+
+            <nz-form-item>
+
+              <nz-form-control [nzSpan]="25" nzErrorTip="Please select your choix!">
+                <nz-select formControlName="Qetat" id="qetta" nzPlaceHolder="Select Qestion etat">
+                  <nz-option nzLabel="true" nzValue="true"></nz-option>
+                  <nz-option nzLabel="flase" nzValue="false"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+
+          </div>
+
+
+        </div>
+
+
+        <button (click)="onNextClick()" class="btn btn-danger" mat-raised-button type="submit"><i
+          class="material-icons">add</i></button>
+
       </div>
-
-
     </div>
-
-
-
-
-
-    <button mat-raised-button class="btn btn-danger" type="submit" (click)="onNextClick()"><i class="material-icons">add</i></button>
-
-  </div>
-</div>
 
     <div class="card">
       <div class="card-header card-header-icon card-header-primary">
@@ -77,32 +73,36 @@
         <h4 class="card-title">Options Of Question</h4>
       </div>
       <div class="card-body">
-      <div class="card-content table-responsive table-full-width">
-        <table class="table">
-    <thead>
-    <tr>
-      <th>titer</th>
-      <th>question etat </th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let data of ShowOptionsOfQuestion index as i  " >
-      <td>{{data.response}}</td>
-      <td>{{data.correct}}</td>
-      <td><button mat-raised-button (click)="delete(i)" class="btn btn-primary"><i class="material-icons">delete</i></button></td>
+        <div class="card-content table-responsive table-full-width">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>titer</th>
+              <th>question etat</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of ShowOptionsOfQuestion index as i  ">
+              <td>{{data.response}}</td>
+              <td>{{data.correct}}</td>
+              <td>
+                <button (click)="delete(i)" class="btn btn-primary" mat-raised-button><i
+                  class="material-icons">delete</i></button>
+              </td>
 
 
-    </tr>
-    </tbody>
+            </tr>
+            </tbody>
 
-        </table>
+          </table>
+        </div>
+
+        <button (click)="onCreateQ()" class="btn btn-primary" mat-raised-button type="submit"><i class="material-icons">done</i>Save
+          Question
+        </button>
       </div>
-
-    <button mat-raised-button class="btn btn-primary" type="submit" (click)="onCreateQ()"><i class="material-icons">done</i>Save Question</button>
     </div>
-    </div>
-
 
 
     <div class="card">
@@ -113,40 +113,43 @@
         <h4 class="card-title">Questions Of Quiz </h4>
       </div>
       <div class="card-body">
-      <div class="card-content table-responsive table-full-width">
-        <table class="table">
-      <thead>
-      <tr>
-        <th>Question</th>
-        <th>Action</th>
-      </tr>
+        <div class="card-content table-responsive table-full-width">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Question</th>
+              <th>Action</th>
+            </tr>
 
-      </thead>
-      <tbody>
-      <ng-container *ngFor="let data of QuestionOfCoure index as i  " >
-      <tr >
-        <!--   <td [(nzExpand)]="expand"  (nzExpandChange)="onExpandChange(data.id, $event)"></td>  -->
-             <td>{{data.question}}</td>
-        <td><button mat-raised-button (click)="deletetQestion(i)" class="btn btn-success"><i class="material-icons">delete</i></button></td>
-
-
-           </tr>
-
-        <!--    <tr  [nzExpand]="expand" *ngFor="let data of data.responses index as i">
-            <td style="font-weight: bold;">{{data.response}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data.correct}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button>x</button> </td>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let data of QuestionOfCoure index as i  ">
+              <tr>
+                <!--   <td [(nzExpand)]="expand"  (nzExpandChange)="onExpandChange(data.id, $event)"></td>  -->
+                <td>{{data.question}}</td>
+                <td>
+                  <button (click)="deletetQestion(i)" class="btn btn-success" mat-raised-button><i
+                    class="material-icons">delete</i></button>
+                </td>
 
 
+              </tr>
 
-      </tr> -->
-      </ng-container>
-      </tbody>
-        </table>
-      </div>
-    <button mat-raised-button class="btn btn-success" type="submit" (click)="onSave()" ><i class="material-icons">done</i>valide</button>
+              <!--    <tr  [nzExpand]="expand" *ngFor="let data of data.responses index as i">
+                  <td style="font-weight: bold;">{{data.response}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data.correct}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button>x</button> </td>
+
+
+
+            </tr> -->
+            </ng-container>
+            </tbody>
+          </table>
+        </div>
+        <button (click)="onSave()" class="btn btn-success" mat-raised-button type="submit"><i class="material-icons">done</i>valide
+        </button>
 
       </div>
     </div>
-
 
 
   </form>
