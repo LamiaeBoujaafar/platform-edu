@@ -3,7 +3,12 @@
   margin-left: 28px;
 }
 .answers{
-  margin-bottom: 5px;
+  border-radius: 0px;
+  padding-left: 15px;
+  margin-bottom: 7px;
+  border-radius: 20px;
+  padding-left: 15px;
+
 }
 .startQuiz{
   float: right;
@@ -12,6 +17,10 @@
   margin-bottom: 5px;
 }
 .colorText{
+  color: black;
+  font-size: 32px;
+  margin-left: 27px;
+  margin-top: 9px;
   color: black;
 }
 .next{
@@ -22,7 +31,51 @@
 }
 .answers{
   margin-bottom: 7px;
+  border-radius: 0px;
+  padding-left: 15px;
+  margin-bottom: 7px;
   border-radius: 20px;
   padding-left: 15px;
 
+}
+.wrapper {
+  display: inline-flex;
+  background: #fff;
+  height: 100px;
+  width: 250px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  padding: 20px 15px;
+  box-shadow: 5px 5px 30px rgb(0 0 0 / 20%);
+}
+.wrapper .option {
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0 10px;
+  border: 2px solid #180f2f;
+  transition: all 0.5s ease;
+  margin: 0 10px;
+}
+input[type="radio"] {
+  display: none;
+}
+input#one:checked ~ .option-1,
+input#two:checked ~ .option-2 {
+  background: #180f2f;
+  border-color: #180f2f;
+}
+
+input#one:checked ~ .option-1 span,
+input#two:checked ~ .option-2 span {
+  color: #fff;
+}
+.wrapper input span {
+  font-size: 20px;
 }

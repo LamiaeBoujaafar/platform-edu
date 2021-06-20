@@ -71,6 +71,7 @@ export class ShowQuizComponent implements OnInit {
         nzContent: 'Correct answers : ' + this.correctAnswers + ' | ' + 'Incorrect answers : ' + this.incorrectAnswers,
         nzOkText: 'close',
         nzOkType: 'primary',
+        nzStyle: { position: 'absolute', top: `70px`, left: `300px` },
         nzOkDanger: false,
         nzOnOk: () => {
           this.initialize();
@@ -78,6 +79,7 @@ export class ShowQuizComponent implements OnInit {
       });
     } else {
       this.modal.error({
+        nzStyle: { position: 'absolute', top: `70px`, left: `300px` },
         nzTitle: 'Sorry !! YOU LOSE',
         nzContent: 'Correct answers : ' + this.correctAnswers + ' | ' + 'Incorrect answers : ' + this.incorrectAnswers,
         nzOkText: 'Yes',
@@ -129,7 +131,7 @@ export class ShowQuizComponent implements OnInit {
   onSaveEtudaintQuizCour(idEtudaint: any, idQuiz: any, note: any) {
     this.quizService.SaveEtudantQuizCoure(idEtudaint, idQuiz, note).subscribe(data => {
       this.saved = data;
-      alert('succsess')
+
     })
 
   }

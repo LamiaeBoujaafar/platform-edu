@@ -7,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
   focus: any;
+  array = [1, 2, 3, 4];
+  dotPosition = 'bottom';
   focus1: any;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  fub() {
+
+  }
 }

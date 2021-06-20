@@ -19,7 +19,6 @@ export const ROUTESStudent: RouteInfo[] = [
 ];
 export const ROUTESProf: RouteInfo[] = [
   { path: 'dashboard', title: 'dashboard',  icon:'grid_view', class: '' },
-  { path: 'profile', title: 'profile',  icon:'account_circle', class: '' },
   { path: 'create-course', title: 'Create Course',  icon:'class', class: '' },
   { path: 'create-section', title: 'Create Section',  icon:'menu', class: '' },
   { path: 'create-quiz-course', title: 'Quiz Course',  icon: 'quiz', class: '' },
