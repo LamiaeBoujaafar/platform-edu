@@ -13,102 +13,102 @@ import {CourseModel} from '../../models/course/course-model/course-model';
 export class QuizService {
   questions :QuestionModel[] = [{
     id:1,
-    question:'What\'s the capital of somalia ?',
+    question:'______ the better team, we lost the match.',
     responses:[]
   },{
     id:2,
-    question:'What\'s the capital of Mexico ?',
+    question:'They have put speed bumps on the road to ______ accidents.',
     responses:[]
   },{
     id:3,
-    question:'What\'s the capital of UK ?',
+    question:'Is Jo ______ Chris?',
     responses:[]
   },{
     id:4,
-    question:'What\'s the capital of USA ?',
+    question:'Where\'s the ______ post office, please?',
     responses:[]
   },{
     id:5,
-    question:'What\'s the capital of UAE ?',
+    question:'The best way to learn a language is ______ a little every day.',
     responses:[]
   }]
   responseQ1 :ResponseQuestionModel[]= [{
     id: 1,
-    response: 'Nairobi',
+    response: 'Although',
     correct: false,
     Question: this.questions[0]
   }, {
     id: 2,
-    response: 'Asmara',
+    response: 'Despite being',
     correct: true,
     Question: this.questions[0]
   }, {
     id: 3,
-    response: 'Mogadishu',
+    response: 'Despite',
     correct: false,
     Question: this.questions[0]
   }];
   responseQ2  :ResponseQuestionModel[]= [{
     id: 1,
-    response: 'Guadalajara',
+    response: 'prohibit',
     correct: false,
     Question: this.questions[1]
   }, {
     id: 2,
-    response: 'Puebla',
+    response: 'prohibit',
     correct: false,
     Question: this.questions[1]
   }, {
     id: 3,
-    response: 'Mexico',
+    response: 'prevent',
     correct: true,
     Question: this.questions[1]
   }];
   responseQ3  :ResponseQuestionModel[]= [{
     id: 1,
-    response: 'Guadalajara',
+    response: 'taller',
     correct: false,
     Question: this.questions[2]
   }, {
     id: 2,
-    response: 'London',
+    response: 'as tall as',
     correct: true,
     Question: this.questions[2]
   }, {
     id: 3,
-    response: 'Mexico',
+    response: 'more tall',
     correct: false,
     Question: this.questions[2]
   }];
   responseQ4  :ResponseQuestionModel[]= [{
     id: 1,
-    response: 'Guadalajara',
+    response: 'more near',
     correct: false,
     Question: this.questions[3]
   }, {
     id: 2,
-    response: 'London',
+    response: 'near',
     correct: false,
     Question: this.questions[3]
   }, {
     id: 3,
-    response: 'Washington DC',
+    response: 'nearest',
     correct: true,
     Question: this.questions[3]
   }];
   responseQ5  :ResponseQuestionModel[]= [{
     id: 1,
-    response: 'Guadalajara',
+    response: 'in speaking',
     correct: false,
     Question: this.questions[4]
   }, {
     id: 2,
-    response: 'London',
+    response: 'to speaking',
     correct: false,
     Question: this.questions[4]
   }, {
     id: 3,
-    response: 'Abu Dhabi',
+    response: 'by speaking',
     correct: true,
     Question: this.questions[4]
   }];
@@ -123,23 +123,23 @@ export class QuizService {
   getCourseQuiz(){
     this.questions = [{
       id:1,
-      question:'What\'s the capital of somalia ?',
+      question:'______ the better team, we lost the match.',
       responses:this.responseQ1
     },{
       id:2,
-      question:'What\'s the capital of Mexico ?',
+      question:'They have put speed bumps on the road to ______ accidents.',
       responses:this.responseQ2
     },{
       id:3,
-      question:'What\'s the capital of UK ?',
+      question:'Is Jo ______ Chris?',
       responses:this.responseQ3
     },{
       id:4,
-      question:'What\'s the capital of USA ?',
+      question:'Where\'s the ______ post office, please?',
       responses:this.responseQ4
     },{
       id:5,
-      question:'What\'s the capital of UAE ?',
+      question:'The best way to learn a language is ______ a little every day.',
       responses:this.responseQ5
     }]
     this.quizCourse= [{

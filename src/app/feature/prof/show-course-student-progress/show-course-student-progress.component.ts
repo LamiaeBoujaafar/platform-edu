@@ -17,7 +17,7 @@ export class ShowCourseStudentProgressComponent implements OnInit {
     {
       id : 0,
       sections : [],
-      title : "java",
+      title : "Present simple",
       parcoursId : 0,
       description:"cour java",
       image: null
@@ -26,7 +26,15 @@ export class ShowCourseStudentProgressComponent implements OnInit {
     {
       id :1,
       sections : [],
-      title : "php",
+      title : "Present continuous",
+      parcoursId : 0,
+      description:"cour php",
+      image: null
+
+    }, {
+      id :1,
+      sections : [],
+      title : "Simple tenses",
       parcoursId : 0,
       description:"cour php",
       image: null
@@ -63,27 +71,27 @@ export class ShowCourseStudentProgressComponent implements OnInit {
     {
       course:this.listOfCours[0],
       id:0,
-      numberInvalidSection:23,
+      numberInvalidSection:10,
       numberRemainingSection:10 ,
-      numberValidSection:40,
+      numberValidSection:5,
   student:this.Students[0],
      validParcours:true
     },
     {
       course:this.listOfCours[0],
       id:1,
-      numberInvalidSection:23,
-      numberRemainingSection:9 ,
-      numberValidSection:29,
+      numberInvalidSection:7,
+      numberRemainingSection:7 ,
+      numberValidSection:8,
       student:this.Students[1],
       validParcours:false
     },
     {
       course:this.listOfCours[1],
       id:1,
-      numberInvalidSection:100,
+      numberInvalidSection:9,
       numberRemainingSection:9 ,
-      numberValidSection:200,
+      numberValidSection:6,
       student:this.Students[1],
       validParcours:false
     },

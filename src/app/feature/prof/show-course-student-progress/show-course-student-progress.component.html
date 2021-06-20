@@ -2,17 +2,17 @@
 <div class="card">
   <div class="card-header card-header-danger" style="text-align: center">
     <h4 class="card-title">show student progress</h4>
-    <p class="card-category">Category subtitle</p>
+    <p class="card-category">The student progress</p>
   </div>
   <div class="card-body">
 
   <form  #f ="ngForm"  [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
 
     <nz-form-item>
-      <nz-form-label style="font-family: Roboto;" [nzSpan]="5" nzFor="cour" nzRequired>Cour</nz-form-label>
-      <nz-form-control [nzSpan]="12" nzErrorTip="Please select your coure!">
+      <nz-form-label style="font-family: Roboto;" [nzSpan]="5" nzFor="cour" nzRequired>Course</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please select your course!">
         <nz-select
-          id="cour" formControlName="cours" nzPlaceHolder="Select cour"
+          id="cour" formControlName="cours" nzPlaceHolder="Select course"
           nzAllowClear
           [(ngModel)]="SelectedCour"
           (ngModelChange)="changeCour($event)"
@@ -26,11 +26,11 @@
       <table class="table">
         <thead>
     <tr>
-      <th>etudiant</th>
-      <th>nombre section valide</th>
-      <th>nombre section non valide</th>
-      <th>nomber section restante </th>
-      <th>pourcentage</th>
+      <th>student</th>
+      <th>number of valid sections</th>
+      <th>number of invalid sections</th>
+      <th>number of remaining sections </th>
+      <th>progress</th>
     </tr>
     </thead>
     <tbody>
@@ -39,7 +39,7 @@
       <td>{{data.numberValidSection}}</td>
       <td>{{data.numberInvalidSection}}</td>
       <td>{{data.numberRemainingSection}}</td>
-      <td>  <nz-progress [nzPercent]="data.numberValidSection-data.numberInvalidSection" nzType="circle" [nzWidth]="80"></nz-progress></td>
+      <td>  <nz-progress [nzPercent]="((data.numberInvalidSection-data.numberValidSection))*10" nzType="circle" [nzWidth]="80"></nz-progress></td>
 
 
     </tr>

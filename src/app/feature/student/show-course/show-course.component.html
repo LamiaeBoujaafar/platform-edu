@@ -15,7 +15,7 @@
                   <div class="card-icon">
                     <span class="material-icons">auto_stories</span>
                   </div>
-                  <p class="card-category">{{course.id}}</p>
+<!--                  <p class="card-category">{{course.id}}</p>-->
                   <h3 class="card-title">{{course.title}}
                   </h3>
                 </div>
@@ -44,8 +44,8 @@
     <nz-progress [nzPercent]="percent.toFixed(0)"></nz-progress>
     <br>
     <div>
-      <h1>section : {{courseItem.section[currentCourse].title}}</h1>
-      <div [innerHTML]="courseItem.section[currentCourse].contenu"></div>
+      <h1>section : {{courseItem.section[currentCourse]?.title}}</h1>
+      <div [innerHTML]="courseItem.section[currentCourse]?.contenu"></div>
     </div>
     <br>
 

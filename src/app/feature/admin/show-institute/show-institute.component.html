@@ -12,10 +12,8 @@
       <thead>
       <tr>
         <th nzWidth="60px"></th>
-        <th>
-          ID
-        </th>
-        <th>Image</th>
+
+        <th>Email</th>
         <th nzCustomFilter>Institute
           <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
             <i nz-icon nzType="search"></i>
@@ -29,8 +27,8 @@
       <ng-container *ngFor="let data of nzTable.data ">
         <tr>
           <td [nzExpand]="expandSet.has(data.id)" (nzExpandChange)="onExpandChange(data.id, $event)"></td>
-          <td>{{ data.id }}</td>
-          <td>{{ data.image }}</td>
+
+          <td>{{ data.email}}</td>
           <td>{{ data.libelle }}</td>
           <td>{{ data.phone }}</td>
           <td>

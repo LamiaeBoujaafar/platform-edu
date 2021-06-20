@@ -1,14 +1,14 @@
 
 <div class="card">
   <div class="card-header card-header-danger" style="text-align: center">
-    <h4 class="card-title">Regitration Requestes</h4>
-    <p class="card-category">Category subtitle</p>
+    <h4 class="card-title">Manage course</h4>
+    <p class="card-category">In this form you can manage courses</p>
   </div>
   <div nz-row nzAlign="middle" nzJustify="center" nzGutter="24" style="margin-top: 20px;">
   <div nz-col [nzSpan]="8">
     <nz-form-item>
       <nz-form-control>
-        <nz-select [(ngModel)]="selectedParcour"  nzPlaceHolder="select Parkour"
+        <nz-select [(ngModel)]="selectedParcour"  nzPlaceHolder="select parcours"
                    (ngModelChange)="parkourChange($event)">
           <nz-option *ngFor="let p of parcours" [nzLabel]="p" [nzValue]="p"></nz-option>
         </nz-select>
@@ -18,7 +18,7 @@
   <div nz-col [nzSpan]="8">
     <nz-form-item>
       <nz-form-control>
-        <nz-select [(ngModel)]="selectedCour" nzShowSearch nzPlaceHolder="select cour">
+        <nz-select [(ngModel)]="selectedCour" nzShowSearch nzPlaceHolder="select course">
           <nz-option *ngFor="let c of cours[selectedParcour]" [nzLabel]="c" [nzValue]="c"></nz-option>
         </nz-select>
       </nz-form-control>
@@ -64,8 +64,8 @@
   <thead>
   <tr>
     <th nzWidth="30%">Student Name</th>
-    <th>Parcour</th>
-    <th>Cour</th>
+    <th>Parcours</th>
+    <th>Course</th>
     <th>Action</th>
   </tr>
   </thead>

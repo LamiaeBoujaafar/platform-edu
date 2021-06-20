@@ -18,14 +18,14 @@ export class CreateQuizParcoursComponent implements OnInit {
   listOfParcours:ParcoursModel[]=[
     {
   id: 1,
-      title:"devlempent",
+      title:"Grammar",
    courses:[],
       description:"desption1"
 
 },
 {
   id: 1,
-  title:"RH",
+  title:"Vocabulary",
   courses:[],
   description:"desption1"
 

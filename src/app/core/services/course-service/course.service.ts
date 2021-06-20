@@ -33,32 +33,25 @@ export class CourseService {
 
   courses: CourseModel[] = [{
     id: 1,
-    title: 'course11',
+    title: 'Simple tenses',
     description: 'course1 -- 14h',
     image: null,
     parcoursId: 1,
     sections: [this.sections[0], this.sections[1], this.sections[2]]
   }, {
     id: 2,
-    title: 'course22',
+    title: 'Simple present',
     description: 'course2 -- 15h',
     image: null,
     parcoursId: 1,
     sections: [this.sections[1], this.sections[2]]
   }, {
     id: 3,
-    title: 'course33',
+    title: 'Simple continuous',
     description: 'course3 -- 5h',
     image: null,
     parcoursId: 1,
     sections: [this.sections[0]]
-  }, {
-    id: 4,
-    title: 'course44',
-    description: 'course3 -- 5h',
-    image: null,
-    parcoursId: 1,
-    sections: [this.sections[0],this.sections[1], this.sections[2],this.sections[2]]
   }];
   parcours: ParcoursModel[] = [{
     id: 1,
@@ -95,13 +88,7 @@ export class CourseService {
     nombreSectionNonValide:0,
     cours:this.courses[2],
     etudiant:this.student
-  },{
-    id:4,
-    nombreSectionValide:2,
-    nombreSectionNonValide:2,
-    cours:this.courses[3],
-    etudiant:this.student
-  },]
+  }]
 
   private baseUrl = "http://localhost:8081/cours/courses/10/";
   private urlCourse = "http://localhost:8081/cours/";

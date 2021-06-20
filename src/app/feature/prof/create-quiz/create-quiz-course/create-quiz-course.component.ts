@@ -20,7 +20,7 @@ export class CreateQuizCourseComponent implements OnInit {
     {
       id : 0,
       sections : [],
-      title : "java",
+      title : "Present simple",
       parcoursId : 0,
       description:"cour java",
       image: null
@@ -29,7 +29,15 @@ export class CreateQuizCourseComponent implements OnInit {
     {
       id :1,
       sections : [],
-      title : "php",
+      title : "Present continuous",
+      parcoursId : 0,
+      description:"cour php",
+      image: null
+
+    }, {
+      id :1,
+      sections : [],
+      title : "Simple tenses",
       parcoursId : 0,
       description:"cour php",
       image: null

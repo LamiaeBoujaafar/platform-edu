@@ -2,18 +2,18 @@
   <form  #f ="ngForm"  [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
 <div class="card">
   <div class="card-header card-header-danger" style="text-align: center">
-    <h4 class="card-title">Create Quiz Cour</h4>
-    <p class="card-category">Category subtitle</p>
+    <h4 class="card-title">Create Quiz for a course</h4>
+    <p class="card-category">Save the questions with their responses </p>
   </div>
   <div class="card-body">
 
 
 
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzFor="cour" nzRequired>Cour</nz-form-label>
+      <nz-form-label [nzSpan]="5" nzFor="cour" nzRequired>Course</nz-form-label>
       <nz-form-control [nzSpan]="12" nzErrorTip="Please select your coure!">
         <nz-select
-          id="cour" formControlName="cours" nzPlaceHolder="Select cour"
+          id="cour" formControlName="cours" nzPlaceHolder="Select course"
           nzAllowClear>
           <nz-option *ngFor="let option of listOfCours" [nzLabel]="option.title" [nzValue]="option"></nz-option>
         </nz-select>
@@ -23,8 +23,8 @@
 
 
     <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzFor="Qestion" nzRequired>Qestion</nz-form-label>
-      <nz-form-control [nzSpan]="12" nzErrorTip="Please enter your Qestion!">
+      <nz-form-label [nzSpan]="5" nzFor="Qestion" nzRequired>Question</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please enter your Question!">
         <input type="text" nz-input formControlName="Question" placeholder="Question" />
       </nz-form-control>
     </nz-form-item>
@@ -32,7 +32,7 @@
     <div nz-row >
       <div nz-col nzSpan="16" class="Qrow">
         <nz-form-item>
-          <nz-form-control  [nzSpan]="28" nzErrorTip="Please input your option!">
+          <nz-form-control  [nzSpan]="28" nzErrorTip="Please choose an option!">
             <nz-input-group nzPrefixIcon="form">
               <input type="text" nz-input formControlName="option" placeholder="Option" />
             </nz-input-group>
@@ -46,10 +46,10 @@
 
         <nz-form-item>
 
-          <nz-form-control [nzSpan]="25" nzErrorTip="Please select your choix!">
-            <nz-select  id="qetta" formControlName="Qetat" nzPlaceHolder="Select Qestion etat">
+          <nz-form-control [nzSpan]="25" nzErrorTip="Please select your choice!">
+            <nz-select  id="qetta" formControlName="Qetat" nzPlaceHolder="Select Question state">
               <nz-option nzValue="true" nzLabel="true"></nz-option>
-              <nz-option nzValue="false" nzLabel="flase"></nz-option>
+              <nz-option nzValue="false" nzLabel="false"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
@@ -81,8 +81,8 @@
         <table class="table">
     <thead>
     <tr>
-      <th>titer</th>
-      <th>question etat </th>
+      <th>title</th>
+      <th>question state </th>
       <th>Action</th>
     </tr>
     </thead>
@@ -142,7 +142,7 @@
       </tbody>
         </table>
       </div>
-    <button mat-raised-button class="btn btn-success" type="submit" (click)="onSave()" ><i class="material-icons">done</i>valide</button>
+    <button mat-raised-button class="btn btn-success" type="submit" (click)="onSave()" ><i class="material-icons">done</i>save</button>
 
       </div>
     </div>
