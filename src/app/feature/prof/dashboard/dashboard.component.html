@@ -1,0 +1,107 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">menu_book</i>
+            </div>
+            <p class="card-category">Coures</p>
+            <h3 class="card-title">{{profdashbord.numberCoures}}
+
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">date_range</i> Last 24 Hours
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">sticky_note_2</i>
+            </div>
+            <p class="card-category">Quiz Coure</p>
+            <h3 class="card-title">{{profdashbord.numberquizcour}}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">date_range</i> Last 24 Hours
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-danger card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">class</i>
+            </div>
+            <p class="card-category">Quiz Parcour</p>
+            <h3 class="card-title">1</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">local_offer</i> Tracked from Github
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i  class="material-icons">groups</i>
+            </div>
+            <p class="card-category">Etudaints</p>
+            <h3 class="card-title">{{profdashbord.numberEtudaint}}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">update</i> Just Updated
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+
+
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12 col-md-12">
+        <div class="card">
+          <div class="card-header card-header-warning">
+            <h4 class="card-title">Liste Des Etudaints</h4>
+            <p class="card-category">Liste Des Etudaints </p>
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table table-hover">
+              <thead class="text-warning">
+
+              <th>nom</th>
+              <th>prenom</th>
+              <th>Email</th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let data of etudaints index as i  " >
+                <td>{{data.nom}}</td>
+                <td>{{data.prenom}}</td>
+                <td>{{data.email}}</td>
+
+              </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
