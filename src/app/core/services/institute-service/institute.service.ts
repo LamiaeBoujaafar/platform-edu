@@ -24,6 +24,11 @@ export class InstituteService {
     return this.http.get<InstituteModel>(host+id)
   }
 
+  login(login: string,password:string): Observable<InstituteModel> {
+    let host = environment.hostInstitute;
+    return this.http.get<InstituteModel>(host+"login/"+login+"/password/"+password)
+  }
+
   saveInstite(institue: InstituteModel) {
     let host = environment.hostInstitute;
     return this.http.post(host, institue);

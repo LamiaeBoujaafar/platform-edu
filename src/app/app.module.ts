@@ -13,6 +13,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
+import { NaveBarModule } from './shared/nave-bar/nave-bar.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 registerLocaleData(fr);
 
@@ -30,6 +33,9 @@ registerLocaleData(fr);
     ReactiveFormsModule,
     NzLayoutModule,
     NzMenuModule,
+    NaveBarModule,
+    NgbModule,
+
   ],
   providers: [{ provide: NZ_I18N, useValue: fr_FR }],
   bootstrap: [AppComponent]

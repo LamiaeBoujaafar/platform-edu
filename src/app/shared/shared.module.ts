@@ -4,6 +4,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {RouterModule} from "@angular/router";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzIconModule} from "ng-zorro-antd/icon";
+import {NaveBarComponent} from './nave-bar/nave-bar.component';
 
 
 
@@ -12,7 +13,7 @@ import {NzIconModule} from "ng-zorro-antd/icon";
     SidebarComponent
   ],
   exports: [
-    SidebarComponent
+    SidebarComponent,
   ],
     imports: [
         CommonModule,
