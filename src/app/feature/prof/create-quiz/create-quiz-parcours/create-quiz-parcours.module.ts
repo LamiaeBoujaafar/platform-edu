@@ -18,6 +18,9 @@ import { CreateQuizParcoursComponent } from './create-quiz-parcours.component';
   declarations: [
     CreateQuizParcoursComponent
   ],
+  exports: [
+    CreateQuizParcoursComponent
+  ],
   imports: [
     NzTimePickerModule,
     NzMessageModule,

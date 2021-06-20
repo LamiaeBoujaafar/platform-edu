@@ -17,7 +17,7 @@
           [(ngModel)]="SelectedCour"
           (ngModelChange)="changeCour($event)"
           nzAllowClear>
-          <nz-option *ngFor="let option of listOfCours" [nzLabel]="option.title" [nzValue]="option"></nz-option>
+          <nz-option *ngFor="let coure of Cours" [nzLabel]="coure.title" [nzValue]="coure"></nz-option>
         </nz-select>
       </nz-form-control>
     </nz-form-item>
@@ -29,17 +29,15 @@
       <th>etudiant</th>
       <th>nombre section valide</th>
       <th>nombre section non valide</th>
-      <th>nomber section restante </th>
       <th>pourcentage</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of showListEtudiantCours index as i  " >
-      <td>{{data.student.prenom}}</td>
-      <td>{{data.numberValidSection}}</td>
-      <td>{{data.numberInvalidSection}}</td>
-      <td>{{data.numberRemainingSection}}</td>
-      <td>  <nz-progress [nzPercent]="data.numberValidSection-data.numberInvalidSection" nzType="circle" [nzWidth]="80"></nz-progress></td>
+    <tr *ngFor="let data of EtudaintCoure index as i  " >
+      <td>{{data.etudiant.nom}}</td>
+      <td>{{data.nombresectionvalide}}</td>
+      <td>{{data.nombresectionnonvalide}}</td>
+      <td>  <nz-progress [nzPercent]="data.nombresectionvalide*100/SelectedCour.section.length" nzType="circle" [nzWidth]="80"></nz-progress></td>
 
 
     </tr>

@@ -11,16 +11,21 @@ declare interface RouteInfo {
 }
 export const ROUTESStudent: RouteInfo[] = [
   { path: 'show-course', title: 'Courses',  icon:'class', class: '' },
+  { path: 'show-quiz', title: 'Quiz Course',  icon: 'quiz', class: '' },
+  { path: 'show-quiz-parcours', title: 'Quiz Parcours',  icon:'live_help', class: '' },
   { path: 'show-course-progress', title: 'Course Progress',  icon:'data_usage', class: '' },
-  { path: 'show-quiz', title: 'Quiz Course',  icon: 'Quiz Course', class: '' },
-  { path: 'show-quiz-parcours', title: 'Quiz Parcours',  icon:'Quiz Parcours', class: '' },
+  { path: 'show-quiz-student-progress', title: 'progress quiz ',  icon:'data_usage', class: '' },
+
 ];
 export const ROUTESProf: RouteInfo[] = [
-  { path: 'create-section', title: 'Create Section',  icon:'menu', class: '' },
+  { path: 'dashboard', title: 'dashboard',  icon:'grid_view', class: '' },
   { path: 'create-course', title: 'Create Course',  icon:'class', class: '' },
+  { path: 'create-section', title: 'Create Section',  icon:'menu', class: '' },
   { path: 'create-quiz-course', title: 'Quiz Course',  icon: 'quiz', class: '' },
   { path: 'create-quiz-parcours', title: 'Quiz Parcours',  icon: 'help_center', class: '' },
-  { path: 'show-course-student-progress', title: 'data_usage',  icon:'data_usage', class: '' },
+  { path: 'show-quiz', title: 'show Quiz',  icon:'data_usage', class: '' },
+  { path: 'show-course-student-progress', title: 'student progress coures',  icon:'data_usage', class: '' },
+
 ];
 export const ROUTESInstitutes: RouteInfo[] = [
   { path: 'add-student', title: 'Add Student',  icon:'school', class: '' },

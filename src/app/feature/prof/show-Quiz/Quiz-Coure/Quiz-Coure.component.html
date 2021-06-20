@@ -1,0 +1,42 @@
+
+          <nz-table #nzTable [nzData]="QuizOffCoure" nzTableLayout="fixed">
+            <thead>
+            <tr>
+              <th>Show Operations</th>
+              <th>numberQuestions</th>
+              <th >coure</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let data of  nzTable.data,index as i ">
+              <tr>
+                <td [nzExpand]="expandSet.has(data.idquiz)" (nzExpandChange)="onExpandChange(data.idquiz, $event)"></td>
+                <td>{{ data.numberquestions}}</td>
+                <td>{{ data.coure.title }}</td>
+                <td><a><i (click)="deletetQuize(data)" class="material-icons" style="color: red">delete</i></a></td>
+
+
+
+              </tr>
+              <tr [nzExpand]="expandSet.has(data.idquiz)">
+                <nz-table #innerTable [nzData]="data.questions" nzSize="middle" [nzShowPagination]="false">
+            <thead>
+            <tr style="background-color: #00bbff;">
+              <th >question </th>
+              <th>Laction</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ques of innerTable.data">
+              <td>{{ ques.question }}</td>
+              <td><a><i (click)="deletetQestion(ques)" class="material-icons" style="color: red">delete</i></a></td>
+
+            </tr>
+            </tbody>
+          </nz-table>
+          </tr>
+  </ng-container>
+  </tbody>
+  </nz-table>
+

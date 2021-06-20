@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header card-header-danger" style="text-align: center">
+    <h4 class="card-title">Show Profile </h4>
+    <p class="card-category">Category subtitle</p>
+  </div>
+  <div class="m-5">
+  <nz-tabset>
+    <nz-tab  [nzTitle]="titleTemplateStudent">
+      <ng-template #titleTemplateStudent>
+        <img src="https://image.flaticon.com/icons/png/512/3409/3409454.png" style="width: 30px;height: 30px">
+       Quiz Coure
+      </ng-template>
+      <app-quiz-coure></app-quiz-coure>
+    </nz-tab>
+    <nz-tab [nzTitle]="titleTemplateProf">
+      <ng-template #titleTemplateProf>
+        <img src="https://image.flaticon.com/icons/png/512/3406/3406828.png" style="width: 30px;height: 30px">
+        Qiuz Parcour
+      </ng-template>
+      <app-quiz-parcour></app-quiz-parcour>
+    </nz-tab>
+  </nz-tabset>
+</div>
+</div>

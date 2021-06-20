@@ -1,7 +1,7 @@
 import {ResponseQuestionModel} from '../response-question-model/response-question-model';
 
 export class QuestionModel {
-  id!:number;
+  idquestion!:any;
   question!:string;
   responses!:ResponseQuestionModel[];
 }

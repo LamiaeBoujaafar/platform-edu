@@ -11,7 +11,7 @@
       <nz-form-control [nzSpan]="12" nzErrorTip="Please select your coure!">
 
         <nz-select id="gender" formControlName="cours" nzPlaceHolder="Select cour">
-          <nz-option *ngFor="let option of listOfCours" [nzLabel]="option.title" [nzValue]="option"></nz-option>
+          <nz-option *ngFor="let coure of Cours" [nzLabel]="coure.title" [nzValue]="coure"></nz-option>
         </nz-select>
       </nz-form-control>
     </nz-form-item>

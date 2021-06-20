@@ -11,10 +11,10 @@
           <div class="row">
             <div class="col-md-3" style="width:250px"  *ngFor="let item of quizCourse" (click)="startQuiz(item)">
               <nz-card nzHoverable [nzCover]="coverTemplate">
-                <nz-card-meta nzTitle="{{item.course.id}}" nzDescription="{{item.course.title}}"></nz-card-meta>
+                <nz-card-meta nzTitle="{{item.coure.idcour}}" nzDescription="{{item.coure.title}}"></nz-card-meta>
               </nz-card>
               <ng-template #coverTemplate>
-                <img alt="example" src="../../../../assets/university.png"/>
+                <img alt="example" src="https://image.freepik.com/vecteurs-libre/fait-interessant-saviez-vous-que-design_1017-25703.jpg"/>
               </ng-template>
             </div>
           </div>
@@ -44,28 +44,29 @@
                 mode_edit
               </i>
             </div>
-            <h4 class="card-title">Question {{currentQuiz + 1}} of {{selectedQuizCourse.numberQuestions}} </h4>
+            <h4 class="card-title">Question {{currentQuiz + 1}} of {{selectedQuizCourse.numberquestions}} </h4>
           </div>
           <br>
           <div class="card-body">
             <h1>{{selectedQuizCourse.questions[currentQuiz].question}}</h1>
-            <ul nz-list nzBordered *ngFor="let item of selectedQuizCourse.questions[currentQuiz].responses"  nzSize="small" class="answers">
+            <ul style="border-radius:0px;" nz-list nzBordered *ngFor="let item of selectedQuizCourse.questions[currentQuiz].responses"  nzSize="small" class="answers">
               <label nz-list-item >
                 <li  nzNoFlex>
                   <div class="form-check form-check-radio">
                     <label class="form-check-label">
                       <input class="form-check-input" type="radio" name="options" id="options" (change)="onAnswer(item.correct)">
-                      <p class="colorText">{{ item.response }}</p>
-                      <span class="circle"><span class="check"></span></span>
+                   <p class="colorText" >{{ item.response }}</p>
+                      <span style="    height: 42px;
+    width: 42px;margin-top: 16px;" class="circle"><span class="check"></span></span>
                     </label>
                   </div>
                 </li>
               </label>
             </ul>
-            <div *ngIf="contour < 5">
+            <div *ngIf="contour < selectedQuizCourse.numberquestions ">
               <button mat-raised-button (click)="next()" class="btn btn-primary next">Next question</button>
             </div>
-            <div *ngIf="contour == 5">
+            <div *ngIf="contour == selectedQuizCourse.numberquestions ">
               <button mat-raised-button (click)="showResult()" class="btn btn-rose submit">Submit</button>
               <div *ngIf="result">{{correctAnswers}} +++ {{incorrectAnswers}}</div>
             </div>

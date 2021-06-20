@@ -9,22 +9,33 @@ import {CourseService} from '../../../core/services/course-service/course.servic
 })
 
 export class ShowCourseComponent implements OnInit {
-  courses: CourseModel[] = [];
+  Cours: any = [];
   selectedCourse= false;
-  courseItem!: CourseModel ;
+  courseItem!: any ;
   percent = 0;
   currentCourse = 0;
   sectionLength = 0;
+  loading: boolean = false;
+  errorMessage: any;
+  saved: any;
   completedCourse = false;
-  constructor(private courseService:CourseService) { }
+  etudaintcoure : any ;
+  updateEtudaintCoure :any ;
+  constructor(private courseService:CourseService ) { }
 
   ngOnInit(): void {
-    this.courses = this.courseService.getCourses();
+    this.ongetCoures(1);
   }
-  startCourse(course: CourseModel) {
+  startCourse(course: any) {
     this.courseItem = course;
     this.selectedCourse = true;
-    this.sectionLength = this.courseItem.sections.length;
+    this.sectionLength = this.courseItem.section.length;
+    this.etudaintcoure={
+      nombresectionnonvalide: this.sectionLength ,
+      nombresectionvalide:0,
+    }
+  this.onSaveEtudaintCoure(1,course.idcour,this.etudaintcoure);
+
   }
   increase(): void {
       this.percent = this.percent + (100/this.sectionLength);
@@ -34,8 +45,18 @@ export class ShowCourseComponent implements OnInit {
       if(this.currentCourse<(this.sectionLength-1)){
         this.currentCourse++;
         console.log(this.currentCourse)
+         this.updateEtudaintCoure={
+           nombresectionnonvalide: this.sectionLength-this.currentCourse,
+           nombresectionvalide:this.currentCourse,
+         }
+        this.onUpdateEtudaintCoure(1,this.courseItem.idcour,this.updateEtudaintCoure)
         this.completedCourse = false;
       }else {
+        this.updateEtudaintCoure={
+          nombresectionnonvalide: 0,
+          nombresectionvalide:this.sectionLength,
+        }
+        this.onUpdateEtudaintCoure(1,this.courseItem.idcour,this.updateEtudaintCoure)
         console.log("con")
         this.completedCourse = true;
       }
@@ -61,4 +82,38 @@ export class ShowCourseComponent implements OnInit {
     this.currentCourse = 0;
     this.sectionLength = 0;
   }
+  ongetCoures(idparcour:number){
+    this.loading = true;
+    this.errorMessage = "";
+    this.courseService.GetCouresByParcour(idparcour)
+      .subscribe(
+        (response) => {                           //next() callback
+          console.log('response received')
+          this.Cours = response;
+        },
+        (error) => {                              //error() callback
+          console.error('Request failed with error')
+          this.errorMessage = error;
+          this.loading = false;
+        },
+        () => {                                   //complete() callback
+          console.error('Request completed')      //This is actually not needed
+          this.loading = false;
+        })
+  }
+  onSaveEtudaintCoure(idetudaint:number,idCoure:number,data:any){
+    this.courseService.SaveEtudaintCoure(idetudaint,idCoure, data).subscribe(data => {
+      this.saved = data;
+
+    })
+
+
+
+  }
+  onUpdateEtudaintCoure(idetudaint:number,idCoure:number,data:any){
+    this.courseService.UpdateEtudaiintCoure(idetudaint,idCoure, data).subscribe(data => {
+      this.saved = data;
+
+    })
+}
 }

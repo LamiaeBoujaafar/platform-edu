@@ -6,6 +6,8 @@ import { ResponseQuestionModel } from 'src/app/core/models/quiz/response-questio
 import {CourseModel} from "../../../../core/models/course/course-model/course-model";
 import {QuestionModel} from "../../../../core/models/quiz/question-model/question-model";
 import {QuizCourseModel} from "../../../../core/models/quiz/quiz-course-model/quiz-course-model";
+import {QuizService} from "../../../../core/services/quiz-service/quiz.service";
+import {CourseService} from "../../../../core/services/course-service/course.service";
 @Component({
 
 
@@ -15,27 +17,25 @@ import {QuizCourseModel} from "../../../../core/models/quiz/quiz-course-model/qu
 })
 export class CreateQuizCourseComponent implements OnInit {
   validateForm!: FormGroup;
+ saved :any;
+ savedQuestion:any ;
+  Cours : any=[];
+  htmlContent1 = '';
+  loading: boolean = false;
+  errorMessage: any;
+ savedQuestionar:any = [] ;
 
-  listOfCours:CourseModel[]=[
+
+  etataOfQuestion:any[]=[
     {
-      id : 0,
-      sections : [],
-      title : "java",
-      parcoursId : 0,
-      description:"cour java",
-      image: null
+      etta: true,
 
     },
     {
-      id :1,
-      sections : [],
-      title : "php",
-      parcoursId : 0,
-      description:"cour php",
-      image: null
+      etta: false
+    }
+]
 
-    },
-  ];
   responseQuestionModel!:ResponseQuestionModel;
   questionModel!:QuestionModel;
   quizCourseModel!:QuizCourseModel;
@@ -46,11 +46,11 @@ export class CreateQuizCourseComponent implements OnInit {
   public expand: boolean=false;
   nextClicked = 0;
 
-  constructor(private formBuilder: FormBuilder, private message: NzMessageService) {
+  constructor(private courseService:CourseService ,private formBuilder: FormBuilder, private message: NzMessageService ,private quizService:QuizService) {
   }
 
   ngOnInit(): void {
-
+    this.ongetCoures(1);
 
     this.validateForm = this.formBuilder.group({
       Question: [null, [Validators.required]],
@@ -67,7 +67,6 @@ export class CreateQuizCourseComponent implements OnInit {
   submitForm(data: any) {
 
     // @ts-ignore
-    console.log(data);
     let QuestionModel;
     if (data.Question != null && data.cours != null && data.Qetat != null && data.option != null) {
       if (this.nextClicked == 1) {
@@ -76,47 +75,57 @@ export class CreateQuizCourseComponent implements OnInit {
         // @ts-ignore
        let qestion :QuestionModel = null;
 
+        // @ts-ignore
         this.responseQuestionModel = {
           response: data.option,
-          id: 0,
-          Question: qestion,
-          correct: data.Qetat,
+          correct: data.Qetat.etta
         }
+        console.log(data.Qetat.etta)
         // @ts-ignore
         this.ShowOptionsOfQuestion.push(this.responseQuestionModel);
-
 
       } else if (this.nextClicked == 0) {
         this.ResponseQuestionModel = JSON.parse(JSON.stringify(this.ShowOptionsOfQuestion))
 
         this.questionModel = {
-          id:0,
+          idquestion:null,
           question: data.Question,
          responses:this.ResponseQuestionModel
         }
+        this.savedQuestion ={
+          question: this.questionModel.question,
+          responses:this.questionModel.responses
+
+        }
+        this.savedQuestionar.push(this.savedQuestion);
 
         this.QuestionOfCoure.push(this.questionModel);
-        console.log(this.QuestionOfCoure);
 
-    //here save options and question to DB
+        console.log(this.QuestionOfCoure)
         this.ShowOptionsOfQuestion.length = 0;
       } else {
+
         this.quizCourseModel = {
-           id:0,
-          course:data.cours,
+          idquiz:0,
+          coure:new CourseModel(),
           questions: this.QuestionOfCoure,
-          estimatedDuration:12,
-          numberQuestions:this.QuestionOfCoure.length,
+          numberquestions:this.QuestionOfCoure.length,
 
         };
+
+        this.saved={
+          numberquestions:this.quizCourseModel.numberquestions,
+          questions:this.savedQuestionar,
+
+        }
+        console.log(this.saved);
+
+        this.onSavequiz(data.cours.idcour,this.saved)
         this.QuizOffCoure.push(this.quizCourseModel);
-        //here save QUIZ  to DB
 
-        this.QuestionOfCoure.splice(0, this.QuestionOfCoure.length) ;
 
-        console.log(this.ResponseQuestionModel)
-        console.log(this.QuizOffCoure);
-        console.log(this.QuestionOfCoure);
+
+
 
 
       }
@@ -164,7 +173,35 @@ export class CreateQuizCourseComponent implements OnInit {
       this.expand=false
     }
   }
+  onSavequiz(id:number , data:any){
+    this.quizService.SaveQuizCour(id,data).subscribe(data => {
+      this.saved=data;
+      this.validateForm.reset();
+      window.location.reload();
+      alert('succsess')
+    })
 
+
+  }
+  ongetCoures(idprof:number){
+    this.loading = true;
+    this.errorMessage = "";
+    this.courseService.GetCoures(idprof)
+      .subscribe(
+        (response) => {                           //next() callback
+          console.log('response received')
+          this.Cours = response;
+        },
+        (error) => {                              //error() callback
+          console.error('Request failed with error')
+          this.errorMessage = error;
+          this.loading = false;
+        },
+        () => {                                   //complete() callback
+          console.error('Request completed')      //This is actually not needed
+          this.loading = false;
+        })
+  }
 
 
 }

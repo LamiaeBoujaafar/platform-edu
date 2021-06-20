@@ -10,6 +10,7 @@ export const environment = {
   hostStudent:"http://localhost:8070/Api/etudiant/",
   hostStudentRequest:"http://localhost:8070/Api/etudiantRequest/",
   hostParcour:"http://localhost:8070/Api/parcour/",
+  host:"http://localhost:8070/api/"
 };
 
 /*
