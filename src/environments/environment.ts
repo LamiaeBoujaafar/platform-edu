@@ -8,7 +8,8 @@ export const environment = {
   hostProf:"http://localhost:8070/Api/prof/",
   hostProfRequest:"http://localhost:8070/Api/profRequest/",
   hostStudent:"http://localhost:8070/Api/etudiant/",
-  hostStudentRequest:"http://localhost:8070/Api/etudiantRequest/"
+  hostStudentRequest:"http://localhost:8070/Api/etudiantRequest/",
+  hostParcour:"http://localhost:8070/Api/parcour/",
 };
 
 /*

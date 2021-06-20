@@ -13,6 +13,9 @@ const routes: Routes = [
       },
       {
         path: 'registration', loadChildren: () => import('./registration-page/registration-page.module').then(m => m.RegistrationPageModule)
+      },
+      {
+        path: 'login', loadChildren: () => import('./login-institute-page/login-institute-page.module').then(m => m.LoginInstitutePageModule)
       }]
   }];
 

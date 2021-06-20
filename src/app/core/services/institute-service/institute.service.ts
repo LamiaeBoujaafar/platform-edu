@@ -3,6 +3,7 @@ import {InstituteModel} from '../../models/institute/institute-model';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {Observable} from 'rxjs';
+import {ParcoursModel} from '../../models/course/parcours-model/parcours-model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,11 @@ export class InstituteService {
   getInstitutes():Observable<InstituteModel[]> {
     let host = environment.hostInstitute;
     return this.http.get<InstituteModel[]>(host);
+  }
+
+  getParcoursByInstitute(id: number | undefined): Observable<ParcoursModel[]> {
+    let host = environment.hostParcour;
+    return this.http.get<ParcoursModel[]>(host+"instituteId/"+id)
   }
 
   getInstitutesById(id: number | undefined): Observable<InstituteModel> {
