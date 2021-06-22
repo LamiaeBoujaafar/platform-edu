@@ -19,7 +19,7 @@ const routes: Routes = [
         loadChildren: () => import('./registration-requests/registration-requests.module').then(m => m.RegistrationRequestsModule)
       },
       {
-        path: 'add-student-to-course',
+        path: 'parcour',
         loadChildren: () => import('./add-student-to-course/add-student-to-course.module').then(m => m.AddStudentToCourseModule)
       },
       {

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AddStudentToCourseRoutingModule } from './add-student-to-course-routing.module';
 import { AddStudentToCourseComponent } from './add-student-to-course.component';
 import {NzSelectModule} from "ng-zorro-antd/select";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzButtonModule} from "ng-zorro-antd/button";
@@ -31,7 +31,8 @@ import {NzInputModule} from "ng-zorro-antd/input";
     NzFormModule,
     NzDividerModule,
     NzIconModule,
-    NzInputModule
+    NzInputModule,
+    ReactiveFormsModule
   ]
 })
 export class AddStudentToCourseModule { }

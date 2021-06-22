@@ -58,9 +58,9 @@ export class QuizService {
     let host=environment.host
     return  this.http.post<any>(host+"quizparcour/"+this.profService.prof.parcourVo?.id,data)
   }
-  GetQuiParcour():Observable<QuizParcoursModel[]>{
+  GetQuiParcour():Observable<QuizParcoursModel>{
     let host=environment.host
-    return this.http.get<QuizParcoursModel[]>(host+"quizparcour/parcour/"+this.profService.prof.parcourVo?.id)
+    return this.http.get<QuizParcoursModel>(host+"quizparcour/parcour/"+this.profService.prof.parcourVo?.id)
   }
  SaveEtudantQuizCoure(idEtudaint: any, idQuiz: any,note:any):Observable<any>{
     let host=environment.host
@@ -68,7 +68,7 @@ export class QuizService {
   }
   GetQuizParcour(parcourid:number):Observable<QuizParcoursModel>{
     let host=environment.host
-    return this.http.get<QuizParcoursModel>(host+"quizparcour/parcour/"+this.studentService.student.parcourVo?.id)
+    return this.http.get<QuizParcoursModel>(host+"quizparcour/parcour/"+this.profService.prof.parcourVo?.id)
   }
   SaveEtudantQuizParcour(idEtudaint: any, idQuiz: any,note:any):Observable<any>{
     let host=environment.host

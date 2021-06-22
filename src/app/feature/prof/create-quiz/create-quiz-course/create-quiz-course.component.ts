@@ -8,6 +8,7 @@ import {QuestionModel} from "../../../../core/models/quiz/question-model/questio
 import {QuizCourseModel} from "../../../../core/models/quiz/quiz-course-model/quiz-course-model";
 import {QuizService} from "../../../../core/services/quiz-service/quiz.service";
 import {CourseService} from "../../../../core/services/course-service/course.service";
+import {ProfService} from '../../../../core/services/prof-service/prof.service';
 @Component({
 
 
@@ -46,7 +47,13 @@ export class CreateQuizCourseComponent implements OnInit {
   public expand: boolean=false;
   nextClicked = 0;
 
-  constructor(private courseService:CourseService ,private formBuilder: FormBuilder, private message: NzMessageService ,private quizService:QuizService) {
+  constructor(private courseService:CourseService ,private formBuilder: FormBuilder, private message: NzMessageService ,private quizService:QuizService,private profService:ProfService) {
+  }
+  getProf() {
+    this.profService.getProfLoged().subscribe(data => {
+      this.profService.prof=data
+      console.log(data)
+    });
   }
 
   ngOnInit(): void {

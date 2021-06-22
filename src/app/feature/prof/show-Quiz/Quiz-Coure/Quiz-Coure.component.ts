@@ -6,6 +6,7 @@ import {QuizService} from "../../../../core/services/quiz-service/quiz.service";
 import {AppDataState,DataStateEnum} from "../../../../state/client.state";
 import {Observable, of} from "rxjs";
 import {catchError, map, startWith} from "rxjs/operators";
+import {ProfService} from '../../../../core/services/prof-service/prof.service';
 
 @Component({
   selector: 'app-quiz-coure',
@@ -24,7 +25,14 @@ export class QuizCoureComponent implements OnInit {
   DataStateEnum = DataStateEnum
   loading: boolean = false;
   errorMessage: any;
-  constructor(private quizService: QuizService) {
+  constructor(private quizService: QuizService,private profService:ProfService) {
+  }
+
+  getProf() {
+    this.profService.getProfLoged().subscribe(data => {
+      this.profService.prof=data
+      console.log(data)
+    });
   }
 
   expandSet = new Set<number>();
@@ -56,6 +64,8 @@ export class QuizCoureComponent implements OnInit {
   }
 
   onShowQuizCoure(id:number) {
+
+    this.getProf()
     this.loading = true;
     this.errorMessage = "";
     this.quizService.GetQuizCoure(id)

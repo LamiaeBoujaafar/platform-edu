@@ -1,97 +1,42 @@
-
 <div class="card">
   <div class="card-header card-header-danger" style="text-align: center">
-    <h4 class="card-title">Regitration Requestes</h4>
-    <p class="card-category">Category subtitle</p>
-  </div>
-  <div nz-row nzAlign="middle" nzJustify="center" nzGutter="24" style="margin-top: 20px;">
-  <div nz-col [nzSpan]="8">
-    <nz-form-item>
-      <nz-form-control>
-        <nz-select [(ngModel)]="selectedParcour"  nzPlaceHolder="select Parkour"
-                   (ngModelChange)="parkourChange($event)">
-          <nz-option *ngFor="let p of parcours" [nzLabel]="p" [nzValue]="p"></nz-option>
-        </nz-select>
-      </nz-form-control>
-    </nz-form-item>
-  </div>
-  <div nz-col [nzSpan]="8">
-    <nz-form-item>
-      <nz-form-control>
-        <nz-select [(ngModel)]="selectedCour" nzShowSearch nzPlaceHolder="select cour">
-          <nz-option *ngFor="let c of cours[selectedParcour]" [nzLabel]="c" [nzValue]="c"></nz-option>
-        </nz-select>
-      </nz-form-control>
-    </nz-form-item>
-  </div>
-</div>
+    <h4 class="card-title">Create new Parcour</h4>
 
-<div nz-row nzJustify="center" nzAlign="middle">
-  <div nz-col [nzSpan]="8">
-    <nz-form-item>
-      <nz-form-control>
-        <nz-select [(ngModel)]="selectedEtudaint" nzShowSearch nzPlaceHolder="select Student">
-          <nz-option *ngFor="let e of etudaints" [nzLabel]="e" [nzValue]="e"></nz-option>
-        </nz-select>
-      </nz-form-control>
-    </nz-form-item>
-  </div>
-</div>
-  <div nz-row  nzAlign="middle">
-    <div nz-col [nzSpan]="6">
-      <nz-form-item>
-        <nz-form-control>
-          <button mat-raised-button class="btn btn-danger" type="submit"(click)="addRow()"><i class="material-icons">add</i></button>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-  </div>
-
-
-</div>
-
-<div class="card">
-  <div class="card-header card-header-icon card-header-primary">
-    <div class="card-icon">
-      <i class="material-icons">list_alt</i>
-    </div>
-    <h4 class="card-title">Options Of Question</h4>
   </div>
   <div class="card-body">
-    <div class="card-content table-responsive table-full-width">
-      <table class="table">
+    <div nz-row>
+      <div nz-col nzSpan="8"></div>
+      <div nz-col nzSpan="15">
 
-  <thead>
-  <tr>
-    <th nzWidth="30%">Student Name</th>
-    <th>Parcour</th>
-    <th>Cour</th>
-    <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let data of listOfData" class="editable-row">
-    <td>{{ data.etudiant }}</td>
-    <td>{{ data.parcour }}</td>
-    <td>{{ data.cour }}</td>
+        <form #f ="ngForm"  nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="10" nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm(f.value)">
 
-    <td><button mat-raised-button (click)="deleteRow(data.id)" class="btn btn-primary"><i class="material-icons">delete</i></button></td>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your titre!">
+              <div class="form-group">
+                <input type="text" value="" formControlName="titre" placeholder="titre" class="form-control" />
+              </div>
+            </nz-form-control>
+          </nz-form-item>
 
 
-  </tr>
-  </tbody>
-</table>
+          <nz-form-control nzErrorTip="Please input your Descption!">
+            <div class="form-group">
+              <textarea matInput  formControlName="Descption" placeholder="Descption" class="form-control" ></textarea>
+            </div>
+          </nz-form-control>
 
 
-<div nz-row  nzAlign="middle">
-  <div nz-col [nzSpan]="4">
-    <nz-form-item>
-      <nz-form-control>
-        <button mat-raised-button class="btn btn-primary" type="submit"  (click)="submitData()"><i class="material-icons">done</i>Save</button>
-      </nz-form-control>
-    </nz-form-item>
-  </div>
-</div>
+
+          <button type="submit" mat-raised-button class="btn btn-danger"><i class="material-icons">done</i> Ajouter</button>
+
+
+
+        </form>
+      </div>
+      <div nz-col nzSpan="5"></div>
     </div>
+
+
   </div>
 </div>
+

@@ -32,6 +32,7 @@ export class RegistrationStudentComponent implements OnInit {
     this.studentRequestService.approveRequest(idRequeste).subscribe(data => {
       if (data == 1) {
         alert('Student saved');
+        window.location.reload()
         this.getAllRequest()
       } else {
         alert("Error")

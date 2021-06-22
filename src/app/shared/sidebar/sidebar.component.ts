@@ -30,6 +30,7 @@ export const ROUTESProf: RouteInfo[] = [
 export const ROUTESInstitutes: RouteInfo[] = [
   { path: 'add-student', title: 'Add Student',  icon:'school', class: '' },
   { path: 'add-prof', title: 'Add Professor',  icon:'hail', class: '' },
+  { path: 'parcour', title: 'Add Parcours',  icon:'menu', class: '' },
   { path: 'registration-requests', title: 'Registration Requests',  icon: 'assignment_turned_in', class: '' },
   { path: 'show-profile', title: 'Show Profile',  icon:'perm_contact_calendar', class: '' },
 ];

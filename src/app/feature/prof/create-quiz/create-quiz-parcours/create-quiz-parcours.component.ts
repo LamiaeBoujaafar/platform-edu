@@ -8,6 +8,7 @@ import {ResponseQuestionModel} from "../../../../core/models/quiz/response-quest
 import {QuestionModel} from "../../../../core/models/quiz/question-model/question-model";
 import {QuizParcoursModel} from "../../../../core/models/quiz/quiz-parcours-model/quiz-parcours-model";
 import {QuizService} from "../../../../core/services/quiz-service/quiz.service";
+import {ProfService} from '../../../../core/services/prof-service/prof.service';
 @Component({
   selector: 'app-create-quiz-parcours',
   templateUrl: './create-quiz-parcours.component.html',
@@ -38,7 +39,14 @@ export class CreateQuizParcoursComponent implements OnInit {
   saved :any;
   public ResponseQuestionModel: ResponseQuestionModel [] = [];
   nextClicked = 0;
-  constructor(private formBuilder: FormBuilder, private message: NzMessageService, private quizService:QuizService) { }
+  constructor(private formBuilder: FormBuilder, private message: NzMessageService, private quizService:QuizService,private profService:ProfService) { }
+
+  getProf() {
+    this.profService.getProfLoged().subscribe(data => {
+      this.profService.prof=data
+      console.log(data)
+    });
+  }
 
   ngOnInit(): void {
 

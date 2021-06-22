@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CourseService} from '../../../core/services/course-service/course.service';
 import {CourseStudent} from '../../../core/models/course-student/course-student';
+import {StudentService} from '../../../core/services/Student-service/student.service';
 
 @Component({
   selector: 'app-show-course-progress',
@@ -15,7 +16,13 @@ export class ShowCourseProgressComponent implements OnInit {
   visible = false;
   courseStudent : CourseStudent[] = []
   courseStudentDisplay : CourseStudent[] = []
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService,private studentService:StudentService) { }
+  getStudentLoged() {
+    this.studentService.getProfLoged().subscribe(data => {
+      this.studentService.student=data
+      console.log(this.studentService.student)
+    });
+  }
 
   ngOnInit(): void {
   //  this.courseStudent = this.courseService.getValidSection();
@@ -32,6 +39,7 @@ export class ShowCourseProgressComponent implements OnInit {
     this.courseStudentDisplay = this.courseStudent.filter((item: CourseStudent) => item.course.title.indexOf(this.searchValue) !== -1);
   }
   ongetEtudaintCoures(etudaintid:number){
+    this.getStudentLoged()
     this.loading = true;
     this.errorMessage = "";
     this.courseService.GetEtudaintCouresByetudaint(etudaintid)

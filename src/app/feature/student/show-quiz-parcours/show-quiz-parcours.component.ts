@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {QuizService} from '../../../core/services/quiz-service/quiz.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {QuizParcoursModel} from '../../../core/models/quiz/quiz-parcours-model/quiz-parcours-model';
+import {StudentService} from '../../../core/services/Student-service/student.service';
 
 @Component({
   selector: 'app-show-quiz-parcours',
@@ -24,7 +25,14 @@ export class ShowQuizParcoursComponent implements OnInit {
   saved: any;
 
 
-  constructor( private modal: NzModalService,private quizService: QuizService) { }
+  constructor( private modal: NzModalService,private quizService: QuizService,private studentService:StudentService) { }
+
+  getStudentLoged() {
+    this.studentService.getProfLoged().subscribe(data => {
+      this.studentService.student=data
+      console.log(this.studentService.student)
+    });
+  }
 
   ngOnInit(): void {
     this. onShowQuizCoure(1)
@@ -94,6 +102,7 @@ export class ShowQuizParcoursComponent implements OnInit {
     this.startQuiz = true;
   }
   onShowQuizCoure(parcourid:number) {
+    this.getStudentLoged()
     this.loading = true;
     this.errorMessage = "";
     this.quizService.GetQuizParcour(parcourid)
@@ -115,7 +124,6 @@ export class ShowQuizParcoursComponent implements OnInit {
   onSaveEtudaintQuizCour(idEtudaint: any, idQuiz: any, note: any) {
     this.quizService.SaveEtudantQuizParcour(idEtudaint, idQuiz, note).subscribe(data => {
       this.saved = data;
-      alert('succsess')
     })
 
   }

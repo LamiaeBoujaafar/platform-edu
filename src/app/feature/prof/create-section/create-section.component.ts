@@ -6,6 +6,7 @@ import {SectionModel} from "../../../core/models/course/section-model/section-mo
 import {CourseService} from "../../../core/services/course-service/course.service";
 import {Observable} from "rxjs";
 import {AppDataState} from "../../../state/client.state";
+import {ProfService} from '../../../core/services/prof-service/prof.service';
 @Component({
   selector: 'app-create-section',
   templateUrl: './create-section.component.html',
@@ -26,8 +27,14 @@ export class CreateSectionComponent implements OnInit {
   public objectKeys = Object.keys;
 
 
-  constructor(private formBuilder: FormBuilder,private courseService:CourseService) { }
+  constructor(private formBuilder: FormBuilder,private courseService:CourseService,private profService:ProfService) { }
 
+  getProf() {
+    this.profService.getProfLoged().subscribe(data => {
+      this.profService.prof=data
+      console.log(data)
+    });
+  }
   ngOnInit(): void {
     this.ongetCoures(1);
     this.validateForm = this.formBuilder.group({
@@ -130,6 +137,7 @@ export class CreateSectionComponent implements OnInit {
 
   }
   ongetCoures(idprof:number){
+    this.getProf()
     this.loading = true;
     this.errorMessage = "";
     this.courseService.GetCoures(idprof)

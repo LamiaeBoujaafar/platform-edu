@@ -25,22 +25,27 @@ export class LoginInstitutePageComponent implements OnInit {
     if (this.loginn == 'admin' && this.password == 'admin') {
       this.router.navigate(['/dashboard/admin/show-institute']);
     } else {
-      this.authService.login(this.loginn, this.password).subscribe(data => {
-        if (data) {
-          console.log(data);
-          localStorage.setItem('JWT',data.token)
-          if(data.userType==="INSTITUTE"){
-            this.router.navigate(['/dashboard/institute/add-student'])
-          }else if(data.userType==="ETUDIANT"){
-            this.router.navigate(['/dashboard/student/show-course'])
-          }else{
-            this.router.navigate(['/dashboard/prof/dashboard'])
+      this.authService.login(this.loginn, this.password).subscribe((data) => {
+          if (data) {
+            console.log(data);
+            localStorage.setItem('JWT', data.token);
+            if (data.userType === 'INSTITUTE') {
+              this.router.navigate(['/dashboard/institute/add-student']);
+            } else if (data.userType === 'ETUDIANT') {
+              this.router.navigate(['/dashboard/student/show-course']);
+            } else if (data.userType === 'PROF') {
+              this.router.navigate(['/dashboard/prof/create-course']);
+            } else {
+              alert('Login or Password false');
+            }
+          } else {
+            console.log(data);
+            alert('Error');
           }
-        } else {
-          console.log(data)
-          alert("Error")
-        }
-      });
+        },
+        (error) => {
+          alert('Login or Password false');
+        });
     }
 
   }

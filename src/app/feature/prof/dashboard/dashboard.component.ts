@@ -18,6 +18,14 @@ export class DashboardComponent implements OnInit {
   profdashbord!:ProfDashboardModel ;
   etudaints:StudentModel[] | undefined=[];
   constructor(private profservice:ProfService) { }
+
+  getProf() {
+    this.profservice.getProfLoged().subscribe(data => {
+      this.profservice.prof=data
+      console.log(data)
+    });
+  }
+
   startAnimationForLineChart(chart: { on: (arg0: string, arg1: (data: any) => void) => void; }){
     let seq: any, delays: any, durations: any;
     seq = 0;
@@ -157,6 +165,7 @@ export class DashboardComponent implements OnInit {
     this.startAnimationForBarChart(websiteViewsChart);
   }
   ongetdashbord(idprof:number,idparcour:number){
+    this.getProf()
     this.loading = true;
     this.errorMessage = "";
     this.profservice.GetDashbord(idprof,idparcour)

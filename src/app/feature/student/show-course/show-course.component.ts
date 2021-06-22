@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CourseModel} from '../../../core/models/course/course-model/course-model';
 import {CourseService} from '../../../core/services/course-service/course.service';
+import {StudentService} from '../../../core/services/Student-service/student.service';
 
 @Component({
   selector: 'app-show-course',
@@ -21,9 +22,16 @@ export class ShowCourseComponent implements OnInit {
   completedCourse = false;
   etudaintcoure : any ;
   updateEtudaintCoure :any ;
-  constructor(private courseService:CourseService ) { }
+  constructor(private courseService:CourseService ,private studentService:StudentService) { }
 
+  getStudentLoged() {
+    this.studentService.getProfLoged().subscribe(data => {
+      this.studentService.student=data
+      console.log(this.studentService.student)
+    });
+  }
   ngOnInit(): void {
+
     this.ongetCoures(1);
   }
   startCourse(course: any) {
@@ -83,6 +91,7 @@ export class ShowCourseComponent implements OnInit {
     this.sectionLength = 0;
   }
   ongetCoures(idparcour:number){
+    this.getStudentLoged()
     this.loading = true;
     this.errorMessage = "";
     this.courseService.GetCouresByParcour(idparcour)

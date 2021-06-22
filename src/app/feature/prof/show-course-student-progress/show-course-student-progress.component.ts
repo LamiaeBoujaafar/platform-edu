@@ -5,6 +5,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import {StudentCourseModel} from "../../../core/models/course/student-course-model/student-course-model";
 import {StudentModel} from "../../../core/models/student-model/student-model";
 import {CourseService} from "../../../core/services/course-service/course.service";
+import {ProfService} from '../../../core/services/prof-service/prof.service';
 
 @Component({
   selector: 'app-show-course-student-progress',
@@ -23,7 +24,14 @@ export class ShowCourseStudentProgressComponent implements OnInit {
 
   public SelectedCour!:any ;
 
-  constructor(private formBuilder: FormBuilder, private message: NzMessageService,private courseService:CourseService) { }
+  constructor(private formBuilder: FormBuilder, private message: NzMessageService,private courseService:CourseService,private profService:ProfService) { }
+
+  getProf() {
+    this.profService.getProfLoged().subscribe(data => {
+      this.profService.prof=data
+      console.log(data)
+    });
+  }
 
   ngOnInit(): void {
     this.ongetCoures(1)
@@ -50,6 +58,7 @@ export class ShowCourseStudentProgressComponent implements OnInit {
 
   }
   ongetCoures(idprof:number){
+    this.getProf()
     this.loading = true;
     this.errorMessage = "";
     this.courseService.GetCoures(idprof)

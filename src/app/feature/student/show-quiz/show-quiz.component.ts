@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {QuizService} from '../../../core/services/quiz-service/quiz.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {QuizCourseModel} from '../../../core/models/quiz/quiz-course-model/quiz-course-model';
+import {StudentService} from '../../../core/services/Student-service/student.service';
 
 @Component({
   selector: 'app-show-quiz',
@@ -26,10 +27,17 @@ export class ShowQuizComponent implements OnInit {
   errorMessage: any;
   saved: any;
 
-  constructor(private quizService: QuizService, private modal: NzModalService) {
+  constructor(private quizService: QuizService, private modal: NzModalService,private studentService:StudentService) {
+  }
+  getStudentLoged() {
+    this.studentService.getProfLoged().subscribe(data => {
+      this.studentService.student=data
+      console.log(this.studentService.student)
+    });
   }
 
   ngOnInit(): void {
+
     this.onShowQuizCoure(1)
 
   }
@@ -109,6 +117,7 @@ export class ShowQuizComponent implements OnInit {
   }
 
   onShowQuizCoure(idparcour:number) {
+    this.getStudentLoged()
     this.loading = true;
     this.errorMessage = "";
     this.quizService.GetQuizCoureStudent(idparcour)

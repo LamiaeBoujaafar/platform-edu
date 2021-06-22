@@ -6,6 +6,7 @@ import {QuizParcoursModel} from "../../../../core/models/quiz/quiz-parcours-mode
 import {catchError, map, startWith} from "rxjs/operators";
 import {QuizCourseModel} from "../../../../core/models/quiz/quiz-course-model/quiz-course-model";
 import {QuestionModel} from "../../../../core/models/quiz/question-model/question-model";
+import {ProfService} from '../../../../core/services/prof-service/prof.service';
 
 @Component({
   selector: 'app-quiz-parcour',
@@ -17,7 +18,7 @@ export class QuizParcourComponent implements OnInit {
   DataStateEnum=DataStateEnum
   loading: boolean = false
   saved: any
-  public QuizOffParcour: QuizParcoursModel [] = [];
+  public QuizOffParcour: any;
   errorMessage: any;
   expandSet = new Set<number>();
   onExpandChange(idquiz: number, checked: boolean): void {
@@ -27,22 +28,20 @@ export class QuizParcourComponent implements OnInit {
       this.expandSet.delete(idquiz);
     }
   }
-  constructor(private quizService: QuizService) {
+  constructor(private quizService: QuizService,private profService:ProfService) {
+  }
+  getProf() {
+    this.profService.getProfLoged().subscribe(data => {
+      this.profService.prof=data
+      console.log(data)
+    });
   }
 
   ngOnInit(): void {
-    this.OnGetQuiz();
+
     this.onShowQuizparcour()
   }
-  OnGetQuiz(){
 
-    this.quizparcour$=this.quizService.GetQuiParcour().pipe(
-      map(data=>{
-        return ({dataState:DataStateEnum.LOADED,data:data})}),
-      startWith({dataState:DataStateEnum.LOADING}),
-      catchError(err=>of({dataState:DataStateEnum.Error,errorMessage:err.message}))
-    )
-  }
 
   deletetQestion(ques: QuestionModel) {
     console.log(ques)

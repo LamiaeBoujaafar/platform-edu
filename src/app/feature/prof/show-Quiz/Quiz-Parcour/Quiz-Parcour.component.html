@@ -1,26 +1,26 @@
 
-<nz-table #nzTable [nzData]="QuizOffParcour" nzTableLayout="fixed">
+<nz-table >
   <thead>
   <tr>
-    <th>Show Operations</th>
+    <th>Show Questions</th>
     <th>numberQuestions</th>
-    <th >coure</th>
+    <th >Parcours</th>
     <th>Action</th>
   </tr>
   </thead>
   <tbody>
-  <ng-container *ngFor="let data of  nzTable.data,index as i ">
+  <ng-container >
     <tr>
-      <td [nzExpand]="expandSet.has(data.idquiz)" (nzExpandChange)="onExpandChange(data.idquiz, $event)"></td>
-      <td>{{ data.numberquestions}}</td>
-      <td>{{ data.parcour.title }}</td>
-      <td><a><i (click)="deletetQuize(data)" class="material-icons" style="color: red">delete</i></a></td>
+      <td [nzExpand]="expandSet.has(QuizOffParcour.idquiz)" (nzExpandChange)="onExpandChange(QuizOffParcour.idquiz, $event)"></td>
+      <td>{{ QuizOffParcour.numberquestions}}</td>
+      <td>{{ QuizOffParcour.idparcour }}</td>
+      <td><a><i (click)="deletetQuize(QuizOffParcour)" class="material-icons" style="color: red">delete</i></a></td>
 
 
 
     </tr>
-    <tr [nzExpand]="expandSet.has(data.idquiz)">
-      <nz-table #innerTable [nzData]="data.questions" nzSize="middle" [nzShowPagination]="false">
+    <tr [nzExpand]="expandSet.has(QuizOffParcour.idquiz)">
+      <nz-table #innerTable [nzData]="QuizOffParcour?.questions" nzSize="middle" [nzShowPagination]="false">
   <thead>
   <tr style="background-color: #00bbff;">
     <th >question </th>
