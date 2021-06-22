@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ProfService} from '../../core/services/prof-service/prof.service';
 
 @Component({
   selector: 'app-prof',
@@ -8,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class ProfComponent implements OnInit {
   isCollapsed = false;
 
-  constructor() { }
+  constructor(private profService:ProfService) { }
 
   ngOnInit(): void {
+    this.getProf()
   }
+
+  getProf() {
+    this.profService.getProfLoged().subscribe(data => {
+      this.profService.prof=data
+      console.log(data)
+    });
+  }
+
 
 }

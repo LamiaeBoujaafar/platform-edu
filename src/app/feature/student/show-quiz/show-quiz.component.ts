@@ -111,7 +111,7 @@ export class ShowQuizComponent implements OnInit {
   onShowQuizCoure(idparcour:number) {
     this.loading = true;
     this.errorMessage = "";
-    this.quizService.GetQuizCoure(idparcour)
+    this.quizService.GetQuizCoureStudent(idparcour)
       .subscribe(
         (response) => {                           //next() callback
           console.log('response received')

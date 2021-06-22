@@ -58,6 +58,7 @@ export class AddStudentComponent implements OnInit {
     this.studentService.saveStudent(this.studentCreate, this.institue.id, this.validateForm.controls.parcour.value).subscribe(data => {
       if (data == 1) {
         alert('success');
+        window.location.reload()
       }else if (data==-2) {
         alert('Le est deja existe');
       } else {

@@ -12,6 +12,9 @@ const routes: Routes = [
         path: '', loadChildren: () => import('./first-page/first-page.module').then(m => m.FirstPageModule)
       },
       {
+        path: 'first', loadChildren: () => import('./first-page/first-page.module').then(m => m.FirstPageModule)
+      },
+      {
         path: 'registration', loadChildren: () => import('./registration-page/registration-page.module').then(m => m.RegistrationPageModule)
       },
       {

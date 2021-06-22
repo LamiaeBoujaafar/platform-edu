@@ -11,11 +11,14 @@ import {CourseService} from "../course-service/course.service";
 import {HttpClient} from "@angular/common/http";
 import {ProfDashboardModel} from "../../models/ProfDashboard/ProfDashboard-model";
 import {ProfModel} from '../../models/prof-model/prof-model.model';
+import {StudentModel} from '../../models/student-model/student-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfService {
+
+  prof:ProfModel={}
 
   constructor(private http:HttpClient) {
 
@@ -24,20 +27,37 @@ export class ProfService {
 
   GetDashbord(idprof:number,idparcour:number):Observable<ProfDashboardModel >{
     let host=environment.host
-    return this.http.get<ProfDashboardModel>(host+"prof/dashbord/"+idprof+"/parcour/"+idparcour)
+    return this.http.get<ProfDashboardModel>(host+"prof/dashbord/"+this.prof.id+"/parcour/"+this.prof.parcourVo?.id)
   }
-  GetEtudaints(idparcour:number):Observable<any[]>{
-    let host=environment.host
-    return this.http.get<any[]>(host+"etudaint/parcour/"+idparcour)
+  GetEtudaints(idparcour:number):StudentModel[] | undefined{
+
+    return this.prof.parcourVo?.etudiantVos
   }
 
   saveProf(prof: ProfModel, idInstitute: number | undefined, idParcour: number) {
-    let host = environment.hostProf;
-    return this.http.post(host+"instituteId/"+idInstitute+"/parcourId/"+idParcour,prof)
+    let host = environment.hostInstitute;
+    const jwt =localStorage.getItem('JWT')
+    console.log(jwt);
+    const headers= {
+      'Content-Type':  'application/json',
+      Authorization: 'Bearer '+jwt,
+    }
+    return this.http.post(host+"saveProf/instituteId/"+idInstitute+"/parcourId/"+idParcour,prof,{headers})
   }
 
   deleteProf(id: number | undefined) {
     let host = environment.hostProf;
     return this.http.delete(host+id)
+  }
+
+  getProfLoged(): Observable<any> {
+    let host = environment.hostProf;
+    const jwt =localStorage.getItem('JWT')
+    console.log(jwt);
+    const headers= {
+      'Content-Type':  'application/json',
+      Authorization: 'Bearer '+jwt,
+    }
+    return this.http.get<any>(host+"me", {headers})
   }
 }

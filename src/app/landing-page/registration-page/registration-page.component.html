@@ -20,7 +20,18 @@
               <div class="text-center text-muted mb-4">
                 <small>Enter your informations</small>
               </div>
+
               <form (ngSubmit)="register()" role="form">
+                <div class="row">
+                  <div class="col">
+                    <input type="radio" id="prof" name="type" value="prof" [(ngModel)]="type">
+                    <label for="prof">Prof</label>
+                  </div>
+                  <div class="col">
+                    <input type="radio" id="student" name="type" value="student" [(ngModel)]="type">
+                    <label for="student">Student</label>
+                  </div>
+                </div>
                 <div [ngClass]="{'focused':focus===true}" class="form-group">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
@@ -87,7 +98,7 @@
                 <div [ngClass]="{'focused':focus===true}" class="form-group">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">Sex</span>
+                      <span class="input-group-text">Sexe</span>
                     </div>
                     <select (blur)="focus=false" (focus)="focus=true" class="form-control" name="sex" [(ngModel)]="request.sex">
                       <option  ngValue="mal">Mal</option>
@@ -117,8 +128,15 @@
                 </div>
 
 
-                <div class="text-center">
-                  <button class="btn btn-primary mt-4" type="submit">Create Request</button>
+                <div class="row text-center">
+                  <div class="col">
+                    <button class="btn btn-primary mt-4" type="submit">Create Request</button>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-info my-4" (click)="back()">Back</button>
+                  </div>
+
+
                 </div>
               </form>
             </div>

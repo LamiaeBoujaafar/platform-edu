@@ -4,6 +4,8 @@ import {ProfRequestService} from '../../core/services/prof-request-service/prof-
 import {ProfRequestModel} from '../../core/models/prof-requeste-model/prof-request-model.model';
 import {InstituteModel} from '../../core/models/institute/institute-model';
 import {ParcoursModel} from '../../core/models/course/parcours-model/parcours-model';
+import {StudentRequestService} from '../../core/services/student-request-service/student-request.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registration-page',
@@ -16,12 +18,15 @@ export class RegistrationPageComponent implements OnInit {
   focus1:boolean=false;
   focus2:boolean=false;
 
+  type:string=""
+
   request:ProfRequestModel={}
+
   institueId?:number
   parcourId?:number
   listInstitutes : InstituteModel[] = [];
   listParcous : ParcoursModel[] = [];
-  constructor(private profRequestService:ProfRequestService,private instituteService:InstituteService) { }
+  constructor(private profRequestService:ProfRequestService,private instituteService:InstituteService,private studentService:StudentRequestService,private router : Router) { }
 
   ngOnInit(): void {
     this.getIntitutes()
@@ -44,9 +49,28 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   register() {
-   console.log(this.request)
-   console.log(this.institueId)
-   console.log(this.parcourId)
 
+    if (this.type == 'student') {
+      this.studentService.saveRequeste(this.request, this.institueId, this.parcourId).subscribe(data => {
+        if (data == 1) {
+          alert('Success');
+        } else {
+          alert('Error');
+        }
+      });
+    } else {
+      this.profRequestService.saveRequeste(this.request, this.institueId, this.parcourId).subscribe(data => {
+        if (data == 1) {
+          alert('Success');
+        } else {
+          alert('Error');
+        }
+      });
+    }
+
+  }
+
+  back() {
+    this.router.navigate(['/landing']);
   }
 }

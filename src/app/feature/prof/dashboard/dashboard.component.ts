@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import {ProfService} from "../../../core/services/prof-service/prof.service";
 import {ProfDashboardModel} from "../../../core/models/ProfDashboard/ProfDashboard-model";
+import {StudentModel} from '../../../core/models/student-model/student-model';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class DashboardComponent implements OnInit {
   loading: boolean = false;
   errorMessage: any;
   profdashbord!:ProfDashboardModel ;
-  etudaints:any=[];
+  etudaints:StudentModel[] | undefined=[];
   constructor(private profservice:ProfService) { }
   startAnimationForLineChart(chart: { on: (arg0: string, arg1: (data: any) => void) => void; }){
     let seq: any, delays: any, durations: any;
@@ -75,7 +76,7 @@ export class DashboardComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.ongetudaints(1);
+    this.etudaints=this.profservice.GetEtudaints(32)
     this.ongetdashbord(1,1);
     const dataDailySalesChart: any = {
       labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
@@ -163,26 +164,7 @@ export class DashboardComponent implements OnInit {
         (response) => {                           //next() callback
           console.log('response received')
           this.profdashbord = response;
-        },
-        (error) => {                              //error() callback
-          console.error('Request failed with error')
-          this.errorMessage = error;
-          this.loading = false;
-        },
-        () => {                                   //complete() callback
-          console.error('Request completed')      //This is actually not needed
-          this.loading = false;
-        })
-
-  }
-  ongetudaints(idparcour:number){
-    this.loading = true;
-    this.errorMessage = "";
-    this.profservice.GetEtudaints(idparcour)
-      .subscribe(
-        (response) => {                           //next() callback
-          console.log('response received')
-          this.etudaints = response;
+          console.log("haaaaaaaaaaaaaa=="+response)
         },
         (error) => {                              //error() callback
           console.error('Request failed with error')

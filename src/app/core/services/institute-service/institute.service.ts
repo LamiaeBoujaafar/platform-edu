@@ -16,36 +16,44 @@ export class InstituteService {
   }
 
   getInstitutes():Observable<InstituteModel[]> {
-    let host = environment.hostInstitute;
+    let host = environment.hostAdmin;
     return this.http.get<InstituteModel[]>(host);
   }
 
   getParcoursByInstitute(id: number | undefined): Observable<ParcoursModel[]> {
-    let host = environment.hostParcour;
+    let host = environment.hostAdmin;
     return this.http.get<ParcoursModel[]>(host+"instituteId/"+id)
   }
 
   getInstitutesById(id: number | undefined): Observable<InstituteModel> {
-    let host = environment.hostInstitute;
+    let host = environment.hostAdmin;
     return this.http.get<InstituteModel>(host+id)
   }
 
-  login(login: string,password:string): Observable<InstituteModel> {
+  getInstituteLoged(): Observable<any> {
     let host = environment.hostInstitute;
-    return this.http.get<InstituteModel>(host+"login/"+login+"/password/"+password)
+    const jwt =localStorage.getItem('JWT')
+    console.log(jwt);
+    const headers= {
+      'Content-Type':  'application/json',
+      Authorization: 'Bearer '+jwt,
+    }
+    return this.http.get<any>(host+"me", {headers})
   }
 
+
+
   saveInstite(institue: InstituteModel) {
-    let host = environment.hostInstitute;
+    let host = environment.hostAdmin;
     return this.http.post(host, institue);
   }
 
   daleteInstitute(id: number | undefined) {
-    let host = environment.hostInstitute;
+    let host = environment.hostAdmin;
     return this.http.delete(host+id)
   }
   updateInstite(id: number | undefined,institue: InstituteModel) {
-    let host = environment.hostInstitute;
+    let host = environment.hostAdmin;
     return this.http.put(host+id,institue)
   }
 

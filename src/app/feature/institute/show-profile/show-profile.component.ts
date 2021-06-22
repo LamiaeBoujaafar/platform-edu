@@ -10,6 +10,7 @@ export class ShowProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

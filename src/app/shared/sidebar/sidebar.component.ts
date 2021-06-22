@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Routes} from "@angular/router";
+import {Router, Routes} from '@angular/router';
 import {FeatureComponent} from "../../feature/feature.component";
 
 declare const $: any;
@@ -31,7 +31,6 @@ export const ROUTESInstitutes: RouteInfo[] = [
   { path: 'add-student', title: 'Add Student',  icon:'school', class: '' },
   { path: 'add-prof', title: 'Add Professor',  icon:'hail', class: '' },
   { path: 'registration-requests', title: 'Registration Requests',  icon: 'assignment_turned_in', class: '' },
-  { path: 'add-student-to-course', title: 'Manage Courses',  icon:'book', class: '' },
   { path: 'show-profile', title: 'Show Profile',  icon:'perm_contact_calendar', class: '' },
 ];
 export const ROUTESAdmin: RouteInfo[] = [
@@ -51,7 +50,7 @@ export class SidebarComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
     if (this.role == "student") {
@@ -63,6 +62,11 @@ export class SidebarComponent implements OnInit {
     }else if (this.role=="admin") {
       this.menuItems = ROUTESAdmin.filter(menuItem => menuItem);
     }
+  }
+
+  logout() {
+    localStorage.removeItem('JWT');
+    this.router.navigate(['/landing']);
   }
 
 }

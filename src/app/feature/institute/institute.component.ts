@@ -14,15 +14,24 @@ export class InstitutComponent implements OnInit {
   constructor(private instituteService:InstituteService) { }
 
   ngOnInit(): void {
-    this.getInstitueById()
+    // this.getInstitueById()
+    this.getIstitute()
+
   }
 
-  getInstitueById() {
-    this.instituteService.getInstitutesById(5).subscribe(data => {
-      this.instituteService.intitute=data
+  // getInstitueById() {
+  //   this.instituteService.getInstitutesById(5).subscribe(data => {
+  //     this.instituteService.intitute=data
+  //
+  //   });
+  // }
 
+  getIstitute() {
+    this.instituteService.getInstituteLoged().subscribe(data => {
+      this.instituteService.intitute=data
     });
   }
+
 
 
 }

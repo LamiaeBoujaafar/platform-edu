@@ -8,6 +8,8 @@ import {CourseModel} from '../../models/course/course-model/course-model';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
+import {ProfService} from '../prof-service/prof.service';
+import {StudentService} from '../Student-service/student.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class QuizService {
 
 
 
-  constructor(private courseService:CourseService ,private http:HttpClient) {
+  constructor(private courseService:CourseService ,private http:HttpClient,private profService:ProfService,private studentService:StudentService) {
 
   }
    host=environment.host
@@ -30,8 +32,15 @@ export class QuizService {
   }
   GetQuizCoure(id:number):Observable<QuizCourseModel[] >{
     let host=environment.host
-    return this.http.get<QuizCourseModel[]>(host+"quizcoure/prof/"+id)
+    return this.http.get<QuizCourseModel[]>(host+"quizcoure/prof/"+this.profService.prof.id)
   }
+
+  GetQuizCoureStudent(id:number):Observable<QuizCourseModel[] >{
+    let host=environment.host
+    return this.http.get<QuizCourseModel[]>(host+"quizcoure/parcour/"+this.studentService.student.parcourVo?.id)
+  }
+
+
 
   deleteQuiz(id:number):any{
     let host=environment.host
@@ -47,31 +56,31 @@ export class QuizService {
   }
   SaveQuizParcour(idParcour: any, data: any):Observable<any>{
     let host=environment.host
-    return  this.http.post<any>(host+"quizparcour/"+idParcour,data)
+    return  this.http.post<any>(host+"quizparcour/"+this.profService.prof.parcourVo?.id,data)
   }
   GetQuiParcour():Observable<QuizParcoursModel[]>{
     let host=environment.host
-    return this.http.get<QuizParcoursModel[]>(host+"quizparcour/getall")
+    return this.http.get<QuizParcoursModel[]>(host+"quizparcour/parcour/"+this.profService.prof.parcourVo?.id)
   }
  SaveEtudantQuizCoure(idEtudaint: any, idQuiz: any,note:any):Observable<any>{
     let host=environment.host
-   return  this.http.post<any>(host+"etudiantquizcour/etudaint/"+idEtudaint+"/quizcoure/"+idQuiz,note)
+   return  this.http.post<any>(host+"etudiantquizcour/etudaint/"+this.studentService.student.id+"/quizcoure/"+idQuiz,note)
   }
   GetQuizParcour(parcourid:number):Observable<QuizParcoursModel>{
     let host=environment.host
-    return this.http.get<QuizParcoursModel>(host+"quizparcour/parcour/"+parcourid)
+    return this.http.get<QuizParcoursModel>(host+"quizparcour/parcour/"+this.studentService.student.parcourVo?.id)
   }
   SaveEtudantQuizParcour(idEtudaint: any, idQuiz: any,note:any):Observable<any>{
     let host=environment.host
-    return  this.http.post<any>(host+"etudiantquizparcour/etudaint/"+idEtudaint+"/quizparcour/"+idQuiz,note)
+    return  this.http.post<any>(host+"etudiantquizparcour/etudaint/"+this.studentService.student.id+"/quizparcour/"+idQuiz,note)
   }
   GetQuizByProf(idprof:number):Observable<any[]>{
     let host=environment.host
-    return this.http.get<any[]>(host+"quizcoure/prof/"+idprof)
+    return this.http.get<any[]>(host+"quizcoure/prof/"+this.profService.prof.id)
   }
   GetEtudanitQuizCoure(idetudaint:number):Observable<any[]>{
     let host=environment.host
-    return this.http.get<any[]>(host+"etudiantquizcour/etudaint/"+idetudaint)
+    return this.http.get<any[]>(host+"etudiantquizcour/etudaint/"+this.studentService.student.id)
   }
   quizParcours!: QuizParcoursModel ;
   quizCourse!: QuizCourseModel[];

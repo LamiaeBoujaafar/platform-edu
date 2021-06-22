@@ -34,6 +34,7 @@ export class RegistrationProfComponent implements OnInit {
     this.profRequesteService.approveRequest(idRequeste).subscribe(data => {
       if (data == 1) {
         alert('Prof saved');
+        window.location.reload()
         this.getAllRequest()
       } else {
         alert("Error")

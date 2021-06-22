@@ -8,18 +8,7 @@
   <div class="card-body">
 
 
-    <nz-form-item>
-      <nz-form-label [nzSpan]="5" nzFor="parcour" nzRequired>parcour</nz-form-label>
-      <nz-form-control [nzSpan]="12" nzErrorTip="Please select your parcour!">
-        <nz-select id="parcour" formControlName="parcour" nzPlaceHolder="Select parcour"
-                   nzAllowClear
-                   [(ngModel)]="SelectedParcour"
-                   (ngModelChange)="changeParcour($event)"
-        >
-          <nz-option *ngFor="let option of listOfParcours" [nzLabel]="option.title" [nzValue]="option"></nz-option>
-        </nz-select>
-      </nz-form-control>
-    </nz-form-item>
+
 
 
 

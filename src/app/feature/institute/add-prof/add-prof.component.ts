@@ -64,6 +64,7 @@ export class AddProfComponent implements OnInit{
     this.profService.saveProf(this.profCreate, this.institue.id, this.validateForm.controls.parcour.value).subscribe(data => {
       if (data == 1) {
         alert('success');
+        window.location.reload()
       }else if (data==-2) {
         alert('Le est deja existe');
       } else {

@@ -4,13 +4,15 @@
 
 export const environment = {
   production: false,
+  hostAuth:"http://localhost:8070/auth/",
   hostInstitute:"http://localhost:8070/Api/institute/",
+  hostAdmin:"http://localhost:8070/Api2/institute/",
   hostProf:"http://localhost:8070/Api/prof/",
-  hostProfRequest:"http://localhost:8070/Api/profRequest/",
+  hostProfRequest:"http://localhost:8070/Api2/profRequest/",
   hostStudent:"http://localhost:8070/Api/etudiant/",
-  hostStudentRequest:"http://localhost:8070/Api/etudiantRequest/",
+  hostStudentRequest:"http://localhost:8070/Api2/etudiantRequest/",
   hostParcour:"http://localhost:8070/Api/parcour/",
-  host:"http://localhost:8070/api/"
+  host:"http://localhost:8071/api/"
 };
 
 /*

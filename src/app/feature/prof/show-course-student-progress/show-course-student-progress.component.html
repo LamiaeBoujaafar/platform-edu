@@ -34,7 +34,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let data of EtudaintCoure index as i  " >
-      <td>{{data.etudiant.nom}}</td>
+      <td>{{data.idetudiant}}</td>
       <td>{{data.nombresectionvalide}}</td>
       <td>{{data.nombresectionnonvalide}}</td>
       <td>  <nz-progress [nzPercent]="data.nombresectionvalide*100/SelectedCour.section.length" nzType="circle" [nzWidth]="80"></nz-progress></td>

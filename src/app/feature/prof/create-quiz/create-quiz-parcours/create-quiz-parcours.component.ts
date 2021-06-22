@@ -16,24 +16,7 @@ import {QuizService} from "../../../../core/services/quiz-service/quiz.service";
 export class CreateQuizParcoursComponent implements OnInit {
   validateForm!: FormGroup;
 
-  listOfParcours:ParcoursModel[]=[
-    {
-  id: 1,
-      title:"devlempent",
-   courses:[],
-      description:"desption1"
 
-},
-{
-  id: 1,
-  title:"RH",
-  courses:[],
-  description:"desption1"
-
-
-
-},
-  ];
   etataOfQuestion:any[]=[
     {
       etta: true,
@@ -61,7 +44,6 @@ export class CreateQuizParcoursComponent implements OnInit {
 
     this.validateForm = this.formBuilder.group({
       Question: [null, [Validators.required]],
-      parcour: [null, [Validators.required]],
       Qetat: [null, [Validators.required]],
       option: [null, [Validators.required]],
       duree : [null, [Validators.required]],
@@ -77,7 +59,7 @@ export class CreateQuizParcoursComponent implements OnInit {
     }
     // @ts-ignore
     console.log(data);
-    if (data.Question != null && data.parcour != null && data.Qetat != null && data.option != null ) {
+    if (data.Question != null  && data.Qetat != null && data.option != null ) {
       if (this.nextClicked == 1) {
 
         // @ts-ignore
